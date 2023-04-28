@@ -1,4 +1,5 @@
 import * as dotenv from "dotenv" 
+import mongoose from "mongoose"
 
 const ENV = process.env.NODE_ENV || 'production'
 console.log(ENV)
@@ -7,5 +8,12 @@ dotenv.config({
     path: `${__dirname}/../.env.${ENV}`
 })
 
-console.log(process.env.DATABASE_URL)
+if (!process.env.DATABASE_URL) {
+    throw new Error('PGDATABASE or DATABASE_URL not set');
+  }
+
+export const db = mongoose.connect(process.env.DATABASE_URL)
+
+
+
 
