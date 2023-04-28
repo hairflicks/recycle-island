@@ -1,5 +1,5 @@
 
-export const users = [
+export const testusers = [
     {
         username: 'hairflicks',
         hash: "sdkjfhsdklfhs",

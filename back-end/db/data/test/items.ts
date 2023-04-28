@@ -1,5 +1,5 @@
 
-export const items = [
+export const testitems = [
     {
         itemName: "tree",
         itemCost: 20,
