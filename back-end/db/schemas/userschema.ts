@@ -1,4 +1,4 @@
-import mongoose, { Schema, model, SchemaType } from 'mongoose';
+import mongoose, { Schema, model, SchemaType,} from 'mongoose';
 
 const userSchema = new Schema({
     username: { type: String, required: true },
@@ -8,9 +8,10 @@ const userSchema = new Schema({
     island: {type:  [
             {
                 itemName: String,
-                coordinates: [Float64Array],
+                coordinates: [Number],
             },
         ], default: [{}]}
 });
+
 
 export const User = model('User', userSchema);

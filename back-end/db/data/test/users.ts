@@ -8,7 +8,7 @@ export const users = [
         island:[
                 {
                 itemName: 'tree',
-                coordinates: [0,0,1]
+                coordinates: [0.0,0.0,1.0]
                 }
             ]
         },
@@ -19,7 +19,7 @@ export const users = [
         island:[
                 {
                 itemName: 'bee',
-                coordinates: [1,2,3]
+                coordinates: [1.0,2.0,3.0]
                 }
             ]
         },
