@@ -5,7 +5,7 @@ import { Item } from '../schemas/itemschema'
 
 export const seed = async (users: any, items: any) => {
 
-    if (mongoose.connection.collections["User"]) {
+    if (mongoose.connection.collections["users"]) {
     await User.collection.drop()
     }
 
@@ -13,5 +13,4 @@ export const seed = async (users: any, items: any) => {
     const insertedUsers = await User.insertMany(users)
 
     const insertedItems = await Item.insertMany(items)
-    console.log('hello')
 }
