@@ -61,4 +61,21 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
   },
+  canvasBorder: {
+    borderColor: 'red',
+    borderStyle: 'solid',
+    width: '90%',
+    height: '90%'
+  },
+  islandNavigation: {
+    flexDirection: 'row', 
+    justifyContent: 'space-between',
+    borderColor: 'red',
+    borderStyle: 'solid',
+    width: '90%',
+    height: '5%'
+  }
+
+
+
   });

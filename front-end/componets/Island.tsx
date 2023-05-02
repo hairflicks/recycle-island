@@ -1,13 +1,21 @@
-import { View, Text, StatusBar, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, Button, TouchableOpacity } from 'react-native';
 import { styles } from './StyleSheetCSS';
 
 function Island(){
+
     return(
-        <View>
-            <Text>Island Name</Text>
-            <Text>Currency</Text>
-            <Text>Island Canvas</Text>
-            <Text>Na</Text>
+        <View style={styles.container}>
+            <div style={styles.canvasBorder}>
+                
+            </div>
+            <div style={styles.islandNavigation}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                <Button title="Island" />
+                <Button title="Tasks" />
+                <Button title="Shop" />
+                <Button title="Profile" />
+            </View>
+            </div>
         </View>
     )
 }

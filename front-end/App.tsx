@@ -1,13 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import { StyleSheet } from 'react-native';
+
 import Login from './componets/Login';
+import Island from './componets/Island'
+
+
 
 export default function App() {
+
+  const Stack = createNativeStackNavigator();
+
   return (
-    <View style={styles.container}>
-      <Login/>
-      <StatusBar style="auto" />
-    </View>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Island">
+          <Stack.Screen name="Login" component={Login}/>
+          <Stack.Screen name="Island" component={Island}/>
+        </Stack.Navigator>
+      </NavigationContainer>
   );
 }
 
