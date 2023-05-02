@@ -21,6 +21,8 @@
   },
   "scripts": {
     "test": "jest",
+    "start": "ts-node listen.ts",
     "seed-prod": "ts-node ./db/seeds/run-seed.ts"
-  }
+  },
+  "main" : "listen.ts"
 }
