@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { View, Text, StatusBar, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, StatusBar, StyleSheet, Button, TextInput, TouchableOpacity } from 'react-native';
 import { styles } from './StyleSheetCSS';
 
-function Login() {
+function Login({ navigation }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [slider, setSlider] = useState(true);
@@ -11,11 +11,14 @@ function Login() {
       console.log(event)
       console.log(`Logging in with username: ${username}, password: ${password}`);
       setSlider(true)
-      
     };
 
     const handleSignUp = () => {
       setSlider(false)
+    }
+
+    const handleNavigation = () => {
+      navigation.navigate('Island')
     }
   
     return (
@@ -46,9 +49,12 @@ function Login() {
             value={password}
             onChangeText={setPassword}
           />
-          <TouchableOpacity style={styles.button} onPress={handleLogin}>
-            <Text style={styles.buttonText}>Login</Text>
+          <TouchableOpacity style={styles.button} onPress={handleNavigation}>
+            <Text style={styles.buttonText}>Login</Text>          
           </TouchableOpacity>
+
+
+
         </View>
         : 
         <View style={styles.inputContainer}>
@@ -71,7 +77,7 @@ function Login() {
             value=''
             onChangeText={setUsername}
           />
-          <TouchableOpacity style={styles.button} onPress={handleLogin}>
+          <TouchableOpacity style={styles.button} onPress={handleNavigation}>
             <Text style={styles.buttonText}>Create Account</Text>
           </TouchableOpacity>
         </View>
