@@ -1,5 +1,5 @@
 import { ErrorRequestHandler, NextFunction, Request, Response } from "express";
-import { findItems } from "../models/itemModels";
+import { findItems, findUserByUsername } from "../models/itemModels";
 
 export const getItems = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -8,4 +8,10 @@ export const getItems = async (req: Request, res: Response, next: NextFunction) 
   } catch (err){
     next(err)
   }
+}
+
+export const getUserByUsername = async (req: Request, res: Response, next: NextFunction) => {
+  const {username} = req.params; 
+  const data = await findUserByUsername(username);
+  return res.status(200).send({user: data});
 }
