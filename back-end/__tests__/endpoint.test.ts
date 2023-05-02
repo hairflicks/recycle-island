@@ -5,6 +5,7 @@ import request from 'supertest';
 import { db } from '../db/connection';
 import mongoose from 'mongoose';
 import { app } from '../app';
+import { User } from "../db/schemas/userschema";
 
 beforeEach(async () => {
 	await seed(testusers, testitems);
@@ -66,6 +67,7 @@ afterAll(async () => {
 						],
 						noOfCredits: 0,
 						username: 'hairflicks',
+						name: 'Brad'
 					});
 				});
 		});
@@ -80,6 +82,47 @@ afterAll(async () => {
 				});
     });
 	});
+
+	describe.only('POST /users', () => {
+		test('200: Responds with acknowledgement', () => {
+			const postedUser = {
+				name: 'hibble',
+				username: 'treenoryie',
+				hash: 'doifusho4i5234n'
+			}
+			return request(app)
+			.post('/api/users')
+			.send(postedUser)
+			.expect(200)
+			.then(async ({body}) => {
+				expect(body).toEqual({
+					__v: expect.any(Number),
+					_id: expect.any(String),
+					hash: expect.any(String),
+					inventory: [],
+					island: [],
+					name: "hibble",
+					noOfCredits: 0,
+					username: "treenoryie"
+				})
+			})
+		})
+			test('400: Responds with error message when posting missing keys', () => {
+				const postedUser = {
+					username: 'heffy',
+					hash: 'hunter12'
+				}
+
+				return request(app)
+				.post('/api/users')
+				.send(postedUser)
+				.expect(400)
+				.then(({body}) => {
+					const {message} = body
+					expect(message).toBe("User validation failed: name: Path `name` is required.")
+				})
+			})
+		})
 
 
 
