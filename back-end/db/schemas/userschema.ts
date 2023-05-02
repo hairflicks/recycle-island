@@ -1,6 +1,7 @@
 import mongoose, { Schema, model, SchemaType,} from 'mongoose';
 
 const userSchema = new Schema({
+    name: { type: String, required: true},
     username: { type: String, required: true },
     hash: { type: String, required: true },
     noOfCredits: { type: Number, default: 0 },
@@ -10,7 +11,7 @@ const userSchema = new Schema({
                 itemName: String,
                 coordinates: [Number],
             },
-        ], default: [{}]}
+        ], default: []}
 });
 
 

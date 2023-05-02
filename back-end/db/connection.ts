@@ -2,7 +2,6 @@ import * as dotenv from "dotenv"
 import mongoose from "mongoose"
 
 const ENV = process.env.NODE_ENV || 'production'
-console.log(ENV)
 
 dotenv.config({
     path: `${__dirname}/../.env.${ENV}`

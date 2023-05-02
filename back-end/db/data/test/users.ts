@@ -1,6 +1,7 @@
 
 export const testusers = [
     {
+        name: 'Brad',
         username: 'hairflicks',
         hash: "sdkjfhsdklfhs",
         no0fCredits: 100,
@@ -13,6 +14,7 @@ export const testusers = [
             ]
         },
     {
+        name: 'Broadcast Channel',
         username: 'rolypoly',
         hash: "gdfgdfg54gdfgds344534",
         inventory: ['tree', 'bee', 'squirrel'],
@@ -24,6 +26,7 @@ export const testusers = [
             ]
         },
     {
+        name: 'Jake',
         username: 'aaaaaaahhhhh',
         hash: "gdrtretert",
     }

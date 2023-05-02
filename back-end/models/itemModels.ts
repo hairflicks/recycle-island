@@ -9,8 +9,3 @@ export const findItems = async () => {
 	return data;
 };
 
-export const findUserByUsername = async (username: String) => {
-  await db;
-  const data = await User.find({username})
-  return data[0];
-}
