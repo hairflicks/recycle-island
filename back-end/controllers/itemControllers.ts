@@ -11,7 +11,12 @@ export const getItems = async (req: Request, res: Response, next: NextFunction) 
 }
 
 export const getUserByUsername = async (req: Request, res: Response, next: NextFunction) => {
-  const {username} = req.params; 
-  const data = await findUserByUsername(username);
-  return res.status(200).send({user: data});
+  const { username } = req.params;
+	try {
+		const data = await findUserByUsername(username);
+		if (!data) throw { status: 400, message: '400: username does not exist.' };
+		return res.status(200).send({ user: data });
+	} catch (err) {
+		next(err);
+	}
 }

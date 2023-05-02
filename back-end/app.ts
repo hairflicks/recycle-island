@@ -1,7 +1,7 @@
 import express from 'express'
 import { getItems, getUserByUsername } from './controllers/itemControllers';
 import cors from 'cors';
-import { handleInvalidPath } from './errors';
+import { handleCustomErrors, handleInvalidPath } from './errors';
 
 export const app = express();
 
@@ -12,4 +12,5 @@ app.get(`/api/items`, getItems);
 app.get('/api/users/:username', getUserByUsername)
 
 app.use(handleInvalidPath);
+app.use(handleCustomErrors);
 

@@ -69,7 +69,16 @@ afterAll(async () => {
 					});
 				});
 		});
-    
+
+    test('400: responds with status code 400 when searching for a username that doesnt exist', () => {
+      return request(app)
+				.get('/api/users/hairflicks2')
+				.expect(400)
+				.then(({ body }) => {
+					const { message } = body;
+					expect(message).toBe('400: username does not exist.');
+				});
+    });
 	});
 
 
