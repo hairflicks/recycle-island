@@ -1,6 +1,6 @@
-import bcrypt from 'bcrypt'
+import bcrypt from "bcryptjs";
 
 export const hashPassword = (password: string): string => {
-    const salt = bcrypt.genSaltSync()
-    return bcrypt.hashSync(password, salt)
-}
+  const salt = bcrypt.genSaltSync();
+  return bcrypt.hashSync(password, salt);
+};
