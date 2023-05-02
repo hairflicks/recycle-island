@@ -7,7 +7,6 @@ import mongoose from 'mongoose';
 import { app } from '../app';
 
 beforeEach(async () => {
-	await db;
 	await seed(testusers, testitems);
 });
 afterAll(async () => {
@@ -15,6 +14,7 @@ afterAll(async () => {
 });
   
   describe('GET /items', () => {
+
 		test('responds with an array of item objects', () => {
 			return request(app)
 				.get('/api/items')
@@ -34,4 +34,13 @@ afterAll(async () => {
 					});
 				});
 		});
+
+    test('404: responds with error code 404 bad request when user enters wrong endpoint', () => {
+      return request(app).get('/api/ite').expect(404).then(({body}) => {
+        const {message} = body;
+        expect(message).toBe('404: not found.');
+      })
+    });
 	});
+
+
