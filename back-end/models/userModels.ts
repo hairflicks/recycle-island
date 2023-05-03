@@ -55,3 +55,9 @@ export const addCreditsToUser = async (
 	);
 	return data;
 };
+
+export const removeUser = async (username: String) => {
+  await db;
+  const deleted = await User.findOneAndDelete({username})
+  if (!deleted) throw { status: 400, message: '400: username does not exist.' };
+}
