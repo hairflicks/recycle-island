@@ -3,11 +3,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { StyleSheet } from 'react-native';
 
-import Login from './componets/Login';
-import Island from './componets/Island'
-import UserTask from './componets/UserTask'
-import Shop from './componets/Shop';
-import Profile from './componets/Profile';
+import Login from './components/Login';
+import Island from './components/Island'
+import UserTask from './components/UserTask'
+import Shop from './components/Shop';
+import Profile from './components/Profile';
 
 
 

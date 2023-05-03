@@ -1,3 +1,4 @@
+import { Center } from '@react-three/drei';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
@@ -79,15 +80,44 @@ export const styles = StyleSheet.create({
 	shopItem: {
 		display: 'flex',
 		borderColor: 'red',
+		flexDirection: 'column',
+		justifyContent: 'center',
+		alignItems: 'center',
 		borderStyle: 'solid',
 		width: '90%',
-		height: '200px',
+		height: '400px',
 	},
-
 	shopItemImage: {
 		borderColor: 'blue',
 		borderStyle: 'solid',
-    height: '90%',
-    width: '30%'
+		height: '50%',
+		width: '50%',
+		margin: '5px',
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center'
 	},
+	shopItemDescription: {
+		borderColor: 'blue',
+		borderStyle: 'solid',
+		height: '10%',
+		margin: '0px',
+		fontSize: '10px',
+		width: '90%',
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center'
+	},
+	shopItemBuy: {
+		borderColor: 'blue',
+		borderStyle: 'solid',
+		height: '10%',
+		width: '90%',
+		margin: '5px',
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center'
+	}
+
+
 });
