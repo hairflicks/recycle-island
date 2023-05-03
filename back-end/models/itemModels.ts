@@ -9,3 +9,15 @@ export const findItems = async () => {
 	return data;
 };
 
+export const addItemToInventory = async (username: String, body: {name: String}) => {
+	await db;
+	console.log(body);
+	const item = body.name;
+	const data = await User.findOneAndUpdate(
+	  { username },
+	  { $inc: { [`inventory.${item}`] : 1 }},
+	  { new: true }
+	);
+	return data;
+  };
+  
