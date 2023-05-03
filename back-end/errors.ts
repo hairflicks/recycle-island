@@ -20,7 +20,8 @@ export const handleMongooseErrors = (
 	res: Response,
 	next: NextFunction
 ) => {
-	if (error.name === 'ValidationError') {
+  
+	if (error.name) {
 		res.status(400).send({message: error.message})
 	}
 	next(error)

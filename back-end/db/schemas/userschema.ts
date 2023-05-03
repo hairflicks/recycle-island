@@ -2,9 +2,9 @@ import mongoose, { Schema, model, SchemaType } from "mongoose";
 
 const userSchema = new Schema({
   name: { type: String, required: true },
-  username: { type: String, required: true, unique: true, maxLength: 20 },
+  username: { type: String, required: true, unique: true, index: { unique: true }, maxLength: 20 },
   hash: { type: String, required: true },
-  noOfCredits: { type: Number, default: 0 },
+  credits: { type: Number, default: 0 },
   inventory: { type: Object, default: {} },
   island: {
     type: [
@@ -16,5 +16,7 @@ const userSchema = new Schema({
     default: [],
   },
 });
+
+userSchema.index({ username: 1 }, { unique: true });
 
 export const User = model("User", userSchema);
