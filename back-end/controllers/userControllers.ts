@@ -4,6 +4,7 @@ import {
   addItemToInventory,
   addItemToIsland,
   addCreditsToUser,
+  removeUser,
 } from "../models/userModels";
 import { Request, Response, NextFunction } from "express";
 import { hashPassword, checkShopItemExists } from "../db/utils";
@@ -87,3 +88,17 @@ export const patchCreditsByUsername = async (
 		next(err);
 	}
 };
+
+export const deleteUserByUsername = async (
+	req: Request,
+	res: Response,
+	next: NextFunction
+) => {
+  const {username} = req.params;
+  try {
+    await removeUser(username)
+    return res.status(204)
+  } catch (err) {
+    next(err)
+  }
+}

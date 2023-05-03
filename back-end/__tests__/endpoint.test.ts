@@ -309,3 +309,23 @@ describe('PATCH users/:username/credits', () => {
 			});
 	});
 });
+
+describe("DELETE /api/users/:username", () => {
+  beforeEach(async () => {
+		await seed(testusers, testitems);
+	});
+  test("204: Deletes the given user by username", async () => {
+    request(app)
+    .delete('/api/users/hairflicks')
+    .expect(204)
+  })
+  test("400: Responds with error messsage if username does not exist", () => {
+    return request(app)
+    .delete('/api/users/feieeieie')
+    .expect(400)
+    .then(async ({body}) => {
+      const {message} = body
+      expect(message).toBe('400: username does not exist.')
+    })
+  })
+})
