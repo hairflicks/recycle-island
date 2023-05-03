@@ -14,3 +14,27 @@ export const addUser = async (user: Object) => {
   return data;
 };
 
+export const addItemToInventory = async (
+  username: String,
+  body: { name: String }
+) => {
+  await db;
+  const item = body.name;
+  const data = await User.findOneAndUpdate(
+    { username },
+    { $inc: { [`inventory.${item}`]: 1 } },
+    { new: true }
+  );
+  return data;
+};
+
+export const addItemToIsland = async (username: String, body: {}) => {
+  await db;
+  const item = body;
+  const data = await User.findOneAndUpdate(
+    { username },
+    { $push: { island: item } },
+    { new: true }
+  );
+  return data;
+};
