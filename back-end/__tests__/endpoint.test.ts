@@ -124,12 +124,47 @@ describe("POST /users", () => {
         );
       });
   });
+  // test('400: Does not allow a user that already exists to be posted', () => {
+  //   const postedUser = {
+  //     name: "hibble",
+  //     username: "hairflicks",
+  //     hash: "doifusho4i5234n",
+  //   }
+  //   return request(app)
+  //     .post("/api/users")
+  //     .send(postedUser)
+  //     .expect(400)
+  //     .then(({ body }) => {
+  //       const { message } = body;
+  //       expect(message).toBe(
+  //         "User validation failed: name: Path `name` is required."
+  //       );
+  //     })
+  // })
+  test('400: Does not allow a username longer than 20 characters', () => {
+    const postedUser = {
+      name: "hibble",
+      username: "thisisaverylongusernamethatshouldnotwork",
+      hash: "hunter12"
+    }
+    return request(app)
+      .post("/api/users")
+      .send(postedUser)
+      .expect(400)
+      .then(({ body }) => {
+        const { message } = body;
+        expect(message).toBe(
+          "User validation failed: username: Path `username` (`thisisaverylongusernamethatshouldnotwork`) is longer than the maximum allowed length (20)."
+        );
+      })
+  })
 });
+
 describe("POST users/:username/inventory", () => {
   test("200: Responds with object that has been posted to the database", () => {
     const item = { name: "koala" };
     return request(app)
-      .post("/api/users/hairflicks/inventory")
+      .patch("/api/users/hairflicks/inventory")
       .send(item)
       .expect(200)
       .then(async ({ body }) => {
@@ -137,4 +172,26 @@ describe("POST users/:username/inventory", () => {
         expect(body.user.inventory).toEqual({ tree: 1, bee: 1, koala: 1 });
       });
   });
+  test("400: Responds with error if user doesn't exist", () => {
+    const item = { name: "koala"};
+    return request(app)
+    .patch("/api/users/ofsdihfsd/inventory")
+    .send(item)
+    .expect(400)
+    .then(async ({body}) => {
+      const { message } = body
+      expect(message).toBe("400: username does not exist.")
+    })
+  })
+  test("400: Does not allow item that doesn't exist to be posted", () => {
+    const item = { name: "dog"}
+    return request(app)
+    .patch("/api/users/hairflicks/inventory")
+    .send(item)
+    .expect(400)
+    .then(async ({body}) => {
+      const { message } = body
+      expect(message).toBe("400: Item does not exist.")
+    })
+  })
 });
