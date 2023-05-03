@@ -4,6 +4,8 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { Suspense } from 'react';
 
+import  BottomNavigation  from './BottomNavigation'
+
 import Chicken from './ObjectModels/Chicken';
 import BearCub from './ObjectModels/BearCub';
 import Bee from './ObjectModels/Bee';
@@ -20,7 +22,11 @@ import PineTree from './ObjectModels/PineTree';
 import TreeFrog from './ObjectModels/TreeFrog';
 import IslandModel from './ObjectModels/IslandModel';
 
-function Island(){
+function Island({navigation}){
+
+  const handleNavigation = () => {
+		navigation.navigate('UserTask');
+	};
 
     return(
         <View style={styles.container}>
@@ -50,20 +56,15 @@ function Island(){
                          <TreeFrog position={[-0.5, .85, 1]} />
 
                          <IslandModel position={[0.1, -3, 0]} /> 
+
  
                     </Suspense>
                     <OrbitControls maxDistance={7} minDistance={3} />
                 </Canvas>
             </div>
-            <div style={styles.islandNavigation}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                <Button title="Island" />
-                <Button title="Tasks" />
-                <Button title="Shop" />
-                <Button title="Profile" />
-            </View>
-            </div>
+           <BottomNavigation navigation={navigation}/>
         </View>
+
     )
 }
 

@@ -5,6 +5,9 @@ import { StyleSheet } from 'react-native';
 
 import Login from './componets/Login';
 import Island from './componets/Island'
+import UserTask from './componets/UserTask'
+import Shop from './componets/Shop';
+import Profile from './componets/Profile';
 
 
 
@@ -13,13 +16,16 @@ export default function App() {
   const Stack = createNativeStackNavigator();
 
   return (
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Island">
-          <Stack.Screen name="Login" component={Login}/>
-          <Stack.Screen name="Island" component={Island}/>
-        </Stack.Navigator>
-      </NavigationContainer>
-  );
+		<NavigationContainer>
+			<Stack.Navigator initialRouteName="Shop">
+				<Stack.Screen name="Login" component={Login} />
+				<Stack.Screen name="Island" component={Island} />
+				<Stack.Screen name="UserTask" component={UserTask} />
+				<Stack.Screen name="Shop" component={Shop} />
+				<Stack.Screen name="Profile" component={Profile} />
+			</Stack.Navigator>
+		</NavigationContainer>
+	);
 }
 
 const styles = StyleSheet.create({
