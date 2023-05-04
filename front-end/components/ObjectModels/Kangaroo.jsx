@@ -7,7 +7,10 @@ const Kangaroo = ({position}) => {
   const gltf = useLoader(GLTFLoader, require('../../assets/Kangaroo/Kangaroo.glb'))
   
   return (
-    <mesh position={position} ref={mesh} scale={[0.003, 0.003, 0.003]}> 
+    <mesh position={position} 
+          rotation={[0, -Math.PI / Math.random() * (10 - 1 + 1) + 1, 0]}
+          ref={mesh} 
+          scale={[0.003, 0.003, 0.003]}> 
       <primitive object={gltf.scene.clone()}/> 
     </mesh>
     )
