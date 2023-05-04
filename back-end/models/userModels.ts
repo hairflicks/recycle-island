@@ -21,20 +21,43 @@ export const addItemToInventory = async (
   await db;
   const item = body.name;
   const data = await User.findOneAndUpdate(
-    { username },
-    { $inc: { [`inventory.${item}`]: 1 } },
-    { new: true }
-  );
+		{ username },
+		{ $inc: { [`inventory.${item}`]: 1 } },
+		{ new: true }
+	);
   return data;
 };
 
-export const addItemToIsland = async (username: String, body: {}) => {
-  await db;
-  const item = body;
-  const data = await User.findOneAndUpdate(
-    { username },
-    { $push: { island: item } },
-    { new: true }
-  );
-  return data;
+export const addItemToIsland = async (
+	username: String,
+	body: { itemName: string; coordinates: [] }
+) => {
+	await db;
+	const item = body;
+	const data = await User.findOneAndUpdate(
+		{ username },
+		{ $push: { island: item } },
+		{ new: true }
+	);
+	return data;
 };
+
+export const addCreditsToUser = async (
+	username: String,
+	body: { credits: number }
+) => {
+	await db;
+	const item = body;
+	const data = await User.findOneAndUpdate(
+		{ username: username },
+		{ $inc: { credits: item.credits } },
+		{ new: true}
+	);
+	return data;
+};
+
+export const removeUser = async (username: String) => {
+  await db;
+  const deleted = await User.findOneAndDelete({username})
+  if (!deleted) throw { status: 400, message: '400: username does not exist.' };
+}

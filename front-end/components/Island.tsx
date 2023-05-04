@@ -23,7 +23,25 @@ import TreeFrog from './ObjectModels/TreeFrog';
 import IslandModel from './ObjectModels/IslandModel';
 
 
-function Island({navigation}){
+type User = {
+    name: String,
+    username: String,
+    island: [],
+    inventory: [],
+    hash: String,
+    credits: Number
+    _v : Number,
+    _id: Number
+  }	
+
+type IslandProps = {
+	navigation: { navigate: Function };
+  route: {params: {currentUser: User | undefined}}
+};
+
+function Island({navigation, route}: IslandProps){  
+
+  const {currentUser} = route.params  
 
   const handleNavigation = () => {
 		navigation.navigate('UserTask');

@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
+import { MongoError } from 'mongodb';
 import { Error, MongooseError } from 'mongoose';
 
 type customError = { status: number; message: String };
@@ -15,12 +16,15 @@ export const handleCustomErrors = (
 };
 
 export const handleMongooseErrors = (
-	error: MongooseError,
+	error: MongoError,
 	req: Request,
 	res: Response,
 	next: NextFunction
 ) => {
-	if (error.name === 'ValidationError') {
+  if(error.code === 11000) {
+    res.status(409).send({message: 'Username already exists. Please enter a different one...'})
+  }
+	if (error.name) {
 		res.status(400).send({message: error.message})
 	}
 	next(error)
