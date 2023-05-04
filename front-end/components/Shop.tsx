@@ -7,7 +7,25 @@ import BottomNavigation from './BottomNavigation';
 
 import * as api from '../api'
 
-function Shop({ navigation }) {
+type User = {
+  name: String,
+  username: String,
+  island: [],
+  inventory: [],
+  hash: String,
+  credits: Number
+  _v : Number,
+  _id: Number
+}	
+
+type ShopProps = {
+navigation: { navigate: Function };
+route: {params: {currentUser: User | undefined}}
+};
+
+function Shop({ navigation, route }: ShopProps) {
+
+  const {currentUser} = route.params  
 
   const [model, setModel] = useState([])
 

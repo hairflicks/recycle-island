@@ -1,7 +1,11 @@
 import { View, Text, Button, TouchableOpacity } from 'react-native';
 import { styles } from './StyleSheetCSS';
 
-function BottomNavigation ({navigation}) {
+type BottomProps = {
+	navigation: { navigate: Function };
+}
+
+function BottomNavigation ({navigation}: BottomProps) {
 
 const handleNavigation = () => {
 	navigation.navigate('UserTask');

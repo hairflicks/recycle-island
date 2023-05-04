@@ -4,9 +4,25 @@ import { DefaultLoadingManager } from 'three';
 import { styles } from './StyleSheetCSS';
 import BottomNavigation from './BottomNavigation';
 
+type User = {
+    name: String,
+    username: String,
+    island: [],
+    inventory: [],
+    hash: String,
+    credits: Number
+    _v : Number,
+    _id: Number
+  }	
 
+type TaskProps = {
+	navigation: { navigate: Function };
+  route: {params: {currentUser: User | undefined}}
+};
 
-function UserTask ({navigation}){
+function UserTask ({navigation, route}: TaskProps){
+
+  const {currentUser} = route.params  
 
   const [menu, setMenu] = useState(0)
 
