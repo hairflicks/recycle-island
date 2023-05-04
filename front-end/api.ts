@@ -29,3 +29,8 @@ export const getUserByUsername = async (username: String) => {
   const data = await recycleLand.get(`/users/${username}`);
   return data;
 };
+
+export const patchCreditsByUsername = async (username: String, credits: Number) => {
+  const data = await recycleLand.patch(`/users/${username}/credits`, {credits})
+  return data
+}
