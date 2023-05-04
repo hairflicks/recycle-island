@@ -5,11 +5,10 @@ const recycleLand = axios.create({
     baseURL: 'https://recycland.onrender.com/api'
 })
 
-export const fetchAllItems = () => {
-    return recycleLand.get(`/items`).then((response) => {
-        return response.data.items;
-    })
-}
+export const fetchAllItems = async () => {
+	const itemData = await recycleLand.get(`/items`);
+	return itemData.data.items;
+};
 
 export const postUser = async (name: String, username: String, password: String) => {
   const userToPost = {
@@ -32,5 +31,10 @@ export const getUserByUsername = async (username: String) => {
 
 export const patchCreditsByUsername = async (username: String, credits: Number) => {
   const data = await recycleLand.patch(`/users/${username}/credits`, {credits})
+  return data
+}
+
+export const patchInventoryByUsername = async (username: String, name: String) => {
+  const data = await recycleLand.patch(`/users/${username}/inventory`, {name})
   return data
 }

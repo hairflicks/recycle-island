@@ -16,14 +16,24 @@ export default function App() {
 		name: String,
 		username: String,
 		island: [],
-		inventory: [],
+		inventory: {},
 		hash: String,
 		credits: Number
 		_v : Number,
 		_id: Number
 	  }		
 	
-	  const [currentUser, setCurrentUser] = useState<User | undefined>() 	
+	  const [currentUser, setCurrentUser] = useState<User | undefined>({
+		name: 'Jake',
+		username: 'TheGuy',
+		island: [],
+		inventory: {},
+		hash: 'sdghsdhgsd',
+		credits: 110,
+		_v : 0,
+		_id: 343463426264
+	  }) 
+
 	  useEffect(() => {
 		console.log(currentUser)
 	  }, [currentUser])
@@ -32,7 +42,7 @@ export default function App() {
   return (
 		<NavigationContainer>
 
-			<Stack.Navigator initialRouteName="Login">
+			<Stack.Navigator initialRouteName="Shop">
 				<Stack.Screen name="Login" component={Login} initialParams={{setCurrentUser}}/>
 				<Stack.Screen name="Island" component={Island} initialParams={{currentUser}}/>
 				<Stack.Screen name="UserTask" component={UserTask} initialParams={{currentUser, setCurrentUser}}/>

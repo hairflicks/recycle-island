@@ -1,4 +1,4 @@
-import { View } from 'react-native';
+import { FlatList, View } from 'react-native';
 import { useEffect, useState } from "react"
 
 import { styles } from './StyleSheetCSS';
@@ -30,20 +30,25 @@ function Shop({ navigation, route }: ShopProps) {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    api.fetchAllItems().then((response) => {
-      console.log(response)
-      setModels(response)
-      setIsLoading(false)
-    })
+    const fetchData = async () => {
+      try{
+			const data = await api.fetchAllItems();
+			setModels(data);
+			setIsLoading(false);
+      } catch (error) {
+
+      }
+		};
+		fetchData();
   }, [])
 
 	return (
 		<View style={styles.container}>
       <div style={styles.spaceDown}></div>
 
-      {isLoading
-      ? <p>Loading</p>
-      : models.map(model => <ShopItem key={model.itemName} model={model}/>) } 
+          {isLoading
+          ? <p>Loading</p>
+          : models.map(model => <ShopItem key={model.itemName} currentUser={currentUser} model={model}/>) } 
 
 			<BottomNavigation navigation={navigation} />
 		</View>
