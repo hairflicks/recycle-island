@@ -7,7 +7,10 @@ const PeppermintPenguin = ({position}) => {
   const gltf = useLoader(GLTFLoader, require('../../assets/PeppermintPenguin/PeppermintPenguin.glb'))
   
   return (
-    <mesh position={position} ref={mesh} scale={[0.2, 0.2, 0.2]}> 
+    <mesh position={position} 
+          rotation={[0, -Math.PI / Math.random() * (10 - 1 + 1) + 1, 0]}      
+          ref={mesh} 
+          scale={[0.2, 0.2, 0.2]}> 
       <primitive object={gltf.scene.clone()}/> 
     </mesh>
     )

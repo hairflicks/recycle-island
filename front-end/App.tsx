@@ -31,6 +31,7 @@ export default function App() {
 
   return (
 		<NavigationContainer>
+
 			<Stack.Navigator initialRouteName="Login">
 				<Stack.Screen name="Login" component={Login} initialParams={{setCurrentUser}}/>
 				<Stack.Screen name="Island" component={Island} initialParams={{currentUser}}/>
