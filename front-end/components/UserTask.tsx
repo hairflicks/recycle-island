@@ -26,34 +26,26 @@ function UserTask ({navigation, route}: TaskProps){
 
   const [menu, setMenu] = useState(0)
 
-  function optionSelectedTask () {
-    setMenu(1)
+  function optionPress () {
+    setMenu((previousState) => previousState + 1)
   }
-
-  function optionSelectedSize() {
-		setMenu(2);
-	}
-  
-  function optionSelectedMaterial() {
-		setMenu(3);
-	}
  
   let menuOption
   if (menu === 0) {
     menuOption = (
 			<>
 				<h1> Select Task</h1>
-				<Button title="Recycle" onPress={optionSelectedTask} />
-				<Button title="Reuse" onPress={optionSelectedTask} />
+				<Button title="Recycle" onPress={optionPress} />
+				<Button title="Reuse" onPress={optionPress} />
 			</>
 		);
   } else if (menu === 1) {
     menuOption = (
 			<>
 				<h1> Select Size</h1>
-				<Button title="Small" onPress={optionSelectedSize} />
-				<Button title="Medium" onPress={optionSelectedSize} />
-				<Button title="Large" onPress={optionSelectedSize} />
+				<Button title="Small" onPress={optionPress} />
+				<Button title="Medium" onPress={optionPress} />
+				<Button title="Large" onPress={optionPress} />
 				<Button title="go back" onPress={() => setMenu((previousState) => previousState -1)} />
 			</>
 		);
@@ -61,9 +53,9 @@ function UserTask ({navigation, route}: TaskProps){
     menuOption = (
 			<>
 				<h1> Select Material</h1>
-				<Button title="Paper" onPress={optionSelectedMaterial} />
-				<Button title="Plastic" onPress={optionSelectedMaterial} />
-				<Button title="Cardboard" onPress={optionSelectedMaterial} />
+				<Button title="Paper" onPress={optionPress} />
+				<Button title="Plastic" onPress={optionPress} />
+				<Button title="Cardboard" onPress={optionPress} />
 				<Button title="go back" onPress={() => setMenu((previousState) => previousState - 1)}/>
 			</>
 		);
