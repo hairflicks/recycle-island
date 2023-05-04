@@ -9,15 +9,13 @@ import UserTask from './components/UserTask'
 import Shop from './components/Shop';
 import Profile from './components/Profile';
 
-
-
 export default function App() {
 
   const Stack = createNativeStackNavigator();
 
   return (
 		<NavigationContainer>
-			<Stack.Navigator initialRouteName="Shop">
+			<Stack.Navigator initialRouteName="Login">
 				<Stack.Screen name="Login" component={Login} />
 				<Stack.Screen name="Island" component={Island} />
 				<Stack.Screen name="UserTask" component={UserTask} />
