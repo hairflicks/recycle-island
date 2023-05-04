@@ -148,6 +148,19 @@ describe('POST /users', () => {
 				);
 			});
 	});
+
+  test.only('', () => {
+    return request(app)
+			.post('/api/users')
+			.send({name: 'dsgds', username: 'hairflicks', hash: 'dsgdssd'})
+			.expect(409)
+			.then(({ body }) => {
+				const { message } = body;
+				expect(message).toBe(
+					'Username already exists. Please enter a different one...'
+				);
+			});
+  });
 });
 
 describe("PATCH users/:username/inventory", () => {
