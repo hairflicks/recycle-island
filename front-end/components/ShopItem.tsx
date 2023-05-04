@@ -20,10 +20,22 @@ const ShopItem = ({model, currentUser}) => {
       if(isBuy){
         if(currentUser.credits > model.itemCost){
           const patchData = async () => {
-            await patchCreditsByUsername(currentUser.username, (model.itemCost*-1))
-            const data = await patchInventoryByUsername(currentUser.username, model.itemName)
-            console.log(data)
-            setIsBuy(false);
+            try {
+							await patchCreditsByUsername(
+								currentUser.username,
+								model.itemCost * -1
+							);
+							await patchInventoryByUsername(
+								currentUser.username,
+								model.itemName
+							);
+							setIsBuy(false);
+						} catch (error) {
+							setError('Unable to process request. Check your connection...');
+							setTimeout(() => {
+								setError('');
+							}, 5000);
+						}
           }
           patchData();
         } else {
