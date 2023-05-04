@@ -6,14 +6,17 @@ import bcrypt from 'bcryptjs';
 
 type LoginProps = {
 	navigation: { navigate: Function };
+  route: {params: {setCurrentUser: Function}}
 };
 
-function Login({ navigation }: LoginProps) {
+function Login({ navigation, route }: LoginProps) {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	const [name, setName] = useState('');
 	const [slider, setSlider] = useState(true);
 	const [error, setError] = useState('');
+
+  const {setCurrentUser} = route.params
 
 	const handlePresentPage = (event: object) => {
 		console.log(`Logging in with username: ${username}, password: ${password}`);
@@ -34,8 +37,10 @@ function Login({ navigation }: LoginProps) {
 	const handleLogin = async () => {
 		try {
 			const userData = await getUserByUsername(username);
-			if (await bcrypt.compare(password, userData.data.user.hash))
-				navigation.navigate('Island');
+			if (await bcrypt.compare(password, userData.data.user.hash)) {
+        setCurrentUser(userData.data.user)
+        navigation.navigate('Island');
+      }
 			setError('Incorrect password...');
 		} catch (error: any) {
 			setError("Unable to process request. Check your connection...");
