@@ -29,7 +29,7 @@ export default function App() {
 		island: [],
 		inventory: {},
 		hash: 'sdghsdhgsd',
-		credits: 110,
+		credits: 0,
 		_v : 0,
 		_id: 343463426264
 	  }) 
