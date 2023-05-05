@@ -26,13 +26,28 @@ const handleNavigationProfile = () => {
 
 
   return (
-		<View style={styles.islandNavigation}>
-			<View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-				<Button title="Island" onPress={handleNavigationIsland} />
-				<Button title="Tasks" onPress={handleNavigation} />
-				<Button title="Shop" onPress={handleNavigationShop} />
-				<Button title="Profile" onPress={handleNavigationProfile} />
-			</View>
+		<View className={'flex-row justify-evenly  w-full h-5%'}>
+			<TouchableOpacity
+				className={'h-full border-black border w-1/4'}
+				onPress={handleNavigationIsland}
+			>
+				<Text>Island</Text>
+			</TouchableOpacity>
+			<TouchableOpacity style={styles.taskButton} onPress={handleNavigation}>
+				<Text>Tasks</Text>
+			</TouchableOpacity>
+			<TouchableOpacity
+				style={styles.shopButton}
+				onPress={handleNavigationShop}
+			>
+				<Text>Shop</Text>
+			</TouchableOpacity>
+			<TouchableOpacity
+				style={styles.profileButton}
+				onPress={handleNavigationProfile}
+			>
+				<Text>Profile</Text>
+			</TouchableOpacity>
 		</View>
 	);
 }
