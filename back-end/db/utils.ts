@@ -2,9 +2,12 @@ import bcrypt from "bcryptjs";
 import { items } from "./data/production/items";
 
 export const hashPassword = (password: string): string => {
-  console.log(password, 'password in hashpassword function')
+  if (password) {
   const salt = bcrypt.genSaltSync();
   return bcrypt.hashSync(password, salt);
+  } else {
+    throw { status: 400, message: "Please enter a password" }
+  }
 };
 
 export const checkShopItemExists = (itemName: string): void  => {
