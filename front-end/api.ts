@@ -38,3 +38,8 @@ export const patchInventoryByUsername = async (username: String, name: String) =
   const data = await recycleLand.patch(`/users/${username}/inventory`, {name})
   return data
 }
+
+export const deleteUserByUsername = async (username: String) => {
+  const data = await recycleLand.delete(`/users/${username}`)
+  return data
+}

@@ -16,11 +16,20 @@ function Login({ navigation, route }: LoginProps) {
 	const [slider, setSlider] = useState(true);
 	const [error, setError] = useState('');
 
+	console.log(error, 'hi')
+
   const {setCurrentUser} = route.params
 
-	const handlePresentPage = (event: object) => {
+	const handleLoginPage = (event: object) => {
 		console.log(`Logging in with username: ${username}, password: ${password}`);
-		setSlider((slider) => !slider);
+		setSlider((slider) => true);
+		setError('');
+	};
+
+	const handleSignUpPage = (event: object) => {
+		console.log(`Logging in with username: ${username}, password: ${password}`);
+		setSlider((slider) => false);
+		setError('');
 	};
 
 	const handleSignUp = async () => {
@@ -29,6 +38,7 @@ function Login({ navigation, route }: LoginProps) {
 			setSlider((slider) => !slider);
 			setPassword('');
 			setName('');
+			setError('');
 		} catch (error: any) {
 			setError(error.response.data.message);
 		}
@@ -39,11 +49,17 @@ function Login({ navigation, route }: LoginProps) {
 			const userData = await getUserByUsername(username);
 			if (await bcrypt.compare(password, userData.data.user.hash)) {
         setCurrentUser(userData.data.user)
+		setError('')
         navigation.navigate('Island');
-      }
+      } else {
 			setError('Incorrect password...');
+	  }
 		} catch (error: any) {
-			setError("Unable to process request. Check your connection...");
+			if (error.response.data.message) {
+				setError(error.response.data.message)
+			} else {
+			setError("Unable to process request. Check your connection...")
+			};
 		}
 	};
 
@@ -52,11 +68,11 @@ function Login({ navigation, route }: LoginProps) {
 			<View style={styles.slider}>
 				<TouchableOpacity
 					style={styles.invertedButton}
-					onPress={handlePresentPage}
+					onPress={handleLoginPage}
 				>
 					<Text style={styles.invertedButtonText}>Login</Text>
 				</TouchableOpacity>
-				<TouchableOpacity style={styles.button} onPress={handlePresentPage}>
+				<TouchableOpacity style={styles.button} onPress={handleSignUpPage}>
 					<Text style={styles.buttonText}>Sign Up</Text>
 				</TouchableOpacity>
 			</View>

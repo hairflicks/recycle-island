@@ -30,8 +30,8 @@ export const postUser = async (
   next: NextFunction
 ) => {
   const postedUser = req.body;
-  postedUser.hash = hashPassword(postedUser.hash);
   try {
+    postedUser.hash = hashPassword(postedUser.hash);
     const data = await addUser(postedUser);
     return res.status(200).send(data);
   } catch (err) {
