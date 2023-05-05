@@ -67,13 +67,29 @@ export const styles = StyleSheet.create({
 		width: '90%',
 		height: '90%',
 	},
-	islandNavigation: {
-		flexDirection: 'row',
-		justifyContent: 'center',
-		borderColor: 'red',
+	islandButton: {
+		height: '100%',
+		borderColor: 'black',
 		borderWidth: 1,
-		width: '90%',
-		height: '5%',
+		width: '25%',
+	},
+	taskButton: {
+		height: '100%',
+		borderColor: 'black',
+		borderWidth: 1,
+		width: '25%',
+	},
+	shopButton: {
+		height: '100%',
+		borderColor: 'black',
+		borderWidth: 1,
+		width: '25%',
+	},
+	profileButton: {
+		height: '100%',
+		borderColor: 'black',
+		borderWidth: 1,
+		width: '25%',
 	},
 	shopItem: {
 		flexDirection: 'column',
