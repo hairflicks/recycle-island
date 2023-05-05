@@ -47,7 +47,7 @@ function Shop({ navigation, route }: ShopProps) {
 	return (
 		<View style={styles.container}>
           {isLoading
-          ? <p>Loading</p>
+          ? <Text>Loading</Text>
           : models.map(model => <FlippableCard key={model.itemName} currentUser={currentUser} model={model}/>) } 
 
 			<BottomNavigation navigation={navigation} />

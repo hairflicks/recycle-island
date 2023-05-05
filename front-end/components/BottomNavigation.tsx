@@ -26,14 +26,14 @@ const handleNavigationProfile = () => {
 
 
   return (
-		<div style={styles.islandNavigation}>
+		<View style={styles.islandNavigation}>
 			<View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
 				<Button title="Island" onPress={handleNavigationIsland} />
 				<Button title="Tasks" onPress={handleNavigation} />
 				<Button title="Shop" onPress={handleNavigationShop} />
 				<Button title="Profile" onPress={handleNavigationProfile} />
 			</View>
-		</div>
+		</View>
 	);
 }
 
