@@ -160,7 +160,7 @@ function Island({navigation, route}: IslandProps){
                     </Suspense>
                 </Canvas>
             </View>
-           {/* <BottomNavigation navigation={navigation}/> */}
+           <BottomNavigation navigation={navigation}/>
         </View>
 
     )

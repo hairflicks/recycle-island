@@ -65,7 +65,7 @@ function UserTask ({navigation, route}: TaskProps){
   if (menu === 0) {
     menuOption = (
 			<>
-				<h1> Select Task</h1>
+				<Text> Select Task</Text>
 				<Button title="Recycle" onPress={optionPress} />
 				<Button title="Reuse" onPress={() => {
 					setMenu(3)
@@ -76,7 +76,7 @@ function UserTask ({navigation, route}: TaskProps){
   } else if (menu === 1) {
     menuOption = (
 			<>
-				<h1> Select Size</h1>
+				<Text> Select Size</Text>
 				<Button title="Small" onPress={() => {
 					optionPress()
 					setIncCredit(credit => credit + 5)
@@ -96,7 +96,7 @@ function UserTask ({navigation, route}: TaskProps){
   } else if (menu === 2) {
     menuOption = (
 			<>
-				<h1> Select Material</h1>
+				<Text> Select Material</Text>
 				<Button title="Paper" onPress={() => {
 					optionPress()
 					setIncCredit(credit => credit + 5)
