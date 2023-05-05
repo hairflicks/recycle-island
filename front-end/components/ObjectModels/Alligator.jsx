@@ -4,7 +4,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 
 const Alligator = ({position}) => {
   const mesh = useRef();
-  const gltf = useLoader(GLTFLoader, require('../../assets/workingmodels/Alligator/Alligator.glb'))
+  const gltf = useLoader(GLTFLoader, require('../../assets/Alligator/Alligator.glb'))
   
   return (
     <mesh position={position} 
