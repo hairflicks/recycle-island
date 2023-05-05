@@ -2,6 +2,7 @@ import bcrypt from "bcryptjs";
 import { items } from "./data/production/items";
 
 export const hashPassword = (password: string): string => {
+  console.log(password, 'password in hashpassword function')
   const salt = bcrypt.genSaltSync();
   return bcrypt.hashSync(password, salt);
 };
