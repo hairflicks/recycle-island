@@ -69,7 +69,7 @@ export const styles = StyleSheet.create({
 	},
 	islandNavigation: {
 		flexDirection: 'row',
-		justifyContent: 'space-between',
+		justifyContent: 'center',
 		borderColor: 'red',
 		borderWidth: 1,
 		width: '90%',

@@ -30,7 +30,9 @@ export const postUser = async (
   next: NextFunction
 ) => {
   const postedUser = req.body;
+  console.log(postedUser, 'postedUserOBject before')
   postedUser.hash = hashPassword(postedUser.hash);
+  console.log(postedUser, 'postedUserOBject after')
   try {
     const data = await addUser(postedUser);
     return res.status(200).send(data);
