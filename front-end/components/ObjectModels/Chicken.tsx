@@ -1,10 +1,11 @@
 import { useLoader } from '@react-three/fiber';
 import { useRef } from 'react';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import { model } from '../../assets/Chicken/Chicken.glb'
 
 const Chicken = ({position}) => {
   const mesh = useRef();
-  const gltf = useLoader(GLTFLoader, require('../../assets/Chicken/Chicken.glb'))
+  const gltf = useLoader(GLTFLoader, model)
   
   return (
     <mesh position={position} 

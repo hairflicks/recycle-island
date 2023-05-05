@@ -2,8 +2,10 @@ import { FlatList, View } from 'react-native';
 import { useEffect, useState } from "react"
 
 import { styles } from './StyleSheetCSS';
+import FlippableCard from './FlippableCard';
 import ShopItem from './ShopItem';
 import BottomNavigation from './BottomNavigation';
+import { StyleSheet, Text, TouchableOpacity, Animated } from 'react-native';
 import * as api from '../api'
 
 type User = {
@@ -44,11 +46,9 @@ function Shop({ navigation, route }: ShopProps) {
 
 	return (
 		<View style={styles.container}>
-      <div style={styles.spaceDown}></div>
-
           {isLoading
           ? <p>Loading</p>
-          : models.map(model => <ShopItem key={model.itemName} currentUser={currentUser} model={model}/>) } 
+          : models.map(model => <FlippableCard key={model.itemName} currentUser={currentUser} model={model}/>) } 
 
 			<BottomNavigation navigation={navigation} />
 		</View>

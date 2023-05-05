@@ -10,6 +10,7 @@ import Shop from './components/Shop';
 import Profile from './components/Profile';
 import { useEffect, useState } from 'react';
 
+
 export default function App() {
 
 	type User = {
@@ -42,7 +43,7 @@ export default function App() {
   return (
 		<NavigationContainer>
 
-			<Stack.Navigator initialRouteName="Shop">
+			<Stack.Navigator initialRouteName="Profile">
 				<Stack.Screen name="Login" component={Login} initialParams={{setCurrentUser}}/>
 				<Stack.Screen name="Island" component={Island} initialParams={{currentUser}}/>
 				<Stack.Screen name="UserTask" component={UserTask} initialParams={{currentUser, setCurrentUser}}/>

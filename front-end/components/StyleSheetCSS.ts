@@ -2,7 +2,6 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
 	container: {
-    display: 'flex',
 		flex: 1,
 		backgroundColor: '#F4F4F4',
 		alignItems: 'center',
@@ -64,7 +63,7 @@ export const styles = StyleSheet.create({
 	},
 	canvasBorder: {
 		borderColor: 'red',
-		borderStyle: 'solid',
+		borderWidth: 1,
 		width: '90%',
 		height: '90%',
 	},
@@ -72,55 +71,84 @@ export const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		borderColor: 'red',
-		borderStyle: 'solid',
+		borderWidth: 1,
 		width: '90%',
 		height: '5%',
 	},
-
 	shopItem: {
-		display: 'flex',
-		borderColor: 'blue',
 		flexDirection: 'column',
 		justifyContent: 'center',
 		alignItems: 'center',
-		borderStyle: 'solid',
+		borderColor: 'blue',
+		borderWidth: 1,
 		width: '90%',
-		height: '400px',
+		height: 400,
 	},
 	shopItemImage: {
-		// borderColor: 'blue',
-		// borderStyle: 'solid',
 		height: '50%',
 		width: '50%',
-		margin: '5px',
-		display: 'flex',
+		margin: 5,
 		justifyContent: 'center',
-		alignItems: 'center'
+		alignItems: 'center',
 	},
 	shopItemDescription: {
-		// borderColor: 'blue',
-		// borderStyle: 'solid',
 		height: '10%',
-		margin: '5px',
-		fontSize: '15px',
+		margin: 5,
+		fontSize: 15,
 		width: '90%',
-		display: 'flex',
 		justifyContent: 'center',
-		alignItems: 'center'
+		alignItems: 'center',
 	},
 	shopItemBuy: {
 		borderColor: 'blue',
-		borderStyle: 'solid',
+		borderWidth: 1,
 		height: '10%',
 		width: '90%',
-		marginTop: '30px',
-		display: 'flex',
+		marginTop: 30,
 		justifyContent: 'center',
-		alignItems: 'center'
+		alignItems: 'center',
 	},
-	spaceDown:{
-		marginBottom: '4300px'
-	}
-
-
+	spaceDown: {
+		marginBottom: 4300,
+	},
+	cardContainer: {
+		flex: 1,
+		flexDirection: 'row',
+		alignItems: 'flex-start',
+		justifyContent: 'center',
+		flexWrap: 'wrap',
+	},
+	card: {
+		width: 100,
+		height: 100,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backfaceVisibility: 'hidden',
+		borderRadius: 10,
+		shadowColor: '#000',
+		shadowOffset: {
+			width: 0,
+			height: 2,
+		},
+		shadowOpacity: 0.25,
+		shadowRadius: 3.84,
+		elevation: 5,
+	},
+	back: {
+		backgroundColor: 'darkgrey',
+		position: 'absolute',
+		top: 0,
+		borderRadius: 10,
+	},
+	front: {
+		backgroundColor: 'lightgrey',
+		position: 'absolute',
+		top: 0,
+		borderRadius: 10,
+	},
+	text: {
+		fontSize: 24,
+		fontWeight: 'bold',
+		color: '#FFFFFF',
+	},
 });
