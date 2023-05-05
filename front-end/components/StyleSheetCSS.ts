@@ -112,11 +112,13 @@ export const styles = StyleSheet.create({
 		marginBottom: 4300,
 	},
 	cardContainer: {
+    display: 'flex',
 		flex: 1,
 		flexDirection: 'row',
 		alignItems: 'flex-start',
 		justifyContent: 'center',
 		flexWrap: 'wrap',
+		marginVertical: 10,
 	},
 	card: {
 		width: 100,
@@ -125,6 +127,7 @@ export const styles = StyleSheet.create({
 		justifyContent: 'center',
 		backfaceVisibility: 'hidden',
 		borderRadius: 10,
+		marginVertical: 10,
 		shadowColor: '#000',
 		shadowOffset: {
 			width: 0,
@@ -136,14 +139,13 @@ export const styles = StyleSheet.create({
 	},
 	back: {
 		backgroundColor: 'darkgrey',
-		position: 'absolute',
-		top: 0,
+		
 		borderRadius: 10,
 	},
 	front: {
 		backgroundColor: 'lightgrey',
-		position: 'absolute',
-		top: 0,
+	
+	
 		borderRadius: 10,
 	},
 	text: {

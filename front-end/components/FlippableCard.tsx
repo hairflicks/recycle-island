@@ -38,7 +38,7 @@ const FlippableCard = ({ currentUser, model }) => {
 	};
 
 	return (
-		<TouchableOpacity style={styles.cardContainer} onPress={flipCard}>
+		<TouchableOpacity onPress={flipCard}>
 			<Animated.View style={[styles.card, styles.front, frontAnimatedStyle]}>
 				<Text style={styles.text}>Hello</Text>
 			</Animated.View>
