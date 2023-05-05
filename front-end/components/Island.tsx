@@ -1,25 +1,17 @@
 import { View, Text, Button, TouchableOpacity } from 'react-native';
 import { styles } from './StyleSheetCSS';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
+// import { OrbitControls } from '@react-three/drei';
 import { Suspense } from 'react';
 
 import  BottomNavigation  from './BottomNavigation'
 
 import Chicken from './ObjectModels/Chicken';
-import BearCub from './ObjectModels/BearCub';
 import Bee from './ObjectModels/Bee';
-import Cliffswallow from './ObjectModels/CliffSwallow';
-import Giraffe from './ObjectModels/Giraffe';
-import Hummingbird from './ObjectModels/HummingBird';
-import IvoryCanePalmTree from './ObjectModels/IvoryCanePalmTree';
-import Kangaroo from './ObjectModels/Kangaroo';
 import Koala from './ObjectModels/Koala';
 import PalmTree from './ObjectModels/PalmTree'
 import Panda from './ObjectModels/Panda';
 import PeppermintPenguin from './ObjectModels/PeppermintPenguin';
-import PineTree from './ObjectModels/PineTree';
-import TreeFrog from './ObjectModels/TreeFrog';
 import IslandModel from './ObjectModels/IslandModel';
 
 
@@ -54,12 +46,7 @@ function Island({navigation, route}: IslandProps){
             credits: 0,
             island: [
                         {itemName: 'Bee', coordinates: [-.8, -1.3]}, // x, z pos
-                        {itemName: 'BearCub', coordinates: [0, 1.3]},
-                        {itemName: 'Panda', coordinates: [-.8, 1.3]},
                         {itemName: 'Chicken', coordinates: [-1.4, -.4]},
-                        {itemName: 'Cliffswallow', coordinates: [-.7, -.4]},
-                        {itemName: 'Giraffe', coordinates: [0, -.4]},
-                        {itemName: 'Hummingbird', coordinates: [.7, -.4]},
                     ]
         }
     }
@@ -136,13 +123,13 @@ function Island({navigation, route}: IslandProps){
 
     return(
         <View style={styles.container}>
-            <div style={styles.canvasBorder}>
+            <View style={styles.canvasBorder}>
                 <Canvas camera={{ fov: 45, near:0.1, far:1000, position: [4,3.5,4]}} 
                         style={{background: "linear-gradient(to bottom, #d9eaff, #99ccff, #ffffff)"}}>
 
                     <pointLight color="white" position={[20,30,5]} intensity={2}/>  
                     <ambientLight intensity={0.5} />
-                    <OrbitControls maxDistance={7} minDistance={3} />
+                    {/* <OrbitControls maxDistance={7} minDistance={3} /> */}
 
                     <Suspense fallback={null}>                    
                         
@@ -172,8 +159,8 @@ function Island({navigation, route}: IslandProps){
                         <IslandModel position={[0.1, -3, 0]} /> 
                     </Suspense>
                 </Canvas>
-            </div>
-           <BottomNavigation navigation={navigation}/>
+            </View>
+           {/* <BottomNavigation navigation={navigation}/> */}
         </View>
 
     )
