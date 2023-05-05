@@ -10,7 +10,7 @@ const Panda = ({position}) => {
     <mesh position={position} 
           rotation={[0, -Math.PI / Math.random() * (10 - 1 + 1) + 1, 0]}
           ref={mesh} 
-          scale={[0.002, 0.002, 0.002]}> 
+          scale={[0.1, 0.1, 0.1]}> 
       <primitive object={gltf.scene.clone()}/> 
     </mesh>
     )

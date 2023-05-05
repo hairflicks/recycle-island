@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 
 const ShopItem = ({model, currentUser}) => {
 
-    const image = require(`../assets/${model.itemName}/${model.itemName}.png`)
+    // const image = require(`../assets/${model.itemName}/${model.itemName}.png`)
 
     const [error, setError] = useState('')
     const [isBuy, setIsBuy] = useState(false);
@@ -51,7 +51,7 @@ const ShopItem = ({model, currentUser}) => {
 		return (
 			<div style={styles.shopItem}>
 				<h1>{model.itemDisplayName}</h1>
-				<img src={image} style={styles.shopItemImage}></img>
+				{/* <img src={image} style={styles.shopItemImage}></img> */}
 				<p style={styles.shopItemDescription}>{model.itemDescription}</p>
 				<Button title='Buy' onPress={handleBuy} />
         {error? <Text>{error}</Text> : null}
