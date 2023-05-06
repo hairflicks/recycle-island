@@ -1,7 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { StyleSheet } from 'react-native';
+import { StyleSheet} from 'react-native';
 
 import Login from './components/Login';
 import Island from './components/Island'
@@ -42,12 +42,10 @@ export default function App() {
 
   return (
 		<NavigationContainer>
-
-
-			<Stack.Navigator initialRouteName="UserTask">
+			<Stack.Navigator initialRouteName="Island">
 				<Stack.Screen name="Login" component={Login} initialParams={{setCurrentUser}}/>
 				<Stack.Screen name="Island" component={Island} initialParams={{currentUser}}/>
-				<Stack.Screen name="UserTask" component={UserTask} initialParams={{currentUser, setCurrentUser}}/>
+				<Stack.Screen name="Tasks" component={UserTask} initialParams={{currentUser, setCurrentUser}}/>
 				<Stack.Screen name="Shop" component={Shop} initialParams={{currentUser}}/>
 				<Stack.Screen name="Profile" component={Profile} initialParams={{setCurrentUser, currentUser}}/>
 			</Stack.Navigator>

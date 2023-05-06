@@ -45,10 +45,20 @@ function Shop({ navigation, route }: ShopProps) {
   }, [])
 
 	return (
-		<View style={styles.cardContainer}>
-          {isLoading
-          ? <Text>Loading</Text>
-          : models.map(model => <FlippableCard key={model.itemName} currentUser={currentUser} model={model}/>) } 
+		<View
+			className={'flex h-full bg-white items-center justify-content-center p-2'}
+		>
+			{isLoading ? (
+				<Text>Loading</Text>
+			) : (
+				models.map((model) => (
+					<FlippableCard
+						key={model.itemName}
+						currentUser={currentUser}
+						model={model}
+					/>
+				))
+			)}
 
 			<BottomNavigation navigation={navigation} />
 		</View>
