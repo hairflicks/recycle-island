@@ -41,8 +41,8 @@ function Profile ({navigation, route}: ProfileProps) {
   }
 
   return (
-		<View className={`h-full`}>
-			<View className={`flex flex-col p-4 bg-white rounded-lg shadow-md items-center h-full`}>
+		<View className={`h-full bg-green-50`}>
+			<View className={`flex flex-col h-5/6 p-4 bg-green-200 rounded-lg shadow-md items-center border-green-800 border-2 m-2 mt-5`}>
 				<View className={`mb-4 items-center`}>
 					<Text className={`text-2xl font-bold text-gray-800 mb-5`}>
 						{currentUser.username}
