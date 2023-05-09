@@ -42,6 +42,19 @@ const FlippableCard = ({ currentUser, model }) => {
 	};
 
 
+	let path = '';
+	if(model.itemName === 'Chicken') path = require(`../assets/Chicken.png`)
+	if(model.itemName === 'Bee')path = require(`../assets/Bee.png`)
+	if(model.itemName === 'Alligator')path = require(`../assets/Alligator.png`)
+	if(model.itemName === 'Dragon')path = require(`../assets/Dragon.png`)
+	if(model.itemName === 'Goat')path = require(`../assets/Goat.png`)
+	if(model.itemName === 'Lion')path = require(`../assets/Lion.png`)
+	if(model.itemName === 'Koala')path = require(`../assets/Koala.png`)
+	if(model.itemName === 'PalmTree')path = require(`../assets/PalmTree.png`)
+	if(model.itemName === 'Panda')path = require(`../assets/Panda.png`)
+	if(model.itemName === 'PeppermintPenguin')path = require(`../assets/PeppermintPenguin.png`)
+	if(model.itemName === 'Frog')path = require(`../assets/Frog.png`)
+	if(model.itemName === 'Monkey')path = require(`../assets/Monkey.png`)
 
 	return (
 		<TouchableOpacity
@@ -64,7 +77,7 @@ const FlippableCard = ({ currentUser, model }) => {
 					</Text>
 					<Image
 						className={'h-1/2 w-1/2 m-2'}
-						source={require(`../assets/Chicken.png`)}
+						source={path}
 					/>
 					<View
 						className={`flex-row w-full justify-center bg-green-300 border-t-2 border-b-2 border-green-800 p-0.25`}
