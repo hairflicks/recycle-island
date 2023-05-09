@@ -21,8 +21,6 @@ const FlippableCard = ({ currentUser, model }) => {
 		}).start();
 	};
 
-	console.log(model);
-
 	const frontInterpolate = rotateY.interpolate({
 		inputRange: [0, 1],
 		outputRange: ['0deg', '180deg'],
@@ -40,6 +38,8 @@ const FlippableCard = ({ currentUser, model }) => {
 	const backAnimatedStyle = {
 		transform: [{ rotateY: backInterpolate }],
 	};
+
+
 
 	return (
 		<TouchableOpacity
@@ -62,7 +62,7 @@ const FlippableCard = ({ currentUser, model }) => {
 					</Text>
 					<Image
 						className={'h-1/2 w-1/2 m-2'}
-						source={require(`../assets/Chicken/Chicken.png`)}
+						source={require(`../assets/Chicken.png`)}
 					/>
 					<View
 						className={`flex-row w-full justify-center bg-green-300 border-t-2 border-b-2 border-green-800 p-0.25`}
