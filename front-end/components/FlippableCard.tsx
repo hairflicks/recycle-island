@@ -10,7 +10,7 @@ import {
 	Touchable,
 } from 'react-native';
 
-const FlippableCard = ({ currentUser, model }) => {
+const FlippableCard = ({ currentUser, model, setScrollable }) => {
 	const [isFlipped, setIsFlipped] = useState(false);
 	const rotateY = useState(new Animated.Value(0))[0];
 
@@ -22,8 +22,6 @@ const FlippableCard = ({ currentUser, model }) => {
 			useNativeDriver: true,
 		}).start();
 	};
-
-	console.log(model);
 
 	const frontInterpolate = rotateY.interpolate({
 		inputRange: [0, 1],

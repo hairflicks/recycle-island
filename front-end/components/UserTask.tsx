@@ -4,6 +4,7 @@ import { DefaultLoadingManager } from 'three';
 import { styles } from './StyleSheetCSS';
 import BottomNavigation from './BottomNavigation';
 import * as api from '../api'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 type User = {
@@ -48,6 +49,14 @@ function UserTask ({navigation, route}: TaskProps){
 				setMenu(0)
 				setIncCredit(0)
 			},3000)
+			const data = await AsyncStorage.getItem(currentUser?.username)
+			if (data !== null) {
+				const userStorage = JSON.parse(data)
+				userStorage.recycled += 1
+				AsyncStorage.setItem(currentUser?.username, JSON.stringify(userStorage))
+			} else {
+				AsyncStorage.setItem(currentUser?.username, JSON.stringify({recycled: 1}))
+			}
 			} catch(err) {
 				setError('Unable to process request. Check your connection...')
 				setTimeout(() => {
