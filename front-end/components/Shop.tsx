@@ -1,11 +1,9 @@
 import { FlatList, ScrollView, View } from 'react-native';
-import { useEffect, useState } from 'react';
+import { useEffect, useState,} from 'react';
 
-import { styles } from './StyleSheetCSS';
 import FlippableCard from './FlippableCard';
-import ShopItem from './ShopItem';
 import BottomNavigation from './BottomNavigation';
-import { StyleSheet, Text, TouchableOpacity, Animated } from 'react-native';
+import {Text} from 'react-native';
 import * as api from '../api';
 
 type User = {
@@ -44,7 +42,7 @@ function Shop({ navigation, route }: ShopProps) {
 	return (
 		<View className={'h-full bg-green-50'}>
 			<View
-				className={`flex flex-row flex-wrap h-5/6 p-2 bg-green-200 rounded-lg shadow-md items-center border-green-800 border-2 m-2 mt-5 justify-evenly overflow-scroll`}
+				className={`flex flex-row flex-wrap h-5/6 p-2 bg-green-100 rounded-lg shadow-md items-center border-green-800 border-2 m-2 mt-5 justify-evenly overflow-scroll`}
 			>
 				{isLoading ? (
 					<Text>Loading</Text>
