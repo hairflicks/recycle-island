@@ -126,12 +126,12 @@ function UserTask ({navigation, route}: TaskProps){
   }
   
   return (
-  
-		<View style={styles.container}>
-    
-
-    {menuOption}
-
+		<View className={`h-full bg-green-50`}>
+			<View
+				className={`flex flex-col h-5/6 p-4 bg-green-200 rounded-lg shadow-md items-center border-green-800 border-2 m-2 mt-5`}
+			>
+				{menuOption}
+			</View>
 			<BottomNavigation navigation={navigation} />
 		</View>
 	);
