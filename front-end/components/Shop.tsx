@@ -95,14 +95,15 @@ function Shop({ navigation, route }: ShopProps) {
 
 	return (
 		<View className={'h-full bg-green-50'}>
+			<ScrollView className={'mb-20'}>
 			<View
-				className={`flex flex-row flex-wrap h-5/6 p-2 bg-green-100 rounded-lg shadow-md items-center border-green-800 border-2 m-2 mt-5 justify-evenly overflow-scroll`}
+				className={`flex flex-row flex-wrap p-2 bg-green-200 mb-10 rounded-lg shadow-md items-center border-green-800 border-2 m-2 mt-5 justify-evenly overflow-scroll`}
 			>
 				{isLoading ? (
 					<Text>Loading</Text>
 				) : (
 					models.map((model) => (
-						<FlippableCard
+							<FlippableCard
 							key={model.itemName}
 							currentUser={currentUser}
 							model={model}
@@ -110,7 +111,7 @@ function Shop({ navigation, route }: ShopProps) {
 					))
 				)}
 			</View>
-
+			</ScrollView>
 			<BottomNavigation navigation={navigation} />
 		</View>
 	);

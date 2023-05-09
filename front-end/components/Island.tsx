@@ -92,14 +92,25 @@ function Island({navigation, route}: IslandProps){
         readyModels.push(modelReady)
     });
 
+
     const [OrbitControls, events] = useControls()
+
+    const islandModel = "islandModel"
 
     return(
         <View className={'flex h-full bg-white items-center justify-content-center p-2'}>
+            <Text className={'text-2xl absolute top-10 font-bold text-lime-600'}>{currentUser.username}'s Island</Text>
+            <View className={'flex-row absolute right-5 top-3'}>
+                <Text>{`${currentUser.credits}`}</Text>
+                <Image
+							className={`w-3 h-3`}
+							source={require('../assets/coin.png')}
+						/>
+            </View>
             <View className={'h-full w-full'} {...events}>
                 <Canvas camera={{ fov: 60, near:0.1, far:1000, position: [4,3.5,4]}} 
                         style={{background: "linear-gradient(to bottom, #d9eaff, #99ccff, #ffffff)"}}>
-                            <OrbitControls rotateSpeed={3}/>
+                            <OrbitControls rotateSpeed={1} maxZoom={7} enablePan={false} maxPolarAngle={1.4}/>
                             <pointLight color="white" position={[20,30,5]} intensity={2}/>  
                     <ambientLight intensity={0.5} />
 
