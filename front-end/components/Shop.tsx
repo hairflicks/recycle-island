@@ -86,8 +86,8 @@ function Shop({ navigation, route }: ShopProps) {
 		const fetchData = async () => {
 			try {
 				const data = await api.fetchAllItems();
-				setModels(data);
 				setIsLoading(false);
+				setModels(data);
 			} catch (error) {}
 		};
 		fetchData();
