@@ -70,18 +70,18 @@ function Island({navigation, route}: IslandProps){
     }
 
     const modelYAxisRef = {
-        Alligator: 1,
+        Alligator: .93,
         Chicken: .75,
-        Bee: .72,
-        Koala: .75,
-        Dragon: .75,
-        Frog: 1,
-        Goat: 1,
-        Lion: 1,
-        Monkey: 1,
-        PalmTree: 1,
-        Panda: 1,
-        PeppermintPenguin: .95
+        Bee: .9,
+        Koala: .72,
+        Dragon: .72,
+        Frog: 0.72,
+        Goat: 0.72,
+        Lion: 0.72,
+        Monkey: 0.72,
+        PalmTree: 0.72,
+        Panda: 0.72,
+        PeppermintPenguin: .9
     }
 
     const coordinates = {
@@ -134,6 +134,7 @@ function Island({navigation, route}: IslandProps){
             }
         }
     });
+
     let displayModels = [];
     for(const model in coordinates){
         if(coordinates[model].model !== null){
@@ -141,23 +142,16 @@ function Island({navigation, route}: IslandProps){
         }
     }
 
-    function handleClockwise() {
-        console.log('hi')
-        setRotation((rotation) => {
-            return rotation += 2
-        })
-    }
-
-    const [rotation,setRotation] = useState(4)
-
     const [OrbitControls, events] = useControls()
+
+    const islandModel = "islandModel"
 
     return(
         <View className={'flex h-full bg-white items-center justify-content-center p-2'}>
             <View className={'h-full w-full'} {...events}>
                 <Canvas camera={{ fov: 60, near:0.1, far:1000, position: [4,3.5,4]}} 
                         style={{background: "linear-gradient(to bottom, #d9eaff, #99ccff, #ffffff)"}}>
-                            <OrbitControls rotateSpeed={3}/>
+                            <OrbitControls rotateSpeed={1} maxZoom={7} enablePan={false} maxPolarAngle={1.4}/>
                             <pointLight color="white" position={[20,30,5]} intensity={2}/>  
                     <ambientLight intensity={0.5} />
                     <Suspense fallback={null}> 
@@ -166,12 +160,6 @@ function Island({navigation, route}: IslandProps){
                     </Suspense>
                 </Canvas>
             </View>
-                <TouchableOpacity className={`w-8 h-8 absolute bottom-20 left-7 bg-red-500`} onPress={handleClockwise}>
-                    <Image className={`w-8 h-8`} source={require('../assets/clockwise.png')} />
-                </TouchableOpacity>
-                <TouchableOpacity className={`w-8 h-8 absolute bottom-20 right-7`}>
-                    <Image className={`w-8 h-8`} source={require('../assets/anticlockwise.png')} />
-                </TouchableOpacity>
            <BottomNavigation navigation={navigation}/>
         </View>
 
