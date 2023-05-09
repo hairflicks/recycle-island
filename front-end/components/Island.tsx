@@ -1,7 +1,6 @@
-import { View, Text, Button, TouchableOpacity } from 'react-native';
+import { View } from 'react-native';
 import { styles } from './StyleSheetCSS';
 import { Canvas } from '@react-three/fiber';
-// import { OrbitControls } from '@react-three/drei';
 import { Suspense } from 'react';
 
 import  BottomNavigation  from './BottomNavigation'
@@ -39,6 +38,9 @@ type IslandProps = {
 function Island({navigation, route}: IslandProps){  
 
   const {currentUser} = route.params  
+  console.log()
+  console.log(currentUser.username)
+  console.log()
 
   const handleNavigation = () => {
 		navigation.navigate('UserTask');
@@ -122,7 +124,9 @@ function Island({navigation, route}: IslandProps){
         return model
     }
 
-    const islandData = user.user.island
+    const islandData = currentUser.island
+    // const islandData = user.user.island   test user data
+
     islandData.forEach(e => {
         for(const c in coordinates){
             const staticCoordinates =  coordinates[c]
@@ -133,6 +137,7 @@ function Island({navigation, route}: IslandProps){
             }
         }
     });
+
     let displayModels = [];
     for(const model in coordinates){
         if(coordinates[model].model !== null){
@@ -143,12 +148,11 @@ function Island({navigation, route}: IslandProps){
     return(
         <View style={styles.container}>
             <View style={styles.canvasBorder}>
-                <Canvas camera={{ fov: 60, near:0.1, far:1000, position: [4,3.5,4]}} 
+                <Canvas camera={{ fov: 60, near:0.1, far:1000, position: [4, 3.5 ,4]}} 
                         style={{background: "linear-gradient(to bottom, #d9eaff, #99ccff, #ffffff)"}}>
 
                     <pointLight color="white" position={[20,30,5]} intensity={2}/>  
                     <ambientLight intensity={0.5} />
-                    {/* <OrbitControls maxDistance={7} minDistance={3} /> */}
 
                     <Suspense fallback={null}>                    
                         {displayModels.map(c => c)} 

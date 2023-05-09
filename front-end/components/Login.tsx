@@ -48,7 +48,7 @@ function Login({ navigation, route }: LoginProps) {
 		try {
 			const userData = await getUserByUsername(username);
 			if (await bcrypt.compare(password, userData.data.user.hash)) {
-        setCurrentUser(userData.data.user)
+        await setCurrentUser(userData.data.user)
 		setError('')
         navigation.navigate('Island');
       } else {
