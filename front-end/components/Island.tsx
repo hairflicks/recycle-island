@@ -38,9 +38,6 @@ type IslandProps = {
 function Island({navigation, route}: IslandProps){  
 
   const {currentUser} = route.params  
-  console.log()
-  console.log(currentUser.username)
-  console.log()
 
   const handleNavigation = () => {
 		navigation.navigate('UserTask');
