@@ -1,17 +1,20 @@
+import { stringify } from 'postcss';
 import React, { useState } from 'react';
 import {
-	Text,
+  Text,
 	TouchableOpacity,
 	Animated,
 	Image,
 	View,
 	ScrollView,
 } from 'react-native';
+import { model } from 'mongoose';
+
 
 const FlippableCard = ({ currentUser, model }) => {
-	const [isFlipped, setIsFlipped] = useState(false);
+  const [isFlipped, setIsFlipped] = useState(false);
 	const rotateY = useState(new Animated.Value(0))[0];
-
+  
 	const flipCard = () => {
 		setIsFlipped(!isFlipped);
 		Animated.timing(rotateY, {
@@ -20,26 +23,39 @@ const FlippableCard = ({ currentUser, model }) => {
 			useNativeDriver: true,
 		}).start();
 	};
-
+  
 	const frontInterpolate = rotateY.interpolate({
-		inputRange: [0, 1],
+    inputRange: [0, 1],
 		outputRange: ['0deg', '180deg'],
 	});
-
+  
 	const backInterpolate = rotateY.interpolate({
-		inputRange: [0, 1],
+    inputRange: [0, 1],
 		outputRange: ['180deg', '360deg'],
 	});
-
+  
 	const frontAnimatedStyle = {
-		transform: [{ rotateY: frontInterpolate }],
+    transform: [{ rotateY: frontInterpolate }],
 	};
-
+  
 	const backAnimatedStyle = {
-		transform: [{ rotateY: backInterpolate }],
+    transform: [{ rotateY: backInterpolate }],
 	};
 
-
+  const image: Object =  {
+    Alligator: require('../assets/Alligator.png'),
+    Bee: require('../assets/Bee.png'),
+    Chicken: require('../assets/Chicken.png'),
+    Dragon: require('../assets/Dragon.png'),
+    Frog: require('../assets/Frog.png'),
+    Goat: require('../assets/Goat.png'),
+    Koala: require('../assets/Koala.png'),
+    Lion: require('../assets/Lion.png'),
+    Monkey: require('../assets/Monkey.png'),
+    PalmTree: require('../assets/PalmTree.png'),
+    Panda: require('../assets/Panda.png'),
+    PeppermintPenguin: require('../assets/PeppermintPenguin.png')
+  }
 
 	return (
 		<TouchableOpacity
@@ -62,7 +78,7 @@ const FlippableCard = ({ currentUser, model }) => {
 					</Text>
 					<Image
 						className={'h-1/2 w-1/2 m-2'}
-						source={require(`../assets/Chicken.png`)}
+						source={image[model.itemName]}
 					/>
 					<View
 						className={`flex-row w-full justify-center bg-green-300 border-t-2 border-b-2 border-green-800 p-0.25`}
