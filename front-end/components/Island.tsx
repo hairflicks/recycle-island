@@ -4,6 +4,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Suspense, useRef, useState } from 'react';
 import useControls from "r3f-native-orbitcontrols"
 
+
 import  BottomNavigation  from './BottomNavigation'
 
 import IslandModel from './ObjectModels/IslandModel';
@@ -123,7 +124,9 @@ function Island({navigation, route}: IslandProps){
         return model
     }
 
-    const islandData = user.user.island
+    const islandData = currentUser.island
+    // const islandData = user.user.island   test user data
+
     islandData.forEach(e => {
         for(const c in coordinates){
             const staticCoordinates =  coordinates[c]
@@ -134,6 +137,7 @@ function Island({navigation, route}: IslandProps){
             }
         }
     });
+
     let displayModels = [];
     for(const model in coordinates){
         if(coordinates[model].model !== null){
@@ -160,8 +164,9 @@ function Island({navigation, route}: IslandProps){
                             <OrbitControls rotateSpeed={3}/>
                             <pointLight color="white" position={[20,30,5]} intensity={2}/>  
                     <ambientLight intensity={0.5} />
+
                     <Suspense fallback={null}> 
-                    {displayModels.map(c => c)} 
+                        {displayModels.map(c => c)} 
                         <IslandModel position={[0.1, -3, 0]}/>                 
                     </Suspense>
                 </Canvas>
