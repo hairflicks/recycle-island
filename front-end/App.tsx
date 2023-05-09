@@ -27,7 +27,32 @@ export default function App() {
 	  const [currentUser, setCurrentUser] = useState<User | undefined>({
 		name: 'Jake',
 		username: 'TheGuy',
-		island: [],
+		island: [
+			  {
+				itemName: "Dragon",
+				coordinates: [0, -1.3],
+			  },
+			  {
+				itemName: "Goat",
+				coordinates: [-.7, -.4],
+			  },
+			  {
+				itemName: "Koala",
+				coordinates: [.7, .4],
+			  },
+			  {
+				itemName: "Lion",
+				coordinates: [0.0, 0.0, 1.0],
+			  },
+			  {
+				itemName: "Bee",
+				coordinates: [-.8, 1.3],
+			  },
+			  {
+				itemName: "Chicken",
+				coordinates: [0, 1.3],
+			  },
+		],
 		inventory: {},
 		hash: 'sdghsdhgsd',
 		credits: 0,
@@ -42,7 +67,7 @@ export default function App() {
 
   return (
 		<NavigationContainer>
-			<Stack.Navigator initialRouteName="Shop">
+			<Stack.Navigator initialRouteName="Island">
 				<Stack.Screen name="Login" component={Login} initialParams={{setCurrentUser}}/>
 				<Stack.Screen name="Island" component={Island} initialParams={{currentUser}}/>
 				<Stack.Screen name="Tasks" component={UserTask} initialParams={{currentUser, setCurrentUser}}/>
