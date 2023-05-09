@@ -41,17 +41,34 @@ function Profile ({navigation, route}: ProfileProps) {
   }
 
   return (
-		<View className={`h-screen`}>
-			<View className={`p-4 bg-white rounded-lg shadow-md items-center`}>
+		<View className={`h-full bg-green-50`}>
+			<View className={`flex flex-col h-5/6 p-4 bg-green-200 rounded-lg shadow-md items-center border-green-800 border-2 m-2 mt-5`}>
 				<View className={`mb-4 items-center`}>
-					<Text className={`text-2xl font-bold text-gray-800 mb-5`}>{currentUser.username}</Text>
+					<Text className={`text-2xl font-bold text-gray-800 mb-5`}>
+						{currentUser.username}
+					</Text>
 					<View className={`flex-row`}>
-					<Text className={`text-lg font-medium text-gray-500`}>{`${currentUser.credits}`}</Text>
-					<Image className={`w-3 h-3`} source={require('../assets/coin.png')}/>
+						<Text
+							className={`text-lg font-medium text-gray-500`}
+						>{`${currentUser.credits}`}</Text>
+						<Image
+							className={`w-3 h-3`}
+							source={require('../assets/coin.png')}
+						/>
 					</View>
 				</View>
-				<TouchableOpacity className={`w-55 bg-blue-500 rounded-lg`} onPress={handleSignOut}><Text className={`text-2xl p-1`}>Sign out</Text></TouchableOpacity>
-				<TouchableOpacity className={`w-55 bg-red-500 rounded-lg`} onPress={handleDelete}><Text className={`text-2xl p-1`}>DELETE ACCOUNT</Text></TouchableOpacity>
+				<TouchableOpacity
+					className={`w-55 bg-blue-500 rounded-lg`}
+					onPress={handleSignOut}
+				>
+					<Text className={`text-2xl p-1`}>Sign out</Text>
+				</TouchableOpacity>
+				<TouchableOpacity
+					className={`w-55 bg-red-500 rounded-lg`}
+					onPress={handleDelete}
+				>
+					<Text className={`text-2xl p-1`}>DELETE ACCOUNT</Text>
+				</TouchableOpacity>
 			</View>
 			<BottomNavigation navigation={navigation} />
 		</View>

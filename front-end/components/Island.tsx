@@ -141,8 +141,8 @@ function Island({navigation, route}: IslandProps){
     }
 
     return(
-        <View style={styles.container}>
-            <View style={styles.canvasBorder}>
+        <View className={'flex h-full bg-white items-center justify-content-center p-2'}>
+            <View className={'h-full w-full'}>
                 <Canvas camera={{ fov: 60, near:0.1, far:1000, position: [4,3.5,4]}} 
                         style={{background: "linear-gradient(to bottom, #d9eaff, #99ccff, #ffffff)"}}>
 
