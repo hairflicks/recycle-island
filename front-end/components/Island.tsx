@@ -1,8 +1,8 @@
-import { View, Text, Button, TouchableOpacity } from 'react-native';
+import { View, Text, Button, TouchableOpacity, Image } from 'react-native';
 import { styles } from './StyleSheetCSS';
-import { Canvas } from '@react-three/fiber';
-// import { OrbitControls } from '@react-three/drei';
-import { Suspense } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { Suspense, useRef, useState } from 'react';
+import useControls from "r3f-native-orbitcontrols"
 
 import  BottomNavigation  from './BottomNavigation'
 
@@ -39,6 +39,7 @@ type IslandProps = {
 function Island({navigation, route}: IslandProps){  
 
   const {currentUser} = route.params  
+  console.log(currentUser.username)
 
   const handleNavigation = () => {
 		navigation.navigate('UserTask');
@@ -140,22 +141,37 @@ function Island({navigation, route}: IslandProps){
         }
     }
 
+    function handleClockwise() {
+        console.log('hi')
+        setRotation((rotation) => {
+            return rotation += 2
+        })
+    }
+
+    const [rotation,setRotation] = useState(4)
+
+    const [OrbitControls, events] = useControls()
+
     return(
         <View className={'flex h-full bg-white items-center justify-content-center p-2'}>
-            <View className={'h-full w-full'}>
+            <View className={'h-full w-full'} {...events}>
                 <Canvas camera={{ fov: 60, near:0.1, far:1000, position: [4,3.5,4]}} 
                         style={{background: "linear-gradient(to bottom, #d9eaff, #99ccff, #ffffff)"}}>
-
-                    <pointLight color="white" position={[20,30,5]} intensity={2}/>  
+                            <OrbitControls rotateSpeed={3}/>
+                            <pointLight color="white" position={[20,30,5]} intensity={2}/>  
                     <ambientLight intensity={0.5} />
-                    {/* <OrbitControls maxDistance={7} minDistance={3} /> */}
-
-                    <Suspense fallback={null}>                    
-                        {displayModels.map(c => c)} 
-                        <IslandModel position={[0.1, -3, 0]} /> 
+                    <Suspense fallback={null}> 
+                    {displayModels.map(c => c)} 
+                        <IslandModel position={[0.1, -3, 0]}/>                 
                     </Suspense>
                 </Canvas>
             </View>
+                <TouchableOpacity className={`w-8 h-8 absolute bottom-20 left-7 bg-red-500`} onPress={handleClockwise}>
+                    <Image className={`w-8 h-8`} source={require('../assets/clockwise.png')} />
+                </TouchableOpacity>
+                <TouchableOpacity className={`w-8 h-8 absolute bottom-20 right-7`}>
+                    <Image className={`w-8 h-8`} source={require('../assets/anticlockwise.png')} />
+                </TouchableOpacity>
            <BottomNavigation navigation={navigation}/>
         </View>
 
