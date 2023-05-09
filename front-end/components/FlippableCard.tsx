@@ -6,6 +6,8 @@ import {
 	Image,
 	View,
 	ScrollView,
+	TouchableWithoutFeedback,
+	Touchable,
 } from 'react-native';
 
 const FlippableCard = ({ currentUser, model }) => {
@@ -94,10 +96,12 @@ const FlippableCard = ({ currentUser, model }) => {
 					>
 						{model.itemDisplayName}
 					</Text>
-					<ScrollView className={`border-b-2 w-full`}>
+					<ScrollView nestedScrollEnabled={true} className={`border-b-2 w-full`}>
+					<TouchableOpacity onPress={flipCard}>
 						<Text className={`text-xs text-center`}>
 							{model.itemDescription}
 						</Text>
+					</TouchableOpacity>
 					</ScrollView>
 					<View
 						className={`w-11/12 mt-1 mb-1 rounded bg-blue-800 ml-auto mr-auto`}
