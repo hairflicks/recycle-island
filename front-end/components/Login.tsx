@@ -64,16 +64,16 @@ function Login({ navigation, route }: LoginProps) {
 	};
 
 	return (
-		<View style={styles.container}>
+		<View className={'flex items-center justify-center'}>
 			<View style={styles.slider}>
 				<TouchableOpacity
-					style={styles.invertedButton}
+					className={'bg-green-800 border-2 border-green-200 rounded-lg p-4'}
 					onPress={handleLoginPage}
 				>
-					<Text style={styles.invertedButtonText}>Login</Text>
+					<Text className={'text-center text-base font-bold text-green-200'}>Login</Text>
 				</TouchableOpacity>
-				<TouchableOpacity style={styles.button} onPress={handleSignUpPage}>
-					<Text style={styles.buttonText}>Sign Up</Text>
+				<TouchableOpacity className={'bg-green-800 border-2 border-green-200 rounded-lg p-4'} onPress={handleSignUpPage}>
+					<Text className={'text-center text-base font-bold text-green-200'}>Sign Up</Text>
 				</TouchableOpacity>
 			</View>
 
@@ -92,8 +92,8 @@ function Login({ navigation, route }: LoginProps) {
 						value={password}
 						onChangeText={setPassword}
 					/>
-					<TouchableOpacity style={styles.button} onPress={handleLogin}>
-						<Text style={styles.buttonText}>Login</Text>
+					<TouchableOpacity className={'bg-green-800 border-4 border-green-200 rounded-lg p-4'} onPress={handleLogin}>
+						<Text className={'text-center text-base font-bold text-green-200'}>Login</Text>
 					</TouchableOpacity>
 				</View>
 			) : (
@@ -117,8 +117,8 @@ function Login({ navigation, route }: LoginProps) {
 						value={password}
 						onChangeText={setPassword}
 					/>
-					<TouchableOpacity style={styles.button} onPress={handleSignUp}>
-						<Text style={styles.buttonText}>Create Account</Text>
+					<TouchableOpacity className={'bg-green-800 border-4 border-green-200 rounded-lg p-4'} onPress={handleSignUp}>
+						<Text className={'text-center text-base font-bold text-green-200'}>Create Account</Text>
 					</TouchableOpacity>
 				</View>
 			)}
