@@ -2,6 +2,7 @@ import { View, Text, Button, TouchableOpacity, Image } from 'react-native';
 import { styles } from './StyleSheetCSS';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Suspense, useRef, useState } from 'react';
+import useControls from "r3f-native-orbitcontrols"
 
 import  BottomNavigation  from './BottomNavigation'
 
@@ -149,15 +150,14 @@ function Island({navigation, route}: IslandProps){
 
     const [rotation,setRotation] = useState(4)
 
-    useFrame(() => {
-        
-    })
+    const [OrbitControls, events] = useControls()
 
     return(
         <View className={'flex h-full bg-white items-center justify-content-center p-2'}>
-            <View className={'h-full w-full'}>
+            <View className={'h-full w-full'} {...events}>
                 <Canvas camera={{ fov: 60, near:0.1, far:1000, position: [4,3.5,4]}} 
                         style={{background: "linear-gradient(to bottom, #d9eaff, #99ccff, #ffffff)"}}>
+                            <OrbitControls rotateSpeed={3}/>
                             <pointLight color="white" position={[20,30,5]} intensity={2}/>  
                     <ambientLight intensity={0.5} />
                     <Suspense fallback={null}> 
