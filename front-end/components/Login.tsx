@@ -60,7 +60,7 @@ function Login({ navigation, route }: LoginProps) {
 	};
 
 	return (
-		<View className={'items-center'}>
+		<View className={'items-center mt-auto mb-auto'}>
 			<Text className={'text-4xl font-bold text-green-700 mt-5 mb-5'}>RECYCLAND</Text>
 			<Image className={'w-20 h-20'} source={require('../assets/recycletree.png')}/>
 			<View className='flex-row mt-5 mb-5'>

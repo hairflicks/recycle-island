@@ -74,7 +74,7 @@ function UserTask ({navigation, route}: TaskProps){
   let menuOption
   if (menu === 0) {
     menuOption = (
-			<>
+			<View className={'mt-auto mb-auto'}>
 				<Text
 					style={{
 						fontSize: 36,
@@ -156,11 +156,11 @@ function UserTask ({navigation, route}: TaskProps){
 						</TouchableOpacity>
 					</View>
 				</View>
-			</>
+			</View>
 		);
   } else if (menu === 1) {
     menuOption = (
-			<>
+			<View className={'mt-auto mb-auto'}>
 				<View>
 					<Text
 						style={{
@@ -253,11 +253,11 @@ function UserTask ({navigation, route}: TaskProps){
 						<Text>Go back</Text>
 					</TouchableOpacity>
 				</View>
-			</>
+			</View>
 		);
   } else if (menu === 2) {
     menuOption = (
-			<>
+			<View className={'mt-auto mb-auto'}>
 				<TouchableOpacity onPress={optionPress}>
 					<Text
 						style={{
@@ -350,14 +350,14 @@ function UserTask ({navigation, route}: TaskProps){
 				>
 					<Text>Go back</Text>
 				</TouchableOpacity>
-			</>
+			</View>
 		);
   } else {
 
     menuOption = (
-			<>
+			<View className={'mt-auto mb-auto'}>
 				{error ? <Text>{error}</Text> : <Text>You earned {incCredit} credits!</Text>}
-			</>
+			</View>
 		);
 
   }
