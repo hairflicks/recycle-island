@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Text,
+    Text,
 	TouchableOpacity,
 	Animated,
 	Image,
@@ -12,24 +12,29 @@ import {
 import * as api from '../api'
 import { modelYAxisRef } from './modelYAxisRef';
 
-const FlippableCard = ({ currentUser, model, setScrollable, availablePos, setCurrentUser }) => {
+const FlippableCard = ({ currentUser, model, availablePos, setCurrentUser, navigation }) => {
 	const [isFlipped, setIsFlipped] = useState(false);
 	const rotateY = useState(new Animated.Value(0))[0];
 	const [error, setError] = useState('');
 
 	const handleBuy = async() => {		
 		if(availablePos !== null){
-			const readyToInsert = {itemName: model.itemName, coordinates: []}
-			readyToInsert.coordinates.push(availablePos.pos.x)
-			readyToInsert.coordinates.push(modelYAxisRef[readyToInsert.itemName])
-			readyToInsert.coordinates.push(availablePos.pos.z)
-			try{
-				await api.patchCreditsByUsername(currentUser.username, -model.itemCost)
-				const newUserDetails = await api.patchIslandByUsername(currentUser.username, readyToInsert)
-				flipCard()
-				setCurrentUser(newUserDetails.data.user)
-			} catch (error: any) {
-				setError(error.response.data.message);
+			if(currentUser.credits >= model.itemCost){
+				const readyToInsert = {itemName: model.itemName, coordinates: []}
+				readyToInsert.coordinates.push(availablePos.pos.x)
+				readyToInsert.coordinates.push(modelYAxisRef[readyToInsert.itemName])
+				readyToInsert.coordinates.push(availablePos.pos.z)
+				try{
+					await api.patchCreditsByUsername(currentUser.username, -model.itemCost)
+					const newUserDetails = await api.patchIslandByUsername(currentUser.username, readyToInsert)
+					flipCard()
+					await setCurrentUser(newUserDetails.data.user)	
+					navigation.navigate('Island');
+				} catch (error: any) {
+					setError(error.response.data.message);
+				}
+			}else{
+				console.log('not enough credits')
 			}
 		}else{
 			console.log('handle inventory buy')

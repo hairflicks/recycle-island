@@ -61,7 +61,7 @@ export default function App() {
 	  }) 
 
 	  useEffect(() => {
-		console.log(currentUser)
+		// console.log(currentUser)
 	  }, [currentUser])
 	  const Stack = createNativeStackNavigator();
 

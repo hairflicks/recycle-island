@@ -47,15 +47,17 @@ function Shop({ navigation, route }: ShopProps) {
         16: {pos: {x: .8, y: null, z: 1.3 }, model: null},
     }
 
+	let availablePos = null
+
 	const islandData = currentUser.island
-    islandData.forEach(e => {
-        for(const c in coordinates){
-            const staticCoordinates =  coordinates[c]
-            if(staticCoordinates.pos.x === e.coordinates[0] && staticCoordinates.pos.z === e.coordinates[1]) {
-                staticCoordinates.model = e.itemName
-            }
-        }
-    });
+	islandData.forEach(e => {
+		for(const c in coordinates){
+			const staticCoordinates =  coordinates[c]
+			if(staticCoordinates.pos.x === e.coordinates[0] && staticCoordinates.pos.z === e.coordinates[2]) {
+				staticCoordinates.model = e.itemName
+			}
+		}
+	});
 
 	const emptyPositions = []
 	for (const model in coordinates) if(coordinates[model].model === null) emptyPositions.push(model)	  
@@ -64,13 +66,11 @@ function Shop({ navigation, route }: ShopProps) {
 	if(emptyPositions.length === 0) emptySlotNumber = null
 	else emptySlotNumber = emptyPositions[Math.floor(Math.random() * emptyPositions.length)];
 
-	let availablePos = null
-	if(emptySlotNumber !== null){
-		availablePos = coordinates[emptySlotNumber]
+	if(emptySlotNumber){
+		availablePos = (coordinates[emptySlotNumber])
 	}else{
-		availablePos = null
+		availablePos = (null)
 	}
-	
 
 	const [models, setModels] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
@@ -102,6 +102,7 @@ function Shop({ navigation, route }: ShopProps) {
 							currentUser={currentUser}
 							setCurrentUser={setCurrentUser}
 							model={model}
+							navigation={navigation}
 							availablePos={availablePos}
 						/>
 					))
