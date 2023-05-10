@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, useColorScheme } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, useColorScheme, Image } from 'react-native';
 import { styles } from './StyleSheetCSS';
 import { getUserByUsername, postUser } from '../api';
 import bcrypt from 'bcryptjs';
@@ -64,16 +64,18 @@ function Login({ navigation, route }: LoginProps) {
 	};
 
 	return (
-		<View className={'flex items-center justify-center'}>
-			<View style={styles.slider}>
+		<View className={'items-center'}>
+			<Text className={'text-4xl font-bold text-green-700 mt-5 mb-5'}>RECYCLAND</Text>
+			<Image className={'w-20 h-20'} source={require('../assets/recycletree.png')}/>
+			<View className='flex-row mt-5 mb-5'>
 				<TouchableOpacity
-					className={'bg-green-800 border-2 border-green-200 rounded-lg p-4'}
+					className={'bg-green-800 border-2 border-green-200 rounded-lg p-4 mr-5'}
 					onPress={handleLoginPage}
 				>
-					<Text className={'text-center text-base font-bold text-green-200'}>Login</Text>
+					<Text className={'text-center text-base font-bold text-green-200 w-20'}>Login</Text>
 				</TouchableOpacity>
 				<TouchableOpacity className={'bg-green-800 border-2 border-green-200 rounded-lg p-4'} onPress={handleSignUpPage}>
-					<Text className={'text-center text-base font-bold text-green-200'}>Sign Up</Text>
+					<Text className={'text-center text-base font-bold text-green-200 w-20'}>Sign Up</Text>
 				</TouchableOpacity>
 			</View>
 
