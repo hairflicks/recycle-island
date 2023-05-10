@@ -1,6 +1,7 @@
 import { View, Text, Button, Image, TouchableOpacity} from 'react-native';
 import BottomNavigation from './BottomNavigation';
 import * as api from '../api'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type User = {
 	name: String,
@@ -19,9 +20,12 @@ type ProfileProps = {
 };
 
 
-function Profile ({navigation, route}: ProfileProps) {
+async function Profile ({navigation, route}: ProfileProps) {
 
-  const {setCurrentUser, currentUser} = route.params	
+  const {setCurrentUser, currentUser} = route.params
+  const userStats = await AsyncStorage.getItem(currentUser?.username)
+  console.log(userStats)
+  
 	console.log(currentUser)
   function handleSignOut() {
 	setCurrentUser()
