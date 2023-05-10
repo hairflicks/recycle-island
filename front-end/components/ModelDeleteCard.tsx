@@ -7,7 +7,7 @@ export default function ModelDeleteCard({model, setCurrentUser, currentUser}) {
 
         try {
             await api.deleteFromIsland(currentUser?.username, model)
-            const updated = await api.deleteFromIsland(currentUser?.username, model)
+            const updated = await api.patchInventoryByUsername(currentUser?.username, model)
             console.log(updated.data.user)
             // setCurrentUser(updated)
         } catch (err) {
