@@ -61,3 +61,25 @@ export const removeUser = async (username: String) => {
   const deleted = await User.findOneAndDelete({username})
   if (!deleted) throw { status: 400, message: '400: username does not exist.' };
 }
+
+export const updateItemFromIsland = async (
+	username: String,
+	body: { itemName: String }
+) => {
+	await db;
+	const { itemName } = body;
+	let data = await findUserByUsername(username);
+	let count = 0;
+	const newIsland = data.island.filter((item) => {
+		if (count < 1) {
+			count++;
+			return item.itemName === itemName;
+		}
+	});
+	const updatedUser = await User.findOneAndUpdate(
+		{ username },
+		{ $set: { island: newIsland } },
+		{ new: true }
+	);
+	return updatedUser;
+};

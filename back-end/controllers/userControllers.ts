@@ -5,6 +5,7 @@ import {
   addItemToIsland,
   addCreditsToUser,
   removeUser,
+  updateItemFromIsland,
 } from "../models/userModels";
 import { Request, Response, NextFunction } from "express";
 import { hashPassword, checkShopItemExists } from "../db/utils";
@@ -63,7 +64,6 @@ export const patchItemToIsland = async (
 ) => {
   const { username } = req.params;
   const { body } = req;
-  console.log(body)
   try {
     checkShopItemExists(body.itemName);
     const data = await addItemToIsland(username, body);
@@ -90,6 +90,18 @@ export const patchCreditsByUsername = async (
 	}
 };
 
+export const patchIslandByUsername = async (req: Request, res: Response, next: NextFunction) => {
+  const {username} = req.params;
+  const {body} = req;
+  try{
+    const data = await updateItemFromIsland(username, body);
+    if(!data) throw { status: 400, message: '400: username does not exist.'};
+    return res.status(200).send({user: data})
+  } catch (err) {
+    next(err)
+  }
+}
+
 export const deleteUserByUsername = async (
 	req: Request,
 	res: Response,
@@ -103,3 +115,4 @@ export const deleteUserByUsername = async (
     next(err)
   }
 }
+

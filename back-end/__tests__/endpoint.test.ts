@@ -149,7 +149,7 @@ describe('POST /users', () => {
 			});
 	});
 
-  test.only('', () => {
+  test('', () => {
     return request(app)
 			.post('/api/users')
 			.send({name: 'dsgds', username: 'hairflicks', hash: 'dsgdssd'})
@@ -340,5 +340,48 @@ describe("DELETE /api/users/:username", () => {
       const {message} = body
       expect(message).toBe('400: username does not exist.')
     })
+  })
+})
+
+describe.only('Patch /api/users/:username/island', () => {
+  beforeEach(async () => {
+		await seed(testusers, testitems);
+	});
+  const item = {
+    itemName: 'tree',
+  };
+  test('200: Responds with object that has been posted to the database', () => {
+		return request(app)
+			.delete('/api/users/hairflicks/island')
+			.send(item)
+			.expect(200)
+			.then(async ({ body }) => {
+				expect(body.user.island).toEqual([]);
+			});
+	});
+  test("400: Responds with error if user doesn't exist", () => {
+		return request(app)
+			.delete('/api/users/ofsdihfsd/island')
+			.send(item)
+			.expect(400)
+			.then(async ({ body }) => {
+				const { message } = body;
+				expect(message).toBe('400: username does not exist.');
+			});
+	});
+  test.only("200: Only deletes one item with the passed itemName if user has multiple items with the same itemNme", () => {
+    return request(app)
+			.delete('/api/users/hairflicks/island')
+			.send(item)
+			.expect(200)
+			.then(async ({ body }) => {
+				expect(body.user.island).toEqual([
+					{
+            _id: expect.any(String),
+						itemName: 'tree',
+						coordinates: [0.0, 0.0, 1.0],
+					}
+				]);
+			});
   })
 })
