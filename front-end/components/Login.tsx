@@ -6,7 +6,7 @@ import bcrypt from 'bcryptjs';
 
 type LoginProps = {
 	navigation: { navigate: Function };
-  route: {params: {setCurrentUser: Function}}
+    route: {params: {setCurrentUser: Function}}
 };
 
 function Login({ navigation, route }: LoginProps) {

@@ -41,34 +41,6 @@ function Island({navigation, route}: IslandProps){
 
   const {currentUser} = route.params  
 
-  const handleNavigation = () => {
-		navigation.navigate('UserTask');
-	};
-
-    const user2 = {
-        user: {
-            name: 'brad',
-            username: 'hairflicks',
-            credits: 0,
-            island: [
-                        {itemName: 'Bee', coordinates: [-.8, .9, -1.3]}, 
-                        {itemName: 'Alligator', coordinates: [0, .93, -1.3]},
-                        {itemName: 'Chicken', coordinates: [.8, .75, -1.3]},
-
-                        {itemName: 'Dragon', coordinates: [-1.4, .72, -.4]},
-                        {itemName: 'Frog', coordinates: [-.7, .72, -.4]},
-                        {itemName: 'Goat', coordinates: [0, .72, -.4]},
-                        {itemName: 'Koala', coordinates: [.7, .72, -.4]},
-                        {itemName: 'Lion', coordinates: [1.4, .72, -.4]},
-
-                        {itemName: 'Monkey', coordinates: [-1.4, .72, .4]},
-                        {itemName: 'PalmTree', coordinates: [-.7, .72, .4]},
-                        {itemName: 'Panda', coordinates: [0, .72, .4]},
-                        {itemName: 'PeppermintPenguin', coordinates: [.7, .9, .4]},
-                    ]
-        }
-    }
-
     function modelFinder(modelName, pos) {
         let model;
         if(modelName === 'Bee') model = <Bee key={modelName} position={[pos[0], pos[1], pos[2]]} />
@@ -86,16 +58,15 @@ function Island({navigation, route}: IslandProps){
         return model
     }
 
+    console.log(currentUser.island)
     const readyModels = [];
-    user2.user.island.forEach(e => {
+    currentUser.island.forEach(e => {
         const modelReady = modelFinder(e.itemName, e.coordinates)
         readyModels.push(modelReady)
     });
 
 
     const [OrbitControls, events] = useControls()
-
-    const islandModel = "islandModel"
 
     return(
         <View className={'flex h-full bg-white items-center justify-content-center p-2'}>

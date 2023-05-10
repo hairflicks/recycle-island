@@ -9,10 +9,32 @@ import {
 	TouchableWithoutFeedback,
 	Touchable,
 } from 'react-native';
+import * as api from '../api'
+import { modelYAxisRef } from './modelYAxisRef';
 
-const FlippableCard = ({ currentUser, model, setScrollable }) => {
+const FlippableCard = ({ currentUser, model, setScrollable, availablePos, setCurrentUser }) => {
 	const [isFlipped, setIsFlipped] = useState(false);
 	const rotateY = useState(new Animated.Value(0))[0];
+	const [error, setError] = useState('');
+
+	const handleBuy = async() => {		
+		if(availablePos !== null){
+			const readyToInsert = {itemName: model.itemName, coordinates: []}
+			readyToInsert.coordinates.push(availablePos.pos.x)
+			readyToInsert.coordinates.push(modelYAxisRef[readyToInsert.itemName])
+			readyToInsert.coordinates.push(availablePos.pos.z)
+			try{
+				await api.patchCreditsByUsername(currentUser.username, -model.itemCost)
+				const newUserDetails = await api.patchIslandByUsername(currentUser.username, readyToInsert)
+				flipCard()
+				setCurrentUser(newUserDetails.data.user)
+			} catch (error: any) {
+				setError(error.response.data.message);
+			}
+		}else{
+			console.log('handle inventory buy')
+		}
+	}
   
 	const flipCard = () => {
 		setIsFlipped(!isFlipped);
@@ -22,6 +44,8 @@ const FlippableCard = ({ currentUser, model, setScrollable }) => {
 			useNativeDriver: true,
 		}).start();
 	};
+
+
   
 	const frontInterpolate = rotateY.interpolate({
     inputRange: [0, 1],
@@ -120,7 +144,7 @@ const FlippableCard = ({ currentUser, model, setScrollable }) => {
 						className={`w-11/12 mt-1 mb-1 rounded bg-blue-800 ml-auto mr-auto`}
 					>
 						<TouchableOpacity>
-							<Text className={`text-center text-white`}>Buy</Text>
+							<Text className={`text-center text-white`} onPress={handleBuy}>Buy</Text>
 						</TouchableOpacity>
 					</View>
 				</Animated.View>
