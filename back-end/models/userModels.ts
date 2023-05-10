@@ -69,16 +69,14 @@ export const updateItemFromIsland = async (
 	await db;
 	const { itemName } = body;
 	let data = await findUserByUsername(username);
-	let count = 0;
-	const newIsland = data.island.filter((item) => {
-		if (count < 1) {
-			count++;
-			return item.itemName === itemName;
+	data.island.forEach((item, i) => {
+		if (item.itemName === itemName) {
+			data.island.splice(i, 1)
 		}
 	});
 	const updatedUser = await User.findOneAndUpdate(
 		{ username },
-		{ $set: { island: newIsland } },
+		{ $set: { island: data.island } },
 		{ new: true }
 	);
 	return updatedUser;
