@@ -6,18 +6,20 @@ import {
 	Image,
 	View,
 	ScrollView,
-	TouchableWithoutFeedback,
-	Touchable,
 } from 'react-native';
 import * as api from '../api'
-import { modelYAxisRef } from './modelYAxisRef';
+import { modelYAxisRef } from './lookupTables';
+import { checkAvailableCoordinates } from './utils';
 
-const FlippableCard = ({ currentUser, model, availablePos, setCurrentUser, navigation }) => {
+const FlippableCard = ({ currentUser, model, setCurrentUser, navigation }) => {
 	const [isFlipped, setIsFlipped] = useState(false);
 	const rotateY = useState(new Animated.Value(0))[0];
 	const [error, setError] = useState('');
 
-	const handleBuy = async() => {		
+  const availablePos = checkAvailableCoordinates(currentUser);
+
+	const handleBuy = async() => {	
+    
 		if(currentUser.credits >= model.itemCost){
 			if(availablePos !== null){
 				const readyToInsert = {itemName: model.itemName, coordinates: []}

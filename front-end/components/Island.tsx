@@ -1,7 +1,6 @@
 import { View, Text, Button, TouchableOpacity, Image, ScrollView } from 'react-native';
-import { styles } from './StyleSheetCSS';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Suspense, useEffect, useRef, useState } from 'react';
+import { JSXElementConstructor, Suspense, useEffect, useRef, useState } from 'react';
 import useControls from "r3f-native-orbitcontrols"
 
 
@@ -22,6 +21,7 @@ import Lion from './ObjectModels/Lion';
 import Monkey from './ObjectModels/Monkey';
 import InventoryCard from './ModelDeleteCard';
 import ModelDeleteCard from './ModelDeleteCard';
+import ModelAddCard from './ModelAddCard';
 
 type User = {
     name: String,
@@ -60,13 +60,6 @@ function Island({navigation, route}: IslandProps){
         return model
     }
 
-    const readyModels = [];
-    currentUser.island.forEach(e => {
-        const modelReady = modelFinder(e.itemName, e.coordinates)
-        readyModels.push(modelReady)
-    });
-
-
     const [OrbitControls, events] = useControls()
 
     const [hiddenInv, setHiddenInv] = useState('hidden')
@@ -90,12 +83,18 @@ function Island({navigation, route}: IslandProps){
         }
     }
 
-    const [inventory, setInventory] = useState('')
+    const [inventory, setInventory] = useState([])
+    const [readyModels, setReadyModels] = useState([])
 
     useEffect(() => {
+        const readyModels: any = []
+				currentUser.island.forEach((e) => {
+					const modelReady = modelFinder(e.itemName, e.coordinates);
+					readyModels.push(modelReady);
+				});
+        setReadyModels(readyModels)
         const arr = []
         for (let key in currentUser?.inventory) {
-            console.log('hi')
             for (let i=0; i< currentUser?.inventory[key]; i++) {
                 arr.push(key);
               }
@@ -104,55 +103,98 @@ function Island({navigation, route}: IslandProps){
     }, [currentUser])
 
     console.log(currentUser?.island)
-    return(
-        <View className={'flex h-full bg-white items-center justify-content-center p-2'}>
-            <Text className={'text-2xl absolute top-10 font-bold text-lime-600'}>{currentUser.username}'s Island</Text>
-            <View className={'flex-row absolute right-5 top-3'}>
-                <Text>{`${currentUser.credits}`}</Text>
-                <Image
-							className={`w-3 h-3`}
-							source={require('../assets/coin.png')}
+    return (
+			<View
+				className={
+					'flex h-full bg-white items-center justify-content-center p-2'
+				}
+			>
+				<Text className={'text-2xl absolute top-10 font-bold text-lime-600'}>
+					{currentUser.username}'s Island
+				</Text>
+				<View className={'flex-row absolute right-5 top-3'}>
+					<Text>{`${currentUser.credits}`}</Text>
+					<Image className={`w-3 h-3`} source={require('../assets/coin.png')} />
+				</View>
+				<View className={'h-full w-full'} {...events}>
+					<Canvas
+						camera={{ fov: 60, near: 0.1, far: 1000, position: [4, 3.5, 4] }}
+						style={{
+							background:
+								'linear-gradient(to bottom, #d9eaff, #99ccff, #ffffff)',
+						}}
+					>
+						<OrbitControls
+							rotateSpeed={1}
+							maxZoom={7}
+							enablePan={false}
+							maxPolarAngle={1.4}
 						/>
-            </View>
-            <View className={'h-full w-full'} {...events}>
-                <Canvas camera={{ fov: 60, near:0.1, far:1000, position: [4,3.5,4]}} 
-                        style={{background: "linear-gradient(to bottom, #d9eaff, #99ccff, #ffffff)"}}>
-                            <OrbitControls rotateSpeed={1} maxZoom={7} enablePan={false} maxPolarAngle={1.4}/>
-                            <pointLight color="white" position={[20,30,5]} intensity={2}/>  
-                    <ambientLight intensity={0.5} />
+						<pointLight color='white' position={[20, 30, 5]} intensity={2} />
+						<ambientLight intensity={0.5} />
 
-                    <Suspense fallback={null}> 
-                        {readyModels.map(c => c)} 
-                        <IslandModel position={[0.1, -3, 0]}/>                 
-                    </Suspense>
-                </Canvas>
-            </View>
-            <View className={'absolute right-5 top-10'}>
-                <TouchableOpacity onPress={handleInventory}>
-                <Image
-					className={`w-10 h-10`}
-					source={require('../assets/backpack.png')}
-				/>
-                </TouchableOpacity>
-            </View>
-            <View className={'absolute right-3.5 top-20'}>
-                <TouchableOpacity onPress={handleDeletePress}>
-                <Image
-					className={`w-12 h-12`}
-					source={require('../assets/delete.png')}
-				/>
-                </TouchableOpacity>
-            </View>
-            {inventory.length > 0 ? <ScrollView showsHorizontalScrollIndicator={false} className={`absolute bg-green-800 bottom-20 border-2 h-20 ${hiddenInv}`} horizontal={true}>
-               {inventory ? inventory.map(item => <ModelDeleteCard model={item} currentUser={currentUser} setCurrentUser={setCurrentUser}/>) : null}
-            </ScrollView> : <View className={`absolute bg-green-800 bottom-20 border-2 ${hiddenInv}`}><Text className={'text-white text-2xl'}>You have no items!</Text></View>}
-            <ScrollView showsHorizontalScrollIndicator={false} className={`absolute bg-green-800 bottom-20 border-2 h-20 ${hiddenDel}`} horizontal={true}>
-               {currentUser?.island.map(item => <ModelDeleteCard model={item.itemName} currentUser={currentUser} setCurrentUser={setCurrentUser}/>)}
-            </ScrollView>
-           <BottomNavigation navigation={navigation}/>
-        </View>
-
-    )
+						<Suspense fallback={null}>
+							{readyModels.map((c) => c)}
+							<IslandModel position={[0.1, -3, 0]} />
+						</Suspense>
+					</Canvas>
+				</View>
+				<View className={'absolute right-5 top-10'}>
+					<TouchableOpacity onPress={handleInventory}>
+						<Image
+							className={`w-10 h-10`}
+							source={require('../assets/backpack.png')}
+						/>
+					</TouchableOpacity>
+				</View>
+				<View className={'absolute right-3.5 top-20'}>
+					<TouchableOpacity onPress={handleDeletePress}>
+						<Image
+							className={`w-12 h-12`}
+							source={require('../assets/delete.png')}
+						/>
+					</TouchableOpacity>
+				</View>
+				{inventory.length > 0 ? (
+					<ScrollView
+						showsHorizontalScrollIndicator={false}
+						className={`absolute bg-green-800 bottom-20 border-2 h-20 ${hiddenInv}`}
+						horizontal={true}
+					>
+						{inventory
+							? inventory.map((item) => (
+									<ModelAddCard
+										model={item}
+										currentUser={currentUser}
+										setCurrentUser={setCurrentUser}
+									/>
+							  ))
+							: null}
+					</ScrollView>
+				) : (
+					<View
+						className={`absolute bg-green-800 bottom-20 border-2 ${hiddenInv}`}
+					>
+						<Text className={'text-white text-2xl'}>You have no items!</Text>
+					</View>
+				)}
+				<ScrollView
+					showsHorizontalScrollIndicator={false}
+					className={`absolute bg-green-800 bottom-20 border-2 h-20 ${hiddenDel}`}
+					horizontal={true}
+				>
+					{currentUser?.island.map((item) => (
+						<ModelDeleteCard
+							model={item.itemName}
+							currentUser={currentUser}
+							setCurrentUser={setCurrentUser}
+              navigation={navigation}
+						/>
+					))}
+				</ScrollView>
+				<BottomNavigation navigation={navigation} />
+			</View>
+		);
 }
 
 export default Island

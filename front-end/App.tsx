@@ -9,6 +9,7 @@ import UserTask from './components/UserTask'
 import Shop from './components/Shop';
 import Profile from './components/Profile';
 import { useEffect, useState } from 'react';
+import { Header } from '@react-navigation/stack';
 
 
 export default function App() {
@@ -55,24 +56,47 @@ export default function App() {
 		],
 		inventory: {Bee: 2, Chicken: 3, Lion: 1, Koala:6},
 		hash: 'sdghsdhgsd',
-		credits: 0,
+		credits: 1000,
 		_v : 0,
 		_id: 343463426264
 	  }) 
 
 	  useEffect(() => {
-		// console.log(currentUser)
 	  }, [currentUser])
 	  const Stack = createNativeStackNavigator();
 
   return (
 		<NavigationContainer>
-			<Stack.Navigator initialRouteName="Island">
-				<Stack.Screen name="Login" component={Login} initialParams={{setCurrentUser}}/>
-				<Stack.Screen name="Island" component={Island} initialParams={{currentUser, setCurrentUser}}/>
-				<Stack.Screen name="Tasks" component={UserTask} initialParams={{currentUser, setCurrentUser}}/>
-				<Stack.Screen name="Shop" component={Shop} initialParams={{currentUser, setCurrentUser}}/>
-				<Stack.Screen name="Profile" component={Profile} initialParams={{setCurrentUser, currentUser}}/>
+			<Stack.Navigator
+				initialRouteName='Shop'
+				screenOptions={{ headerShown: false }}
+			>
+				<Stack.Screen
+					name='Login'
+					component={Login}
+					initialParams={{ setCurrentUser }}
+				/>
+				<Stack.Screen
+					name='Island'
+					component={Island}
+					initialParams={{ currentUser, setCurrentUser }}
+					options={{ animation: 'none' }}
+				/>
+				<Stack.Screen
+					name='Tasks'
+					component={UserTask}
+					initialParams={{ currentUser, setCurrentUser }}
+				/>
+				<Stack.Screen
+					name='Shop'
+					component={Shop}
+					initialParams={{ currentUser, setCurrentUser }}
+				/>
+				<Stack.Screen
+					name='Profile'
+					component={Profile}
+					initialParams={{ setCurrentUser, currentUser }}
+				/>
 			</Stack.Navigator>
 		</NavigationContainer>
 	);

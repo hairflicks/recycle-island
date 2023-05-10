@@ -1,4 +1,4 @@
-import { FlatList, ScrollView, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { useEffect, useState,} from 'react';
 
 import FlippableCard from './FlippableCard';
@@ -24,53 +24,6 @@ type ShopProps = {
 
 function Shop({ navigation, route }: ShopProps) {
 	const { currentUser, setCurrentUser } = route.params;
-
-	const coordinates = {
-        1: {pos: {x: -.8, y: null, z: -1.3 }, model: null},
-        2: {pos: {x: 0, y: null, z: -1.3 }, model: null},
-        3: {pos: {x: .8, y: null, z: -1.3 }, model: null},
-        
-        4: {pos: {x: -1.4, y: null, z: -.4 }, model: null},
-        5: {pos: {x: -.7, y: null, z: -.4 }, model: null},
-        6: {pos: {x: 0, y: null, z: -.4 }, model: null},
-        7: {pos: {x: .7, y: null, z: -.4 }, model: null},
-        8: {pos: {x: 1.4, y: null, z: -.4 }, model: null},
-
-        9: {pos: {x: -1.4, y: null, z: .4 }, model: null},
-        10: {pos: {x: -.7, y: null, z: .4 }, model: null},
-        11: {pos: {x: 0, y: null, z: .4 }, model: null},
-        12: {pos: {x: .7, y: null, z: .4 }, model: null},
-        13: {pos: {x: 1.4, y: null, z: .4 }, model: null},
-
-        14: {pos: {x: -.8, y: null, z: 1.3 }, model: null},
-        15: {pos: {x: 0, y: null, z: 1.3 }, model: null},
-        16: {pos: {x: .8, y: null, z: 1.3 }, model: null},
-    }
-
-	let availablePos = null
-
-	const islandData = currentUser.island
-	islandData.forEach(e => {
-		for(const c in coordinates){
-			const staticCoordinates =  coordinates[c]
-			if(staticCoordinates.pos.x === e.coordinates[0] && staticCoordinates.pos.z === e.coordinates[2]) {
-				staticCoordinates.model = e.itemName
-			}
-		}
-	});
-
-	const emptyPositions = []
-	for (const model in coordinates) if(coordinates[model].model === null) emptyPositions.push(model)	  
-
-	let emptySlotNumber
-	if(emptyPositions.length === 0) emptySlotNumber = null
-	else emptySlotNumber = emptyPositions[Math.floor(Math.random() * emptyPositions.length)];
-
-	if(emptySlotNumber){
-		availablePos = (coordinates[emptySlotNumber])
-	}else{
-		availablePos = (null)
-	}
 
 	const [models, setModels] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
@@ -103,7 +56,6 @@ function Shop({ navigation, route }: ShopProps) {
 							setCurrentUser={setCurrentUser}
 							model={model}
 							navigation={navigation}
-							availablePos={availablePos}
 						/>
 					))
 				)}

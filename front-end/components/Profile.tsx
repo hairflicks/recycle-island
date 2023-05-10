@@ -28,10 +28,9 @@ function Profile ({navigation, route}: ProfileProps) {
   const [totalEarned, setTotalEarned] = useState(0)
   const [areYouSure, setAreYouSure] = useState('hidden')
 
-  function handleSignOut() {
+  function handleSignOut(): void {
 	setCurrentUser()
 	navigation.navigate('Login');
-	console.log('signing out')
   }
 
   async function handleDelete() {
