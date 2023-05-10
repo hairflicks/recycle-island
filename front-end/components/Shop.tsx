@@ -19,26 +19,12 @@ type User = {
 
 type ShopProps = {
 	navigation: { navigate: Function };
-	route: { params: { currentUser: User | undefined } };
+	route: { params: { currentUser: User | undefined, setCurrentUser: Function } };
 };
 
 function Shop({ navigation, route }: ShopProps) {
-	const { currentUser } = route.params;
+	const { currentUser, setCurrentUser } = route.params;
 
-	const modelYAxisRef = {
-        Alligator: .93,
-        Chicken: .75,
-        Bee: .9,
-        Koala: .72,
-        Dragon: .72,
-        Frog: 0.72,
-        Goat: 0.72,
-        Lion: 0.72,
-        Monkey: 0.72,
-        PalmTree: 0.72,
-        Panda: 0.72,
-        PeppermintPenguin: .9
-    }
 	const coordinates = {
         1: {pos: {x: -.8, y: null, z: -1.3 }, model: null},
         2: {pos: {x: 0, y: null, z: -1.3 }, model: null},
@@ -66,7 +52,6 @@ function Shop({ navigation, route }: ShopProps) {
         for(const c in coordinates){
             const staticCoordinates =  coordinates[c]
             if(staticCoordinates.pos.x === e.coordinates[0] && staticCoordinates.pos.z === e.coordinates[1]) {
-                staticCoordinates.pos.y = modelYAxisRef[e.itemName]
                 staticCoordinates.model = e.itemName
             }
         }
@@ -78,6 +63,14 @@ function Shop({ navigation, route }: ShopProps) {
 	let emptySlotNumber
 	if(emptyPositions.length === 0) emptySlotNumber = null
 	else emptySlotNumber = emptyPositions[Math.floor(Math.random() * emptyPositions.length)];
+
+	let availablePos = null
+	if(emptySlotNumber !== null){
+		availablePos = coordinates[emptySlotNumber]
+	}else{
+		availablePos = null
+	}
+	
 
 	const [models, setModels] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
@@ -93,6 +86,7 @@ function Shop({ navigation, route }: ShopProps) {
 		fetchData();
 	}, []);
 
+
 	return (
 		<View className={'h-full bg-green-50'}>
 			<ScrollView className={'mb-20'} nestedScrollEnabled={true}>
@@ -106,7 +100,9 @@ function Shop({ navigation, route }: ShopProps) {
 							<FlippableCard
 							key={model.itemName}
 							currentUser={currentUser}
+							setCurrentUser={setCurrentUser}
 							model={model}
+							availablePos={availablePos}
 						/>
 					))
 				)}
