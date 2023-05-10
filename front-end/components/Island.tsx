@@ -110,17 +110,13 @@ function Island({navigation, route}: IslandProps){
 				<Text className={'text-2xl absolute top-10 font-bold text-lime-600'}>
 					{currentUser.username}'s Island
 				</Text>
-				<View className={'flex-row absolute right-5 top-3'}>
+				<View className={'flex-row absolute right-5 top-20'}>
 					<Text>{`${currentUser.credits}`}</Text>
 					<Image className={`w-3 h-3`} source={require('../assets/coin.png')} />
 				</View>
 				<View className={'h-full w-full'} {...events}>
 					<Canvas
 						camera={{ fov: 60, near: 0.1, far: 1000, position: [4, 3.5, 4] }}
-						style={{
-							background:
-								'linear-gradient(to bottom, #d9eaff, #99ccff, #ffffff)',
-						}}
 					>
 						<OrbitControls
 							rotateSpeed={1}
@@ -137,7 +133,7 @@ function Island({navigation, route}: IslandProps){
 						</Suspense>
 					</Canvas>
 				</View>
-				<View className={'absolute right-5 top-10'}>
+				<View className={'absolute right-5 top-28'}>
 					<TouchableOpacity onPress={handleInventory}>
 						<Image
 							className={`w-10 h-10`}
@@ -145,7 +141,7 @@ function Island({navigation, route}: IslandProps){
 						/>
 					</TouchableOpacity>
 				</View>
-				<View className={'absolute right-3.5 top-20'}>
+				<View className={'absolute right-3.5 top-40'}>
 					<TouchableOpacity onPress={handleDeletePress}>
 						<Image
 							className={`w-12 h-12`}
@@ -165,7 +161,7 @@ function Island({navigation, route}: IslandProps){
 										model={item}
 										currentUser={currentUser}
 										setCurrentUser={setCurrentUser}
-                    navigation={navigation}
+										navigation={navigation}
 									/>
 							  ))
 							: null}
@@ -187,7 +183,7 @@ function Island({navigation, route}: IslandProps){
 							model={item.itemName}
 							currentUser={currentUser}
 							setCurrentUser={setCurrentUser}
-              navigation={navigation}
+							navigation={navigation}
 						/>
 					))}
 				</ScrollView>
