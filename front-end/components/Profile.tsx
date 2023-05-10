@@ -72,11 +72,15 @@ function Profile ({navigation, route}: ProfileProps) {
 
   return (
 		<View className={`h-full bg-green-50`}>
-			<View className={`flex flex-col h-5/6 p-4 bg-green-200 rounded-lg shadow-md items-center border-green-800 border-2 m-2 mt-5`}>
-				<View className={`mb-4 items-center`}>
-					<Text className={`text-2xl font-bold text-gray-800 mb-5`}>
-						Welcome {currentUser.username}!
-					</Text>
+			<View
+				className={`flex flex-col h-5/6 p-4 bg-green-200 rounded-lg shadow-md items-center relative border-green-800 border-2 m-2 mt-5`}
+			>
+				<View className={`items-center`}>
+					<View className={`w-80 bg-green-800 items-center rounded border-2 border-black`}>
+						<Text className={`text-2xl font-bold text-gray-800 mb-auto mt-auto p-1 text-gray-200`}>
+							Welcome {currentUser.username}!
+						</Text>
+					</View>
 					<View className={`flex-row mt-5`}>
 						<Text
 							className={`text-lg font-medium text-gray-500`}
@@ -86,32 +90,45 @@ function Profile ({navigation, route}: ProfileProps) {
 							source={require('../assets/coin.png')}
 						/>
 					</View>
-					<Text className={'text-lg font-bold m-2 mt-7'}>You've recycled {recycled} items!</Text>
-					<Text className={'text-lg font-bold m-2 mb-20'}>You've earned {totalEarned} credits in total!</Text>
+					<Text className={'text-lg font-bold m-2 mt-7'}>
+						You've recycled <Text className={`text-green-700`}>{recycled}</Text>{' '}
+						items!
+					</Text>
+					<Text className={'text-lg font-bold m-2 mb-20'}>
+						You've earned{' '}
+						<Text className={`text-green-700`}>{totalEarned} </Text>
+						credits in total!
+					</Text>
 				</View>
-				<TouchableOpacity
-					className={`bg-blue-500 m-2 w-80 items-center mt-40`}
-					onPress={handleSignOut}
-				>
-					<Text className={`text-2xl p-1`}>Sign out</Text>
-				</TouchableOpacity>
-				<TouchableOpacity
-					className={`bg-red-500 items-center w-80`}
-					onPress={deleteCheck}
-				>
-					<Text className={`text-2xl p-1`}>DELETE ACCOUNT</Text>
-				</TouchableOpacity>
-			<View className={`absolute ${areYouSure} bottom-60`}>
+				<View className={`items-center absolute bottom-6`}>
+					<TouchableOpacity
+						className={`bg-blue-500 m-2 w-80 items-center rounded`}
+						onPress={handleSignOut}
+					>
+						<Text className={`text-2xl p-1`}>Sign out</Text>
+					</TouchableOpacity>
+					<TouchableOpacity
+						className={`bg-red-500 items-center w-80 rounded`}
+						onPress={deleteCheck}
+					>
+						<Text className={`text-2xl p-1`}>DELETE ACCOUNT</Text>
+					</TouchableOpacity>
+				</View>
+				<View className={`absolute ${areYouSure} bottom-48`}>
 					<Text className={'text-2xl font-bold mb-3'}>Are you sure?</Text>
-					<View className={'flex-row items-center justify-evenly border-2 bg-green-900'}>
-					<TouchableOpacity onPress={handleDelete}>
-					<Text className={'text-xl text-white'}>Yes</Text>
+					<View
+						className={
+							'flex-row items-center justify-evenly border-2 bg-green-900 rounded'
+						}
+					>
+						<TouchableOpacity onPress={handleDelete}>
+							<Text className={'text-xl text-white'}>Yes</Text>
 						</TouchableOpacity>
 						<TouchableOpacity onPress={noPress}>
-					<Text className={'border-l-2 pl-7 text-xl text-white'}>No</Text>
+							<Text className={'border-l-2 pl-7 text-xl text-white'}>No</Text>
 						</TouchableOpacity>
 					</View>
-			</View>
+				</View>
 			</View>
 			<BottomNavigation navigation={navigation} />
 		</View>
