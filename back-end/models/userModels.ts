@@ -68,6 +68,8 @@ export const updateItemFromIsland = async (
 ) => {
 	await db;
 	const { itemName } = body;
+	console.log(body,'body in model')
+	console.log(itemName, 'itemname in model')
 	let data = await findUserByUsername(username);
 	let count = 0;
 	console.log(data, 'given username returned data')

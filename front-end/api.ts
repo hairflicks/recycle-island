@@ -50,7 +50,7 @@ export const patchIslandByUsername = async (username: String, itemObject: Object
 }
 
 export const deleteFromIsland = async (username: String, itemName: String) => {
-  console.log(itemName)
+  console.log({itemName})
   const data = await recycleLand.delete(`/users/${username}/island`, {itemName})
   return data
 }
