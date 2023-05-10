@@ -45,18 +45,18 @@ function Island({navigation, route}: IslandProps){
 
     function modelFinder(modelName, pos) {
         let model;
-        if(modelName === 'Bee') model = <Bee key={`${modelName}${pos[0]}${pos[1]}${pos[2]}${Math.random() * 1000}`} position={[pos[0], pos[1], pos[2]]} />
-        if(modelName === 'Chicken') model = <Chicken key={`${modelName}${pos[0]}${pos[1]}${pos[2]}${Math.random() * 1000}`} position={[pos[0], pos[1], pos[2]]} />
-        if(modelName === 'Alligator') model = <Alligator key={`${modelName}${pos[0]}${pos[1]}${pos[2]}${Math.random() * 1000}`} position={[pos[0], pos[1], pos[2]]} />
-        if(modelName === 'Dragon') model = <Dragon key={`${modelName}${pos[0]}${pos[1]}${pos[2]}${Math.random() * 1000}`} position={[pos[0], pos[1], pos[2]]} />
-        if(modelName === 'Frog') model = <Frog key={`${modelName}${pos[0]}${pos[1]}${pos[2]}${Math.random() * 1000}`} position={[pos[0], pos[1], pos[2]]} />
-        if(modelName === 'Goat') model = <Goat key={`${modelName}${pos[0]}${pos[1]}${pos[2]}${Math.random() * 1000}`} position={[pos[0], pos[1], pos[2]]} />
-        if(modelName === 'Koala') model = <Koala key={`${modelName}${pos[0]}${pos[1]}${pos[2]}${Math.random() * 1000}`} position={[pos[0], pos[1], pos[2]]} />
-        if(modelName === 'Lion') model = <Lion key={`${modelName}${pos[0]}${pos[1]}${pos[2]}${Math.random() * 1000}`} position={[pos[0], pos[1], pos[2]]} />
-        if(modelName === 'Monkey') model = <Monkey key={`${modelName}${pos[0]}${pos[1]}${pos[2]}${Math.random() * 1000}`} position={[pos[0], pos[1], pos[2]]} />
-        if(modelName === 'PalmTree') model = <PalmTree key={`${modelName}${pos[0]}${pos[1]}${pos[2]}${Math.random() * 1000}`} position={[pos[0], pos[1], pos[2]]} />
-        if(modelName === 'Panda') model = <Panda key={`${modelName}${pos[0]}${pos[1]}${pos[2]}${Math.random() * 1000}`} position={[pos[0], pos[1], pos[2]]} />
-        if(modelName === 'PeppermintPenguin') model = <PeppermintPenguin key={`${modelName}${pos[0]}${pos[1]}${pos[2]}${Math.random() * 1000}`} position={[pos[0], pos[1], pos[2]]} />
+        if(modelName === 'Bee') model = <Bee key={`${modelName}${pos[0]}${pos[1]}${pos[2]}`} position={[pos[0], pos[1], pos[2]]} />
+        if(modelName === 'Chicken') model = <Chicken key={`${modelName}${pos[0]}${pos[1]}${pos[2]}}`} position={[pos[0], pos[1], pos[2]]} />
+        if(modelName === 'Alligator') model = <Alligator key={`${modelName}${pos[0]}${pos[1]}${pos[2]}}`} position={[pos[0], pos[1], pos[2]]} />
+        if(modelName === 'Dragon') model = <Dragon key={`${modelName}${pos[0]}${pos[1]}${pos[2]}}`} position={[pos[0], pos[1], pos[2]]} />
+        if(modelName === 'Frog') model = <Frog key={`${modelName}${pos[0]}${pos[1]}${pos[2]}}`} position={[pos[0], pos[1], pos[2]]} />
+        if(modelName === 'Goat') model = <Goat key={`${modelName}${pos[0]}${pos[1]}${pos[2]}}`} position={[pos[0], pos[1], pos[2]]} />
+        if(modelName === 'Koala') model = <Koala key={`${modelName}${pos[0]}${pos[1]}${pos[2]}}`} position={[pos[0], pos[1], pos[2]]} />
+        if(modelName === 'Lion') model = <Lion key={`${modelName}${pos[0]}${pos[1]}${pos[2]}}`} position={[pos[0], pos[1], pos[2]]} />
+        if(modelName === 'Monkey') model = <Monkey key={`${modelName}${pos[0]}${pos[1]}${pos[2]}}`} position={[pos[0], pos[1], pos[2]]} />
+        if(modelName === 'PalmTree') model = <PalmTree key={`${modelName}${pos[0]}${pos[1]}${pos[2]}}`} position={[pos[0], pos[1], pos[2]]} />
+        if(modelName === 'Panda') model = <Panda key={`${modelName}${pos[0]}${pos[1]}${pos[2]}}`} position={[pos[0], pos[1], pos[2]]} />
+        if(modelName === 'PeppermintPenguin') model = <PeppermintPenguin key={`${modelName}${pos[0]}${pos[1]}${pos[2]}}`} position={[pos[0], pos[1], pos[2]]} />
         return model
     }
 
@@ -117,12 +117,13 @@ function Island({navigation, route}: IslandProps){
             <View className={'h-full w-full'} {...events}>
                 <Canvas camera={{ fov: 60, near:0.1, far:1000, position: [4,3.5,4]}} 
                         style={{background: "linear-gradient(to bottom, #d9eaff, #99ccff, #ffffff)"}}>
-                            <OrbitControls rotateSpeed={1} maxZoom={7} enablePan={false} maxPolarAngle={1.4}/>
-                            <pointLight color="white" position={[20,30,5]} intensity={2}/>  
+                    <OrbitControls rotateSpeed={1} maxZoom={7} enablePan={false} maxPolarAngle={1.4}/>
+                    <pointLight color="white" position={[20,30,5]} intensity={2}/>  
                     <ambientLight intensity={0.5} />
 
                     <Suspense fallback={null}> 
-                        {readyModels.map(c => c)} 
+                        {/* {readyModels.length > 0 && readyModels.map(c => c)}  */}
+                        {readyModels.map(c => c)}
                         <IslandModel position={[0.1, -3, 0]}/>                 
                     </Suspense>
                 </Canvas>
