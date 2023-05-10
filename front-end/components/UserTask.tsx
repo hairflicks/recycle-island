@@ -152,7 +152,16 @@ function UserTask ({navigation, route}: TaskProps){
     menuOption = (
 			<>
 				<View>
-					<Text> Select Size</Text>
+					<Text
+						style={{
+							fontSize: 36,
+							fontWeight: 'bold',
+							color: '#32CD32',
+							marginBottom: 20,
+						}}
+					>
+						Select Size
+					</Text>
 					<View style={{ alignItems: 'center' }}>
 						<View
 							style={{
@@ -163,16 +172,10 @@ function UserTask ({navigation, route}: TaskProps){
 							}}
 						>
 							<Text style={{ fontSize: 28, marginBottom: 10, width: 310 }}>
-								hello!
+								{String.fromCodePoint(0x1f3f7)}
 							</Text>
 
 							<TouchableOpacity
-								style={{
-									backgroundColor: '#ffd32a',
-									paddingVertical: 15,
-									paddingHorizontal: 30,
-									borderRadius: 5,
-								}}
 								onPress={() => {
 									optionPress();
 									setIncCredit((credit) => credit + 5);
@@ -193,15 +196,9 @@ function UserTask ({navigation, route}: TaskProps){
 							}}
 						>
 							<Text style={{ fontSize: 28, marginBottom: 10, width: 310 }}>
-								hello!
+								{String.fromCodePoint(0x1f9f4)}
 							</Text>
 							<TouchableOpacity
-								style={{
-									backgroundColor: '#ffd32a',
-									paddingVertical: 15,
-									paddingHorizontal: 30,
-									borderRadius: 5,
-								}}
 								onPress={() => {
 									optionPress();
 									setIncCredit((credit) => credit + 10);
@@ -222,15 +219,9 @@ function UserTask ({navigation, route}: TaskProps){
 							}}
 						>
 							<Text style={{ fontSize: 28, marginBottom: 10, width: 310 }}>
-								hello!
+								{String.fromCodePoint(0x1f4e6)}
 							</Text>
 							<TouchableOpacity
-								style={{
-									backgroundColor: '#ffd32a',
-									paddingVertical: 15,
-									paddingHorizontal: 30,
-									borderRadius: 5,
-								}}
 								onPress={() => {
 									optionPress();
 									setIncCredit((credit) => credit + 15);
@@ -249,7 +240,7 @@ function UserTask ({navigation, route}: TaskProps){
 						}}
 						onPress={() => setMenu((previousState) => previousState - 1)}
 					>
-						<Text>go back</Text>
+						<Text>Go back</Text>
 					</TouchableOpacity>
 				</View>
 			</>
@@ -257,23 +248,98 @@ function UserTask ({navigation, route}: TaskProps){
   } else if (menu === 2) {
     menuOption = (
 			<>
-				<Text> Select Material</Text>
-				<Button title="Paper" onPress={() => {
-					optionPress()
-					setIncCredit(credit => credit + 5)
-					}} />
-				<Button title="Plastic" onPress={() => {
-					optionPress()
-					setIncCredit(credit => credit + 10)
-					}} />
-				<Button title="Cardboard" onPress={() => {
-					optionPress()
-					setIncCredit(credit => credit + 15)
-					}} />
-				<Button title="go back" onPress={() => {
-					setMenu((previousState) => previousState - 1)
-					setIncCredit(0)
-					}}/>
+				<TouchableOpacity onPress={optionPress}>
+					<Text
+						style={{
+							fontSize: 36,
+							fontWeight: 'bold',
+							color: '#32CD32',
+							marginBottom: 20,
+						}}
+					>
+						Select Material
+					</Text>
+				</TouchableOpacity>
+				<View style={{ alignItems: 'center' }}>
+					<View
+						style={{
+							backgroundColor: '#fff',
+							padding: 20,
+							borderRadius: 10,
+							marginBottom: 20,
+						}}
+					>
+						<Text style={{ fontSize: 28, marginBottom: 10, width: 310 }}>
+							{String.fromCodePoint(0x1f5de)}
+						</Text>
+						<TouchableOpacity
+							onPress={() => {
+								setIncCredit((credit) => credit + 5);
+								optionPress();
+							}}
+						>
+							<Text>Paper</Text>
+						</TouchableOpacity>
+					</View>
+				</View>
+				<View style={{ alignItems: 'center' }}>
+					<View
+						style={{
+							backgroundColor: '#fff',
+							padding: 20,
+							borderRadius: 10,
+							marginBottom: 20,
+						}}
+					>
+						<Text style={{ fontSize: 28, marginBottom: 10, width: 310 }}>
+							{String.fromCodePoint(0x1f9cb)}
+						</Text>
+						<TouchableOpacity
+							onPress={() => {
+								setIncCredit((credit) => credit + 10);
+								optionPress();
+							}}
+						>
+							<Text>Plastic</Text>
+						</TouchableOpacity>
+					</View>
+				</View>
+				<View style={{ alignItems: 'center' }}>
+					<View
+						style={{
+							backgroundColor: '#fff',
+							padding: 20,
+							borderRadius: 10,
+							marginBottom: 20,
+						}}
+					>
+						<Text style={{ fontSize: 28, marginBottom: 10, width: 310 }}>
+							{String.fromCodePoint(0x1f961)}
+						</Text>
+						<TouchableOpacity
+							onPress={() => {
+								setIncCredit((credit) => credit + 15);
+								optionPress();
+							}}
+						>
+							<Text>Cardboard</Text>
+						</TouchableOpacity>
+					</View>
+				</View>
+				<TouchableOpacity
+					style={{
+						backgroundColor: '#ffd32a',
+						paddingVertical: 15,
+						paddingHorizontal: 30,
+						borderRadius: 5,
+					}}
+					onPress={() => {
+						setMenu((previousState) => previousState - 1);
+						setIncCredit(0);
+					}}
+				>
+					<Text>Go back</Text>
+				</TouchableOpacity>
 			</>
 		);
   } else {
