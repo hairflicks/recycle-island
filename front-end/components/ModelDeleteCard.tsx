@@ -1,6 +1,20 @@
 import { Image, Touchable, TouchableOpacity, View } from "react-native";
+import * as api from '../api'
 
-export default function InventoryCard({model}) {
+export default function ModelDeleteCard({model, setCurrentUser, currentUser}) {
+    async function deleteFromIsland() {
+        console.log(currentUser.username)
+
+        try {
+            await api.deleteFromIsland(currentUser?.username, model)
+            const updated = await api.deleteFromIsland(currentUser?.username, model)
+            console.log(updated.data.user)
+            // setCurrentUser(updated)
+        } catch (err) {
+            console.log(err.response.data.message)
+        }
+    }
+
     let path = '';
 	if(model === 'Chicken') path = require(`../assets/Chicken.png`)
 	if(model === 'Bee')path = require(`../assets/Bee.png`)
@@ -15,7 +29,7 @@ export default function InventoryCard({model}) {
 	if(model === 'Frog')path = require(`../assets/Frog.png`)
 	if(model === 'Monkey')path = require(`../assets/Monkey.png`)
     return <View className={'border-2 w-20 items-center'}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={deleteFromIsland}>
         <Image
        className={'h-14 w-14 bg-black-500 mt-2'}
        source={path}

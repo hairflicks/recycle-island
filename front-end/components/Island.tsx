@@ -20,7 +20,8 @@ import Frog from './ObjectModels/Frog';
 import Goat from './ObjectModels/Goat';
 import Lion from './ObjectModels/Lion';
 import Monkey from './ObjectModels/Monkey';
-import InventoryCard from './InventoryCard';
+import InventoryCard from './ModelDeleteCard';
+import ModelDeleteCard from './ModelDeleteCard';
 
 type User = {
     name: String,
@@ -40,7 +41,7 @@ type IslandProps = {
 
 function Island({navigation, route}: IslandProps){  
 
-  const {currentUser} = route.params  
+  const {currentUser, setCurrentUser} = route.params  
 
     function modelFinder(modelName, pos) {
         let model;
@@ -143,10 +144,10 @@ function Island({navigation, route}: IslandProps){
                 </TouchableOpacity>
             </View>
             {inventory.length > 0 ? <ScrollView showsHorizontalScrollIndicator={false} className={`absolute bg-green-800 bottom-20 border-2 h-20 ${hiddenInv}`} horizontal={true}>
-               {inventory ? inventory.map(item => <InventoryCard model={item}/>) : null}
+               {inventory ? inventory.map(item => <ModelDeleteCard model={item} currentUser={currentUser} setCurrentUser={setCurrentUser}/>) : null}
             </ScrollView> : <View className={`absolute bg-green-800 bottom-20 border-2 ${hiddenInv}`}><Text className={'text-white text-2xl'}>You have no items!</Text></View>}
             <ScrollView showsHorizontalScrollIndicator={false} className={`absolute bg-green-800 bottom-20 border-2 h-20 ${hiddenDel}`} horizontal={true}>
-               {currentUser?.island.map(item => <InventoryCard model={item.itemName}/>)}
+               {currentUser?.island.map(item => <ModelDeleteCard model={item.itemName} currentUser={currentUser} setCurrentUser={setCurrentUser}/>)}
             </ScrollView>
            <BottomNavigation navigation={navigation}/>
         </View>
