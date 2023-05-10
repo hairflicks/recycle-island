@@ -1,15 +1,16 @@
 import { Image, Touchable, TouchableOpacity, View } from "react-native";
 import * as api from '../api'
 
-export default function ModelDeleteCard({model, setCurrentUser, currentUser}) {
+export default function ModelDeleteCard({model, setCurrentUser, currentUser, navigation}) {
+
     async function deleteFromIsland() {
         console.log(currentUser.username)
 
         try {
             const updated = await api.deleteFromIsland(currentUser?.username, model)
             await api.patchInventoryByUsername(currentUser?.username, model)
-            console.log(updated.data.user)
-            setCurrentUser(updated)
+            await setCurrentUser(updated.data.user)
+            navigation.push('Island')
         } catch (err) {
             console.log(err)
         }

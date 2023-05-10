@@ -16,13 +16,14 @@ export const addUser = async (user: Object) => {
 
 export const addItemToInventory = async (
   username: String,
-  body: { name: String }
+  body: { name: String, inc: Number }
 ) => {
   await db;
-  const item = body.name;
+  const itemName = body.name;
+  const inc = body.inc
   const data = await User.findOneAndUpdate(
 		{ username },
-		{ $inc: { [`inventory.${item}`]: 1 } },
+		{ $inc: { [`inventory.${itemName}`]: inc } },
 		{ new: true }
 	);
   return data;
