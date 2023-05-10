@@ -18,8 +18,8 @@ const FlippableCard = ({ currentUser, model, availablePos, setCurrentUser, navig
 	const [error, setError] = useState('');
 
 	const handleBuy = async() => {		
-		if(availablePos !== null){
-			if(currentUser.credits >= model.itemCost){
+		if(currentUser.credits >= model.itemCost){
+			if(availablePos !== null){
 				const readyToInsert = {itemName: model.itemName, coordinates: []}
 				readyToInsert.coordinates.push(availablePos.pos.x)
 				readyToInsert.coordinates.push(modelYAxisRef[readyToInsert.itemName])
@@ -27,17 +27,23 @@ const FlippableCard = ({ currentUser, model, availablePos, setCurrentUser, navig
 				try{
 					await api.patchCreditsByUsername(currentUser.username, -model.itemCost)
 					const newUserDetails = await api.patchIslandByUsername(currentUser.username, readyToInsert)
-					flipCard()
 					await setCurrentUser(newUserDetails.data.user)	
 					navigation.navigate('Island');
 				} catch (error: any) {
 					setError(error.response.data.message);
 				}
 			}else{
-				console.log('not enough credits')
+				try{
+					await api.patchCreditsByUsername(currentUser.username, -model.itemCost)
+					const newUserDetails = await api.patchInventoryByUsername(currentUser.username, model.itemName)
+					await setCurrentUser(newUserDetails.data.user)	
+					navigation.navigate('Island');
+				} catch (error: any) {
+					setError(error.response.data.message);
+				}
 			}
 		}else{
-			await api.patchInventoryByUsername(currentUser.username, model.itemName)
+			console.log('not enough credits')
 		}
 	}
   
