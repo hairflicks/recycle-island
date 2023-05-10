@@ -70,7 +70,10 @@ export const updateItemFromIsland = async (
 	const { itemName } = body;
 	let data = await findUserByUsername(username);
 	let count = 0;
+	console.log(data, 'given username returned data')
 	data.island.forEach((item, i) => {
+		console.log(item.itemName,'currentItem')
+		console.log(itemName, 'given itemname')
 		if (item.itemName === itemName && count < 1) {
 			data.island.splice(i, 1)
 			count++
