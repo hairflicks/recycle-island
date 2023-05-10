@@ -6,11 +6,12 @@ import {
 	Image,
 	View,
 	ScrollView,
+	TouchableWithoutFeedback,
+	Touchable,
 } from 'react-native';
 
-
-const FlippableCard = ({ currentUser, model }) => {
-  const [isFlipped, setIsFlipped] = useState(false);
+const FlippableCard = ({ currentUser, model, setScrollable }) => {
+	const [isFlipped, setIsFlipped] = useState(false);
 	const rotateY = useState(new Animated.Value(0))[0];
   
 	const flipCard = () => {
@@ -40,6 +41,21 @@ const FlippableCard = ({ currentUser, model }) => {
     transform: [{ rotateY: backInterpolate }],
 	};
 
+
+	let path = '';
+	if(model.itemName === 'Chicken') path = require(`../assets/Chicken.png`)
+	if(model.itemName === 'Bee')path = require(`../assets/Bee.png`)
+	if(model.itemName === 'Alligator')path = require(`../assets/Alligator.png`)
+	if(model.itemName === 'Dragon')path = require(`../assets/Dragon.png`)
+	if(model.itemName === 'Goat')path = require(`../assets/Goat.png`)
+	if(model.itemName === 'Lion')path = require(`../assets/Lion.png`)
+	if(model.itemName === 'Koala')path = require(`../assets/Koala.png`)
+	if(model.itemName === 'PalmTree')path = require(`../assets/PalmTree.png`)
+	if(model.itemName === 'Panda')path = require(`../assets/Panda.png`)
+	if(model.itemName === 'PeppermintPenguin')path = require(`../assets/PeppermintPenguin.png`)
+	if(model.itemName === 'Frog')path = require(`../assets/Frog.png`)
+	if(model.itemName === 'Monkey')path = require(`../assets/Monkey.png`)
+
 	return (
 		<TouchableOpacity
 			onPress={flipCard}
@@ -61,7 +77,7 @@ const FlippableCard = ({ currentUser, model }) => {
 					</Text>
 					<Image
 						className={'h-1/2 w-1/2 m-2'}
-						source={image[model.itemName]}
+						source={path}
 					/>
 					<View
 						className={`flex-row w-full justify-center bg-green-300 border-t-2 border-b-2 border-green-800 p-0.25`}
@@ -93,10 +109,12 @@ const FlippableCard = ({ currentUser, model }) => {
 					>
 						{model.itemDisplayName}
 					</Text>
-					<ScrollView className={`border-b-2 w-full`}>
+					<ScrollView nestedScrollEnabled={true} className={`border-b-2 w-full`}>
+					<TouchableOpacity onPress={flipCard}>
 						<Text className={`text-xs text-center`}>
 							{model.itemDescription}
 						</Text>
+					</TouchableOpacity>
 					</ScrollView>
 					<View
 						className={`w-11/12 mt-1 mb-1 rounded bg-blue-800 ml-auto mr-auto`}
