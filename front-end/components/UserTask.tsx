@@ -53,9 +53,10 @@ function UserTask ({navigation, route}: TaskProps){
 			if (data !== null) {
 				const userStorage = JSON.parse(data)
 				userStorage.recycled += 1
+				userStorage.totalEarned += incCredit
 				AsyncStorage.setItem(currentUser?.username, JSON.stringify(userStorage))
 			} else {
-				AsyncStorage.setItem(currentUser?.username, JSON.stringify({recycled: 1}))
+				AsyncStorage.setItem(currentUser?.username, JSON.stringify({recycled: 1, totalEarned: incCredit}))
 			}
 			} catch(err) {
 				setError('Unable to process request. Check your connection...')
