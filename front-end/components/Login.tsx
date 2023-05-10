@@ -16,18 +16,14 @@ function Login({ navigation, route }: LoginProps) {
 	const [slider, setSlider] = useState(true);
 	const [error, setError] = useState('');
 
-	console.log(error, 'hi')
-
   const {setCurrentUser} = route.params
 
 	const handleLoginPage = (event: object) => {
-		console.log(`Logging in with username: ${username}, password: ${password}`);
 		setSlider((slider) => true);
 		setError('');
 	};
 
 	const handleSignUpPage = (event: object) => {
-		console.log(`Logging in with username: ${username}, password: ${password}`);
 		setSlider((slider) => false);
 		setError('');
 	};

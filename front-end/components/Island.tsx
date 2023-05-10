@@ -90,12 +90,11 @@ function Island({navigation, route}: IslandProps){
         }
     }
 
-    const [inventory, setInventory] = useState('')
+    const [inventory, setInventory] = useState([])
 
     useEffect(() => {
         const arr = []
         for (let key in currentUser?.inventory) {
-            console.log('hi')
             for (let i=0; i< currentUser?.inventory[key]; i++) {
                 arr.push(key);
               }

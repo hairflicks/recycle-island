@@ -50,14 +50,20 @@ function Shop({ navigation, route }: ShopProps) {
 	let availablePos = null
 
 	const islandData = currentUser.island
-	islandData.forEach(e => {
-		for(const c in coordinates){
-			const staticCoordinates =  coordinates[c]
-			if(staticCoordinates.pos.x === e.coordinates[0] && staticCoordinates.pos.z === e.coordinates[2]) {
-				staticCoordinates.model = e.itemName
+  
+  if (islandData.length !== 0 | undefined) {
+		islandData.forEach((e) => {
+			for (const c in coordinates) {
+				const staticCoordinates = coordinates[c];
+				if (
+					staticCoordinates.pos.x === e.coordinates[0] &&
+					staticCoordinates.pos.z === e.coordinates[2]
+				) {
+					staticCoordinates.model = e.itemName;
+				}
 			}
-		}
-	});
+		});
+	}
 
 	const emptyPositions = []
 	for (const model in coordinates) if(coordinates[model].model === null) emptyPositions.push(model)	  
