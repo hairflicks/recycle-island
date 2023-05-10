@@ -11,7 +11,7 @@ export default function ModelDeleteCard({model, setCurrentUser, currentUser}) {
             console.log(updated.data.user.island)
             // setCurrentUser(updated)
         } catch (err) {
-            console.log(err.response.data.message)
+            console.log(err)
         }
     }
 
