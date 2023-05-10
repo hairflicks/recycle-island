@@ -93,7 +93,7 @@ export const patchCreditsByUsername = async (
 export const patchIslandByUsername = async (req: Request, res: Response, next: NextFunction) => {
   const {username} = req.params;
   const {body} = req;
-  console.log(body)
+  console.log(body, 'body')
   try{
     const data = await updateItemFromIsland(username, body);
     if(!data) throw { status: 400, message: '400: username does not exist.'};
