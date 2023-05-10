@@ -2,6 +2,7 @@ import { Image, Touchable, TouchableOpacity, View } from 'react-native';
 import { coordinates } from './lookupTables';
 import * as api from '../api';
 import { checkAvailableCoordinates } from './utils';
+import { modelYAxisRef } from './lookupTables';
 
 export default function ModelAddCard({
 	model,
@@ -15,14 +16,20 @@ export default function ModelAddCard({
 
 	async function addToIsland() {
 		if (availablePos !== null) {
-			const readyToInsert = { itemName: model.itemName, coordinates: [] };
+      console.log('hi')
+			const readyToInsert = { itemName: model, coordinates: [] };
 			readyToInsert.coordinates.push(availablePos.pos.x);
 			readyToInsert.coordinates.push(modelYAxisRef[readyToInsert.itemName]);
 			readyToInsert.coordinates.push(availablePos.pos.z);
 			try {
-				const newUserDetails = await api.patchIslandByUsername(
+        await api.patchIslandByUsername(
+          currentUser.username,
+          readyToInsert
+        );
+        const newUserDetails = await api.patchInventoryByUsername(
 					currentUser.username,
-					readyToInsert
+					model,
+					-1
 				);
 				await setCurrentUser(newUserDetails.data.user);
 				navigation.push('Island');

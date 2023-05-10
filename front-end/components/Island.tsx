@@ -83,23 +83,21 @@ function Island({navigation, route}: IslandProps){
         }
     }
 
-    const [inventory, setInventory] = useState([])
-    const [readyModels, setReadyModels] = useState([])
+    const readyModels: any = []
+    currentUser.island.forEach((e) => {
+      const modelReady = modelFinder(e.itemName, e.coordinates);
+      readyModels.push(modelReady);
+    });
+
+    const inventory = []
+    for (let key in currentUser?.inventory) {
+        for (let i=0; i< currentUser?.inventory[key]; i++) {
+            inventory.push(key);
+          }
+    }
+    console.log(currentUser?.inventory)
 
     useEffect(() => {
-        const readyModels: any = []
-				currentUser.island.forEach((e) => {
-					const modelReady = modelFinder(e.itemName, e.coordinates);
-					readyModels.push(modelReady);
-				});
-        setReadyModels(readyModels)
-        const arr = []
-        for (let key in currentUser?.inventory) {
-            for (let i=0; i< currentUser?.inventory[key]; i++) {
-                arr.push(key);
-              }
-        }
-        setInventory(arr)
     }, [currentUser])
 
     console.log(currentUser?.island)
@@ -167,6 +165,7 @@ function Island({navigation, route}: IslandProps){
 										model={item}
 										currentUser={currentUser}
 										setCurrentUser={setCurrentUser}
+                    navigation={navigation}
 									/>
 							  ))
 							: null}

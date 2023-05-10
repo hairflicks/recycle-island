@@ -37,7 +37,7 @@ const FlippableCard = ({ currentUser, model, setCurrentUser, navigation }) => {
 			}else{
 				try{
 					await api.patchCreditsByUsername(currentUser.username, -model.itemCost)
-					const newUserDetails = await api.patchInventoryByUsername(currentUser.username, model.itemName)
+					const newUserDetails = await api.patchInventoryByUsername(currentUser.username, model.itemName, 1)
 					await setCurrentUser(newUserDetails.data.user)	
 					navigation.navigate('Island');
 				} catch (error: any) {
