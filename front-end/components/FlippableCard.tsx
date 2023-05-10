@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-	Text,
+  Text,
 	TouchableOpacity,
 	Animated,
 	Image,
@@ -13,7 +13,7 @@ import {
 const FlippableCard = ({ currentUser, model, setScrollable }) => {
 	const [isFlipped, setIsFlipped] = useState(false);
 	const rotateY = useState(new Animated.Value(0))[0];
-
+  
 	const flipCard = () => {
 		setIsFlipped(!isFlipped);
 		Animated.timing(rotateY, {
@@ -22,23 +22,23 @@ const FlippableCard = ({ currentUser, model, setScrollable }) => {
 			useNativeDriver: true,
 		}).start();
 	};
-
+  
 	const frontInterpolate = rotateY.interpolate({
-		inputRange: [0, 1],
+    inputRange: [0, 1],
 		outputRange: ['0deg', '180deg'],
 	});
-
+  
 	const backInterpolate = rotateY.interpolate({
-		inputRange: [0, 1],
+    inputRange: [0, 1],
 		outputRange: ['180deg', '360deg'],
 	});
-
+  
 	const frontAnimatedStyle = {
-		transform: [{ rotateY: frontInterpolate }],
+    transform: [{ rotateY: frontInterpolate }],
 	};
-
+  
 	const backAnimatedStyle = {
-		transform: [{ rotateY: backInterpolate }],
+    transform: [{ rotateY: backInterpolate }],
 	};
 
 
