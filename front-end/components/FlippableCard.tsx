@@ -37,7 +37,7 @@ const FlippableCard = ({ currentUser, model, availablePos, setCurrentUser, navig
 				console.log('not enough credits')
 			}
 		}else{
-			console.log('handle inventory buy')
+			await api.patchInventoryByUsername(currentUser.username, model.itemName)
 		}
 	}
   
