@@ -34,8 +34,8 @@ export const patchCreditsByUsername = async (username: String, credits: Number) 
   return data
 }
 
-export const patchInventoryByUsername = async (username: String, name: String) => {
-  const data = await recycleLand.patch(`/users/${username}/inventory`, {name})
+export const patchInventoryByUsername = async (username: String, name: String, inc: Number) => {
+  const data = await recycleLand.patch(`/users/${username}/inventory`, {name, inc})
   return data
 }
 
