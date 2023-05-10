@@ -28,7 +28,6 @@ function Profile ({navigation, route}: ProfileProps) {
   const [totalEarned, setTotalEarned] = useState(0)
   const [areYouSure, setAreYouSure] = useState('hidden')
 
-	// console.log(currentUser)
   function handleSignOut() {
 	setCurrentUser()
 	navigation.navigate('Login');
@@ -42,7 +41,6 @@ function Profile ({navigation, route}: ProfileProps) {
 	await AsyncStorage.removeItem(currentUser?.username)
 	setCurrentUser()
 	navigation.navigate('Login');
-	// console.log('hi')
 	} catch(err) {
 		console.log(err.response.data.message)
 	}
