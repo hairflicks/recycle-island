@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-	Text,
+    Text,
 	TouchableOpacity,
 	Animated,
 	Image,
@@ -9,11 +9,44 @@ import {
 	TouchableWithoutFeedback,
 	Touchable,
 } from 'react-native';
+import * as api from '../api'
+import { modelYAxisRef } from './modelYAxisRef';
 
-const FlippableCard = ({ currentUser, model }) => {
+const FlippableCard = ({ currentUser, model, availablePos, setCurrentUser, navigation }) => {
 	const [isFlipped, setIsFlipped] = useState(false);
 	const rotateY = useState(new Animated.Value(0))[0];
+	const [error, setError] = useState('');
 
+	const handleBuy = async() => {		
+		if(currentUser.credits >= model.itemCost){
+			if(availablePos !== null){
+				const readyToInsert = {itemName: model.itemName, coordinates: []}
+				readyToInsert.coordinates.push(availablePos.pos.x)
+				readyToInsert.coordinates.push(modelYAxisRef[readyToInsert.itemName])
+				readyToInsert.coordinates.push(availablePos.pos.z)
+				try{
+					await api.patchCreditsByUsername(currentUser.username, -model.itemCost)
+					const newUserDetails = await api.patchIslandByUsername(currentUser.username, readyToInsert)
+					await setCurrentUser(newUserDetails.data.user)	
+					navigation.navigate('Island');
+				} catch (error: any) {
+					setError(error.response.data.message);
+				}
+			}else{
+				try{
+					await api.patchCreditsByUsername(currentUser.username, -model.itemCost)
+					const newUserDetails = await api.patchInventoryByUsername(currentUser.username, model.itemName)
+					await setCurrentUser(newUserDetails.data.user)	
+					navigation.navigate('Island');
+				} catch (error: any) {
+					setError(error.response.data.message);
+				}
+			}
+		}else{
+			console.log('not enough credits')
+		}
+	}
+  
 	const flipCard = () => {
 		setIsFlipped(!isFlipped);
 		Animated.timing(rotateY, {
@@ -23,26 +56,40 @@ const FlippableCard = ({ currentUser, model }) => {
 		}).start();
 	};
 
-	console.log(model);
 
+  
 	const frontInterpolate = rotateY.interpolate({
-		inputRange: [0, 1],
+    inputRange: [0, 1],
 		outputRange: ['0deg', '180deg'],
 	});
-
+  
 	const backInterpolate = rotateY.interpolate({
-		inputRange: [0, 1],
+    inputRange: [0, 1],
 		outputRange: ['180deg', '360deg'],
 	});
-
+  
 	const frontAnimatedStyle = {
-		transform: [{ rotateY: frontInterpolate }],
+    transform: [{ rotateY: frontInterpolate }],
 	};
-
+  
 	const backAnimatedStyle = {
-		transform: [{ rotateY: backInterpolate }],
+    transform: [{ rotateY: backInterpolate }],
 	};
 
+
+	let path = '';
+	if(model.itemName === 'Chicken') path = require(`../assets/Chicken.png`)
+	if(model.itemName === 'Bee')path = require(`../assets/Bee.png`)
+	if(model.itemName === 'Alligator')path = require(`../assets/Alligator.png`)
+	if(model.itemName === 'Dragon')path = require(`../assets/Dragon.png`)
+	if(model.itemName === 'Goat')path = require(`../assets/Goat.png`)
+	if(model.itemName === 'Lion')path = require(`../assets/Lion.png`)
+	if(model.itemName === 'Koala')path = require(`../assets/Koala.png`)
+	if(model.itemName === 'PalmTree')path = require(`../assets/PalmTree.png`)
+	if(model.itemName === 'Panda')path = require(`../assets/Panda.png`)
+	if(model.itemName === 'PeppermintPenguin')path = require(`../assets/PeppermintPenguin.png`)
+	if(model.itemName === 'Frog')path = require(`../assets/Frog.png`)
+	if(model.itemName === 'Monkey')path = require(`../assets/Monkey.png`)
 	return (
 		<TouchableOpacity
 			onPress={flipCard}
@@ -64,7 +111,7 @@ const FlippableCard = ({ currentUser, model }) => {
 					</Text>
 					<Image
 						className={'h-1/2 w-1/2 m-2'}
-						source={require(`../assets/Chicken/Chicken.png`)}
+						source={path}
 					/>
 					<View
 						className={`flex-row w-full justify-center bg-green-300 border-t-2 border-b-2 border-green-800 p-0.25`}
@@ -96,7 +143,7 @@ const FlippableCard = ({ currentUser, model }) => {
 					>
 						{model.itemDisplayName}
 					</Text>
-					<ScrollView nestedScrollEnabled={true} className={`border-b-2 w-full`}>
+					<ScrollView showsVerticalScrollIndicator={false} nestedScrollEnabled={true} className={`border-b-2 w-full`}>
 					<TouchableOpacity onPress={flipCard}>
 						<Text className={`text-xs text-center`}>
 							{model.itemDescription}
@@ -107,7 +154,7 @@ const FlippableCard = ({ currentUser, model }) => {
 						className={`w-11/12 mt-1 mb-1 rounded bg-blue-800 ml-auto mr-auto`}
 					>
 						<TouchableOpacity>
-							<Text className={`text-center text-white`}>Buy</Text>
+							<Text className={`text-center text-white`} onPress={handleBuy}>Buy</Text>
 						</TouchableOpacity>
 					</View>
 				</Animated.View>

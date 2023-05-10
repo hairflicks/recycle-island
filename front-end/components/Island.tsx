@@ -1,7 +1,7 @@
-import { View, Text, Button, TouchableOpacity, Image } from 'react-native';
+import { View, Text, Button, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { styles } from './StyleSheetCSS';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Suspense, useRef, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import useControls from "r3f-native-orbitcontrols"
 
 
@@ -20,6 +20,8 @@ import Frog from './ObjectModels/Frog';
 import Goat from './ObjectModels/Goat';
 import Lion from './ObjectModels/Lion';
 import Monkey from './ObjectModels/Monkey';
+import InventoryCard from './ModelDeleteCard';
+import ModelDeleteCard from './ModelDeleteCard';
 
 type User = {
     name: String,
@@ -39,55 +41,27 @@ type IslandProps = {
 
 function Island({navigation, route}: IslandProps){  
 
-  const {currentUser} = route.params  
-
-  const handleNavigation = () => {
-		navigation.navigate('UserTask');
-	};
-
-    const user2 = {
-        user: {
-            name: 'brad',
-            username: 'hairflicks',
-            credits: 0,
-            island: [
-                        {itemName: 'Bee', coordinates: [-.8, .9, -1.3]}, 
-                        {itemName: 'Alligator', coordinates: [0, .93, -1.3]},
-                        {itemName: 'Chicken', coordinates: [.8, .75, -1.3]},
-
-                        {itemName: 'Dragon', coordinates: [-1.4, .72, -.4]},
-                        {itemName: 'Frog', coordinates: [-.7, .72, -.4]},
-                        {itemName: 'Goat', coordinates: [0, .72, -.4]},
-                        {itemName: 'Koala', coordinates: [.7, .72, -.4]},
-                        {itemName: 'Lion', coordinates: [1.4, .72, -.4]},
-
-                        {itemName: 'Monkey', coordinates: [-1.4, .72, .4]},
-                        {itemName: 'PalmTree', coordinates: [-.7, .72, .4]},
-                        {itemName: 'Panda', coordinates: [0, .72, .4]},
-                        {itemName: 'PeppermintPenguin', coordinates: [.7, .9, .4]},
-                    ]
-        }
-    }
+  const {currentUser, setCurrentUser} = route.params  
 
     function modelFinder(modelName, pos) {
         let model;
-        if(modelName === 'Bee') model = <Bee key={modelName} position={[pos[0], pos[1], pos[2]]} />
-        if(modelName === 'Chicken') model = <Chicken key={modelName} position={[pos[0], pos[1], pos[2]]} />
-        if(modelName === 'Alligator') model = <Alligator key={modelName} position={[pos[0], pos[1], pos[2]]} />
-        if(modelName === 'Dragon') model = <Dragon key={modelName} position={[pos[0], pos[1], pos[2]]} />
-        if(modelName === 'Frog') model = <Frog key={modelName} position={[pos[0], pos[1], pos[2]]} />
-        if(modelName === 'Goat') model = <Goat key={modelName} position={[pos[0], pos[1], pos[2]]} />
-        if(modelName === 'Koala') model = <Koala key={modelName} position={[pos[0], pos[1], pos[2]]} />
-        if(modelName === 'Lion') model = <Lion key={modelName} position={[pos[0], pos[1], pos[2]]} />
-        if(modelName === 'Monkey') model = <Monkey key={modelName} position={[pos[0], pos[1], pos[2]]} />
-        if(modelName === 'PalmTree') model = <PalmTree key={modelName} position={[pos[0], pos[1], pos[2]]} />
-        if(modelName === 'Panda') model = <Panda key={modelName} position={[pos[0], pos[1], pos[2]]} />
-        if(modelName === 'PeppermintPenguin') model = <PeppermintPenguin key={modelName} position={[pos[0], pos[1], pos[2]]} />
+        if(modelName === 'Bee') model = <Bee key={`${modelName}${pos[0]}${pos[1]}${pos[2]}${Math.random() * 1000}`} position={[pos[0], pos[1], pos[2]]} />
+        if(modelName === 'Chicken') model = <Chicken key={`${modelName}${pos[0]}${pos[1]}${pos[2]}${Math.random() * 1000}`} position={[pos[0], pos[1], pos[2]]} />
+        if(modelName === 'Alligator') model = <Alligator key={`${modelName}${pos[0]}${pos[1]}${pos[2]}${Math.random() * 1000}`} position={[pos[0], pos[1], pos[2]]} />
+        if(modelName === 'Dragon') model = <Dragon key={`${modelName}${pos[0]}${pos[1]}${pos[2]}${Math.random() * 1000}`} position={[pos[0], pos[1], pos[2]]} />
+        if(modelName === 'Frog') model = <Frog key={`${modelName}${pos[0]}${pos[1]}${pos[2]}${Math.random() * 1000}`} position={[pos[0], pos[1], pos[2]]} />
+        if(modelName === 'Goat') model = <Goat key={`${modelName}${pos[0]}${pos[1]}${pos[2]}${Math.random() * 1000}`} position={[pos[0], pos[1], pos[2]]} />
+        if(modelName === 'Koala') model = <Koala key={`${modelName}${pos[0]}${pos[1]}${pos[2]}${Math.random() * 1000}`} position={[pos[0], pos[1], pos[2]]} />
+        if(modelName === 'Lion') model = <Lion key={`${modelName}${pos[0]}${pos[1]}${pos[2]}${Math.random() * 1000}`} position={[pos[0], pos[1], pos[2]]} />
+        if(modelName === 'Monkey') model = <Monkey key={`${modelName}${pos[0]}${pos[1]}${pos[2]}${Math.random() * 1000}`} position={[pos[0], pos[1], pos[2]]} />
+        if(modelName === 'PalmTree') model = <PalmTree key={`${modelName}${pos[0]}${pos[1]}${pos[2]}${Math.random() * 1000}`} position={[pos[0], pos[1], pos[2]]} />
+        if(modelName === 'Panda') model = <Panda key={`${modelName}${pos[0]}${pos[1]}${pos[2]}${Math.random() * 1000}`} position={[pos[0], pos[1], pos[2]]} />
+        if(modelName === 'PeppermintPenguin') model = <PeppermintPenguin key={`${modelName}${pos[0]}${pos[1]}${pos[2]}${Math.random() * 1000}`} position={[pos[0], pos[1], pos[2]]} />
         return model
     }
 
     const readyModels = [];
-    user2.user.island.forEach(e => {
+    currentUser.island.forEach(e => {
         const modelReady = modelFinder(e.itemName, e.coordinates)
         readyModels.push(modelReady)
     });
@@ -95,47 +69,90 @@ function Island({navigation, route}: IslandProps){
 
     const [OrbitControls, events] = useControls()
 
-    const islandModel = "islandModel"
+    const [hiddenInv, setHiddenInv] = useState('hidden')
+    const [hiddenDel, setHiddenDel] = useState('hidden')
 
-    return (
-			<View
-				className={
-					'flex h-full bg-blue-195 bg-white items-center justify-content-center p-2'
-				}
-			>
-				<Text className={'text-2xl absolute top-10 font-bold text-lime-600'}>
-					{currentUser.username}'s Island
-				</Text>
-				<View className={'flex-row absolute right-5 top-3'}>
-					<Text>{`${currentUser.credits}`}</Text>
-					<Image className={`w-3 h-3`} source={require('../assets/coin.png')} />
-				</View>
-				<View className={'h-full w-full'} {...events}>
-					<Canvas
-						camera={{ fov: 60, near: 0.1, far: 1000, position: [4, 3.5, 4] }}
-						style={{
-							background:
-								'linear-gradient(to bottom, #d9eaff, #99ccff, #ffffff)',
-						}}
-					>
-						<OrbitControls
-							rotateSpeed={1}
-							maxZoom={7}
-							enablePan={false}
-							maxPolarAngle={1.4}
+    function handleInventory() {
+        if (hiddenInv) {
+        setHiddenInv('')
+        setHiddenDel('hidden')
+        } else {
+            setHiddenInv('hidden')
+        }
+    }
+
+    function handleDeletePress() {
+        if (hiddenDel) {
+        setHiddenDel('')
+        setHiddenInv('hidden')
+        } else {
+            setHiddenDel('hidden')
+        }
+    }
+
+    const [inventory, setInventory] = useState('')
+
+    useEffect(() => {
+        const arr = []
+        for (let key in currentUser?.inventory) {
+            console.log('hi')
+            for (let i=0; i< currentUser?.inventory[key]; i++) {
+                arr.push(key);
+              }
+        }
+        setInventory(arr)
+    }, [currentUser])
+
+    console.log(currentUser?.island)
+    return(
+        <View className={'flex h-full bg-white items-center justify-content-center p-2'}>
+            <Text className={'text-2xl absolute top-10 font-bold text-lime-600'}>{currentUser.username}'s Island</Text>
+            <View className={'flex-row absolute right-5 top-3'}>
+                <Text>{`${currentUser.credits}`}</Text>
+                <Image
+							className={`w-3 h-3`}
+							source={require('../assets/coin.png')}
 						/>
-						<pointLight color="white" position={[20, 30, 5]} intensity={2} />
-						<ambientLight intensity={0.5} />
+            </View>
+            <View className={'h-full w-full'} {...events}>
+                <Canvas camera={{ fov: 60, near:0.1, far:1000, position: [4,3.5,4]}} 
+                        style={{background: "linear-gradient(to bottom, #d9eaff, #99ccff, #ffffff)"}}>
+                            <OrbitControls rotateSpeed={1} maxZoom={7} enablePan={false} maxPolarAngle={1.4}/>
+                            <pointLight color="white" position={[20,30,5]} intensity={2}/>  
+                    <ambientLight intensity={0.5} />
 
-						<Suspense fallback={null}>
-							{readyModels.map((c) => c)}
-							<IslandModel position={[0.1, -3, 0]} />
-						</Suspense>
-					</Canvas>
-				</View>
-				<BottomNavigation navigation={navigation} />
-			</View>
-		);
+                    <Suspense fallback={null}> 
+                        {readyModels.map(c => c)} 
+                        <IslandModel position={[0.1, -3, 0]}/>                 
+                    </Suspense>
+                </Canvas>
+            </View>
+            <View className={'absolute right-5 top-10'}>
+                <TouchableOpacity onPress={handleInventory}>
+                <Image
+					className={`w-10 h-10`}
+					source={require('../assets/backpack.png')}
+				/>
+                </TouchableOpacity>
+            </View>
+            <View className={'absolute right-3.5 top-20'}>
+                <TouchableOpacity onPress={handleDeletePress}>
+                <Image
+					className={`w-12 h-12`}
+					source={require('../assets/delete.png')}
+				/>
+                </TouchableOpacity>
+            </View>
+            {inventory.length > 0 ? <ScrollView showsHorizontalScrollIndicator={false} className={`absolute bg-green-800 bottom-20 border-2 h-20 ${hiddenInv}`} horizontal={true}>
+               {inventory ? inventory.map(item => <ModelDeleteCard model={item} currentUser={currentUser} setCurrentUser={setCurrentUser}/>) : null}
+            </ScrollView> : <View className={`absolute bg-green-800 bottom-20 border-2 ${hiddenInv}`}><Text className={'text-white text-2xl'}>You have no items!</Text></View>}
+            <ScrollView showsHorizontalScrollIndicator={false} className={`absolute bg-green-800 bottom-20 border-2 h-20 ${hiddenDel}`} horizontal={true}>
+               {currentUser?.island.map(item => <ModelDeleteCard model={item.itemName} currentUser={currentUser} setCurrentUser={setCurrentUser}/>)}
+            </ScrollView>
+           <BottomNavigation navigation={navigation}/>
+        </View>
+
+    )
 }
 
 export default Island

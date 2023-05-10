@@ -53,7 +53,7 @@ export default function App() {
 				coordinates: [0, 1.3],
 			  },
 		],
-		inventory: {},
+		inventory: {Bee: 2, Chicken: 3, Lion: 1, Koala:6},
 		hash: 'sdghsdhgsd',
 		credits: 0,
 		_v : 0,
@@ -61,7 +61,7 @@ export default function App() {
 	  }) 
 
 	  useEffect(() => {
-		console.log(currentUser)
+		// console.log(currentUser)
 	  }, [currentUser])
 	  const Stack = createNativeStackNavigator();
 
@@ -69,9 +69,9 @@ export default function App() {
 		<NavigationContainer>
 			<Stack.Navigator initialRouteName="Island">
 				<Stack.Screen name="Login" component={Login} initialParams={{setCurrentUser}}/>
-				<Stack.Screen name="Island" component={Island} initialParams={{currentUser}}/>
+				<Stack.Screen name="Island" component={Island} initialParams={{currentUser, setCurrentUser}}/>
 				<Stack.Screen name="Tasks" component={UserTask} initialParams={{currentUser, setCurrentUser}}/>
-				<Stack.Screen name="Shop" component={Shop} initialParams={{currentUser}}/>
+				<Stack.Screen name="Shop" component={Shop} initialParams={{currentUser, setCurrentUser}}/>
 				<Stack.Screen name="Profile" component={Profile} initialParams={{setCurrentUser, currentUser}}/>
 			</Stack.Navigator>
 		</NavigationContainer>

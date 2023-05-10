@@ -7,6 +7,7 @@ import {
   patchItemToIsland,
   patchCreditsByUsername,
   deleteUserByUsername,
+  patchIslandByUsername,
 } from "./controllers/userControllers";
 import cors from "cors";
 import {
@@ -27,6 +28,7 @@ app.patch("/api/users/:username/inventory", patchItemToInventoryByUsername);
 app.patch("/api/users/:username/island", patchItemToIsland);
 app.patch("/api/users/:username/credits", patchCreditsByUsername)
 app.delete("/api/users/:username", deleteUserByUsername)
+app.delete("/api/users/:username/island", patchIslandByUsername)
 
 app.use(handleInvalidPath);
 app.use(handleCustomErrors);

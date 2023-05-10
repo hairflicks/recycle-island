@@ -14,6 +14,8 @@ export const checkShopItemExists = (itemName: string): void  => {
   let result = false
   Object.values(items).forEach(item => {
     if (itemName === item.itemName) {
+      console.log(itemName, 'util sent data')
+      console.log(item.itemName, 'util data')
       result = true
     }
   })

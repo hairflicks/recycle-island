@@ -43,3 +43,13 @@ export const deleteUserByUsername = async (username: String) => {
   const data = await recycleLand.delete(`/users/${username}`)
   return data
 }
+
+export const patchIslandByUsername = async (username: String, itemObject: Object) => {
+  const data = await recycleLand.patch(`/users/${username}/island`, {itemName: itemObject.itemName, coordinates: itemObject.coordinates})
+  return data
+}
+
+export const deleteFromIsland = async (username: String, itemName: String) => {
+  const data = await recycleLand.delete(`/users/${username}/island`, {itemName})
+  return data
+}
