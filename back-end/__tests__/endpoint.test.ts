@@ -343,7 +343,7 @@ describe("DELETE /api/users/:username", () => {
   })
 })
 
-describe.only('Patch /api/users/:username/island', () => {
+describe.only('DELETE /api/users/:username/island', () => {
   beforeEach(async () => {
 		await seed(testusers, testitems);
 	});
