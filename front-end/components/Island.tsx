@@ -1,7 +1,7 @@
-import { View, Text, Button, TouchableOpacity, Image } from 'react-native';
+import { View, Text, Button, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { styles } from './StyleSheetCSS';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Suspense, useRef, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import useControls from "r3f-native-orbitcontrols"
 
 
@@ -20,6 +20,7 @@ import Frog from './ObjectModels/Frog';
 import Goat from './ObjectModels/Goat';
 import Lion from './ObjectModels/Lion';
 import Monkey from './ObjectModels/Monkey';
+import InventoryCard from './InventoryCard';
 
 type User = {
     name: String,
@@ -67,6 +68,41 @@ function Island({navigation, route}: IslandProps){
 
     const [OrbitControls, events] = useControls()
 
+    const [hiddenInv, setHiddenInv] = useState('hidden')
+    const [hiddenDel, setHiddenDel] = useState('hidden')
+
+    function handleInventory() {
+        if (hiddenInv) {
+        setHiddenInv('')
+        setHiddenDel('hidden')
+        } else {
+            setHiddenInv('hidden')
+        }
+    }
+
+    function handleDeletePress() {
+        if (hiddenDel) {
+        setHiddenDel('')
+        setHiddenInv('hidden')
+        } else {
+            setHiddenDel('hidden')
+        }
+    }
+
+    const [inventory, setInventory] = useState('')
+
+    useEffect(() => {
+        const arr = []
+        for (let key in currentUser?.inventory) {
+            console.log('hi')
+            for (let i=0; i< currentUser?.inventory[key]; i++) {
+                arr.push(key);
+              }
+        }
+        setInventory(arr)
+    }, [currentUser])
+
+    console.log(currentUser?.island)
     return(
         <View className={'flex h-full bg-white items-center justify-content-center p-2'}>
             <Text className={'text-2xl absolute top-10 font-bold text-lime-600'}>{currentUser.username}'s Island</Text>
@@ -90,6 +126,28 @@ function Island({navigation, route}: IslandProps){
                     </Suspense>
                 </Canvas>
             </View>
+            <View className={'absolute right-5 top-10'}>
+                <TouchableOpacity onPress={handleInventory}>
+                <Image
+					className={`w-10 h-10`}
+					source={require('../assets/backpack.png')}
+				/>
+                </TouchableOpacity>
+            </View>
+            <View className={'absolute right-3.5 top-20'}>
+                <TouchableOpacity onPress={handleDeletePress}>
+                <Image
+					className={`w-12 h-12`}
+					source={require('../assets/delete.png')}
+				/>
+                </TouchableOpacity>
+            </View>
+            {inventory.length > 0 ? <ScrollView showsHorizontalScrollIndicator={false} className={`absolute bg-green-800 bottom-20 border-2 h-20 ${hiddenInv}`} horizontal={true}>
+               {inventory ? inventory.map(item => <InventoryCard model={item}/>) : null}
+            </ScrollView> : <View className={`absolute bg-green-800 bottom-20 border-2 ${hiddenInv}`}><Text className={'text-white text-2xl'}>You have no items!</Text></View>}
+            <ScrollView showsHorizontalScrollIndicator={false} className={`absolute bg-green-800 bottom-20 border-2 h-20 ${hiddenDel}`} horizontal={true}>
+               {currentUser?.island.map(item => <InventoryCard model={item.itemName}/>)}
+            </ScrollView>
            <BottomNavigation navigation={navigation}/>
         </View>
 
