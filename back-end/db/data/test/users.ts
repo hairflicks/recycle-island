@@ -14,6 +14,18 @@ export const testusers = [
 				itemName: 'tree',
 				coordinates: [0.0, 0.0, 1.0],
 			},
+			{
+				itemName: 'tree',
+				coordinates: [0.0, 0.0, 1.0],
+			},
+			{
+				itemName: 'tree',
+				coordinates: [0.0, 0.0, 1.0],
+			},
+			{
+				itemName: 'tree',
+				coordinates: [0.0, 0.0, 1.0],
+			}
 		],
 	},
 	{
