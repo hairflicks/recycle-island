@@ -79,7 +79,6 @@ const FlippableCard = ({ currentUser, model, setScrollable, availablePos, setCur
 	if(model.itemName === 'PeppermintPenguin')path = require(`../assets/PeppermintPenguin.png`)
 	if(model.itemName === 'Frog')path = require(`../assets/Frog.png`)
 	if(model.itemName === 'Monkey')path = require(`../assets/Monkey.png`)
-
 	return (
 		<TouchableOpacity
 			onPress={flipCard}
@@ -133,7 +132,7 @@ const FlippableCard = ({ currentUser, model, setScrollable, availablePos, setCur
 					>
 						{model.itemDisplayName}
 					</Text>
-					<ScrollView nestedScrollEnabled={true} className={`border-b-2 w-full`}>
+					<ScrollView showsVerticalScrollIndicator={false} nestedScrollEnabled={true} className={`border-b-2 w-full`}>
 					<TouchableOpacity onPress={flipCard}>
 						<Text className={`text-xs text-center`}>
 							{model.itemDescription}

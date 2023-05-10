@@ -53,7 +53,7 @@ export default function App() {
 				coordinates: [0, 1.3],
 			  },
 		],
-		inventory: {},
+		inventory: {Bee: 2, Chicken: 3, Lion: 1, Koala:6},
 		hash: 'sdghsdhgsd',
 		credits: 0,
 		_v : 0,
