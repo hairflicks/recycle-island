@@ -63,6 +63,7 @@ export const patchItemToIsland = async (
 ) => {
   const { username } = req.params;
   const { body } = req;
+  console.log(body)
   try {
     checkShopItemExists(body.itemName);
     const data = await addItemToIsland(username, body);
