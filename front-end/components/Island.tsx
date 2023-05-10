@@ -43,22 +43,21 @@ function Island({navigation, route}: IslandProps){
 
     function modelFinder(modelName, pos) {
         let model;
-        if(modelName === 'Bee') model = <Bee key={modelName} position={[pos[0], pos[1], pos[2]]} />
-        if(modelName === 'Chicken') model = <Chicken key={modelName} position={[pos[0], pos[1], pos[2]]} />
-        if(modelName === 'Alligator') model = <Alligator key={modelName} position={[pos[0], pos[1], pos[2]]} />
-        if(modelName === 'Dragon') model = <Dragon key={modelName} position={[pos[0], pos[1], pos[2]]} />
-        if(modelName === 'Frog') model = <Frog key={modelName} position={[pos[0], pos[1], pos[2]]} />
-        if(modelName === 'Goat') model = <Goat key={modelName} position={[pos[0], pos[1], pos[2]]} />
-        if(modelName === 'Koala') model = <Koala key={modelName} position={[pos[0], pos[1], pos[2]]} />
-        if(modelName === 'Lion') model = <Lion key={modelName} position={[pos[0], pos[1], pos[2]]} />
-        if(modelName === 'Monkey') model = <Monkey key={modelName} position={[pos[0], pos[1], pos[2]]} />
-        if(modelName === 'PalmTree') model = <PalmTree key={modelName} position={[pos[0], pos[1], pos[2]]} />
-        if(modelName === 'Panda') model = <Panda key={modelName} position={[pos[0], pos[1], pos[2]]} />
-        if(modelName === 'PeppermintPenguin') model = <PeppermintPenguin key={modelName} position={[pos[0], pos[1], pos[2]]} />
+        if(modelName === 'Bee') model = <Bee key={`${modelName}${pos[0]}${pos[1]}${pos[2]}${Math.random() * 1000}`} position={[pos[0], pos[1], pos[2]]} />
+        if(modelName === 'Chicken') model = <Chicken key={`${modelName}${pos[0]}${pos[1]}${pos[2]}${Math.random() * 1000}`} position={[pos[0], pos[1], pos[2]]} />
+        if(modelName === 'Alligator') model = <Alligator key={`${modelName}${pos[0]}${pos[1]}${pos[2]}${Math.random() * 1000}`} position={[pos[0], pos[1], pos[2]]} />
+        if(modelName === 'Dragon') model = <Dragon key={`${modelName}${pos[0]}${pos[1]}${pos[2]}${Math.random() * 1000}`} position={[pos[0], pos[1], pos[2]]} />
+        if(modelName === 'Frog') model = <Frog key={`${modelName}${pos[0]}${pos[1]}${pos[2]}${Math.random() * 1000}`} position={[pos[0], pos[1], pos[2]]} />
+        if(modelName === 'Goat') model = <Goat key={`${modelName}${pos[0]}${pos[1]}${pos[2]}${Math.random() * 1000}`} position={[pos[0], pos[1], pos[2]]} />
+        if(modelName === 'Koala') model = <Koala key={`${modelName}${pos[0]}${pos[1]}${pos[2]}${Math.random() * 1000}`} position={[pos[0], pos[1], pos[2]]} />
+        if(modelName === 'Lion') model = <Lion key={`${modelName}${pos[0]}${pos[1]}${pos[2]}${Math.random() * 1000}`} position={[pos[0], pos[1], pos[2]]} />
+        if(modelName === 'Monkey') model = <Monkey key={`${modelName}${pos[0]}${pos[1]}${pos[2]}${Math.random() * 1000}`} position={[pos[0], pos[1], pos[2]]} />
+        if(modelName === 'PalmTree') model = <PalmTree key={`${modelName}${pos[0]}${pos[1]}${pos[2]}${Math.random() * 1000}`} position={[pos[0], pos[1], pos[2]]} />
+        if(modelName === 'Panda') model = <Panda key={`${modelName}${pos[0]}${pos[1]}${pos[2]}${Math.random() * 1000}`} position={[pos[0], pos[1], pos[2]]} />
+        if(modelName === 'PeppermintPenguin') model = <PeppermintPenguin key={`${modelName}${pos[0]}${pos[1]}${pos[2]}${Math.random() * 1000}`} position={[pos[0], pos[1], pos[2]]} />
         return model
     }
 
-    console.log(currentUser.island)
     const readyModels = [];
     currentUser.island.forEach(e => {
         const modelReady = modelFinder(e.itemName, e.coordinates)
