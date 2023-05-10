@@ -1,4 +1,4 @@
-import { FlatList, ScrollView, View } from 'react-native';
+import { FlatList, ScrollView, View, Image } from 'react-native';
 import { useEffect, useState,} from 'react';
 
 import FlippableCard from './FlippableCard';
@@ -95,22 +95,30 @@ function Shop({ navigation, route }: ShopProps) {
 
 	return (
 		<View className={'h-full bg-green-50'}>
+			<View className={`flex flex-col w-80% border-2 border-green-800 m-2 rounded bg-green-400 items-center p-0.5`}>
+				<View className={`flex-row`}>
+					<Text
+						className={`text-lg font-medium text-gray-500`}
+					>{`${currentUser.credits}`}</Text>
+					<Image className={`w-3 h-3`} source={require('../assets/coin.png')} />
+				</View>
+      </View>
 			<ScrollView className={'mb-20'} nestedScrollEnabled={true}>
-			<View
-				className={`flex flex-row flex-wrap p-2 bg-green-200 mb-10 rounded-lg shadow-md items-center border-green-800 border-2 m-2 mt-5 justify-evenly overflow-scroll`}
-			>
-				{isLoading ? (
-					<Text>Loading</Text>
-				) : (
-					models.map((model) => (
+				<View
+					className={`flex flex-row flex-wrap p-2 bg-green-200 mb-10 rounded-lg shadow-md items-center border-green-800 border-2 m-2 justify-evenly overflow-scroll`}
+				>
+					{isLoading ? (
+						<Text>Loading</Text>
+					) : (
+						models.map((model) => (
 							<FlippableCard
-							key={model.itemName}
-							currentUser={currentUser}
-							model={model}
-						/>
-					))
-				)}
-			</View>
+								key={model.itemName}
+								currentUser={currentUser}
+								model={model}
+							/>
+						))
+					)}
+				</View>
 			</ScrollView>
 			<BottomNavigation navigation={navigation} />
 		</View>

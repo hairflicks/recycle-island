@@ -60,7 +60,7 @@ const FlippableCard = ({ currentUser, model, setScrollable }) => {
 		<TouchableOpacity
 			onPress={flipCard}
 			className={
-				'flex items-center justify-center border border-gray-00 rounded w-36 shadow-lg m-1 h-36'
+				'flex items-center justify-center border border-gray-300 rounded w-36 shadow-lg m-1 h-36'
 			}
 		>
 			{!isFlipped ? (
