@@ -65,32 +65,193 @@ function UserTask ({navigation, route}: TaskProps){
   if (menu === 0) {
     menuOption = (
 			<>
-				<Text> Select Task</Text>
-				<Button title="Recycle" onPress={optionPress} />
-				<Button title="Reuse" onPress={() => {
-					setMenu(3)
-					setIncCredit(credit => credit + 20)
-					}} />
+				<Text
+					style={{
+						fontSize: 36,
+						fontWeight: 'bold',
+						color: '#32CD32',
+						marginBottom: 20,
+					}}
+				>
+					Select Your Task
+				</Text>
+				<View style={{ alignItems: 'center' }}>
+					<View
+						style={{
+							backgroundColor: '#fff',
+							padding: 20,
+							borderRadius: 10,
+							marginBottom: 20,
+						}}
+					>
+						<Text style={{ fontSize: 28, marginBottom: 10, width: 310 }}>
+							Join the recycling revolution!
+						</Text>
+						<Text
+							style={{
+								fontSize: 22,
+								marginBottom: 20,
+								color: '#5D5C61',
+								width: 310,
+							}}
+						>
+							Turn waste into worth and protect our Earth.
+						</Text>
+						<TouchableOpacity
+							style={{
+								backgroundColor: '#ffd32a',
+								paddingVertical: 15,
+								paddingHorizontal: 30,
+								borderRadius: 5,
+							}}
+							onPress={optionPress}
+						>
+							<Text style={{ color: '#fff', fontSize: 24, fontWeight: 'bold' }}>
+								Recycle
+							</Text>
+						</TouchableOpacity>
+					</View>
+					<View
+						style={{ backgroundColor: '#fff', padding: 20, borderRadius: 10 }}
+					>
+						<Text style={{ fontSize: 28, marginBottom: 10, width: 310 }}>
+							Join the reuse rebellion!
+						</Text>
+						<Text
+							style={{
+								fontSize: 22,
+								marginBottom: 20,
+								color: '#5D5C61',
+								width: 310,
+							}}
+						>
+							Choose reusables, Earth's pollution solution.
+						</Text>
+
+						<TouchableOpacity
+							style={{
+								backgroundColor: '#ff6b6b',
+								paddingVertical: 15,
+								paddingHorizontal: 30,
+								borderRadius: 5,
+							}}
+							onPress={() => {
+								setMenu(3);
+								setIncCredit((credit) => credit + 20);
+							}}
+						>
+							<Text style={{ color: '#fff', fontSize: 24, fontWeight: 'bold' }}>
+								Reuse
+							</Text>
+						</TouchableOpacity>
+					</View>
+				</View>
 			</>
 		);
   } else if (menu === 1) {
     menuOption = (
 			<>
-				<Text> Select Size</Text>
-				<Button title="Small" onPress={() => {
-					optionPress()
-					setIncCredit(credit => credit + 5)
-					}} />
-				<Button title="Medium" onPress={() => {
-					optionPress()
-					setIncCredit(credit => credit + 10)
-					}} />
-				<Button title="Large" onPress={() => {
-					optionPress()
-					setIncCredit(credit => credit + 15)
-					}} />
-				<Button title="go back" onPress={() => 
-					setMenu((previousState) => previousState -1)} />
+				<View>
+					<Text> Select Size</Text>
+					<View style={{ alignItems: 'center' }}>
+						<View
+							style={{
+								backgroundColor: '#fff',
+								padding: 20,
+								borderRadius: 10,
+								marginBottom: 20,
+							}}
+						>
+							<Text style={{ fontSize: 28, marginBottom: 10, width: 310 }}>
+								hello!
+							</Text>
+
+							<TouchableOpacity
+								style={{
+									backgroundColor: '#ffd32a',
+									paddingVertical: 15,
+									paddingHorizontal: 30,
+									borderRadius: 5,
+								}}
+								onPress={() => {
+									optionPress();
+									setIncCredit((credit) => credit + 5);
+								}}
+							>
+								<Text>Small</Text>
+							</TouchableOpacity>
+						</View>
+					</View>
+
+					<View style={{ alignItems: 'center' }}>
+						<View
+							style={{
+								backgroundColor: '#fff',
+								padding: 20,
+								borderRadius: 10,
+								marginBottom: 20,
+							}}
+						>
+							<Text style={{ fontSize: 28, marginBottom: 10, width: 310 }}>
+								hello!
+							</Text>
+							<TouchableOpacity
+								style={{
+									backgroundColor: '#ffd32a',
+									paddingVertical: 15,
+									paddingHorizontal: 30,
+									borderRadius: 5,
+								}}
+								onPress={() => {
+									optionPress();
+									setIncCredit((credit) => credit + 10);
+								}}
+							>
+								<Text>Medium</Text>
+							</TouchableOpacity>
+						</View>
+					</View>
+
+					<View style={{ alignItems: 'center' }}>
+						<View
+							style={{
+								backgroundColor: '#fff',
+								padding: 20,
+								borderRadius: 10,
+								marginBottom: 20,
+							}}
+						>
+							<Text style={{ fontSize: 28, marginBottom: 10, width: 310 }}>
+								hello!
+							</Text>
+							<TouchableOpacity
+								style={{
+									backgroundColor: '#ffd32a',
+									paddingVertical: 15,
+									paddingHorizontal: 30,
+									borderRadius: 5,
+								}}
+								onPress={() => {
+									optionPress();
+									setIncCredit((credit) => credit + 15);
+								}}
+							>
+								<Text>Large</Text>
+							</TouchableOpacity>
+						</View>
+					</View>
+					<TouchableOpacity
+						style={{
+							backgroundColor: '#ffd32a',
+							paddingVertical: 15,
+							paddingHorizontal: 30,
+							borderRadius: 5,
+						}}
+						onPress={() => setMenu((previousState) => previousState - 1)}
+					>
+						<Text>go back</Text>
+					</TouchableOpacity>
+				</View>
 			</>
 		);
   } else if (menu === 2) {
@@ -126,9 +287,9 @@ function UserTask ({navigation, route}: TaskProps){
   }
   
   return (
-		<View className={`h-full bg-green-50`}>
+		<View className={`h-full bg-blue-50`}>
 			<View
-				className={`flex flex-col h-5/6 p-4 bg-green-200 rounded-lg shadow-md items-center border-green-800 border-2 m-2 mt-5`}
+				className={`flex flex-col h-5/6 p-4 bg-blue-195 rounded-lg shadow-md items-center `}
 			>
 				{menuOption}
 			</View>
