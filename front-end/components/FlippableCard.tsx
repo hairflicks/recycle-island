@@ -96,7 +96,7 @@ const FlippableCard = ({ currentUser, model, setCurrentUser, navigation }) => {
 		<TouchableOpacity
 			onPress={flipCard}
 			className={
-				'flex items-center justify-center w-36 shadow-lg m-1 h-36'
+				'flex items-center justify-center w-36 shadow-lg m-1 h-36 mt-5'
 			}
 		>
 			{!isFlipped ? (
@@ -113,7 +113,7 @@ const FlippableCard = ({ currentUser, model, setCurrentUser, navigation }) => {
 					</Text>
 					<Image className={'h-1/2 w-1/2 m-2'} source={path} />
 					<View
-						className={`flex-row w-full justify-center bg-red-400  p-0.25`}
+						className={`flex-row w-full justify-center bg-white border-2 border-yellow-300 rounded  p-0.25`}
 					>
 						<Text
 							className={`text-lg font-medium ${

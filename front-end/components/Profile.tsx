@@ -68,9 +68,9 @@ function Profile ({navigation, route}: ProfileProps) {
   },)
 
   return (
-		<View className={`h-full bg-cyan-50`}>
+		<View className={`h-full bg-cyan-50 `}>
 			<View
-				className={`flex flex-col h-5/6 p-4 rounded-lg shadow-md items-center relative  mt-10 mb-auto`}
+				className={`flex flex-col h-5/6 p-4 rounded-lg shadow-md content-evenly items-center relative  mt-10 mb-auto`}
 			>
 				<View className={`items-center`}>
 					<View>
@@ -94,7 +94,7 @@ function Profile ({navigation, route}: ProfileProps) {
 						items!
 					</Text>
 
-					<Text className={'text-2xl m-2 mb-20'}>
+					<Text className={'text-2xl m-2 mb-20 text-center'}>
 						Since you landed on Recycland, you've earned{' '}
 						<Text className={`text-green-700`}>{totalEarned} </Text>
 						credits in total!

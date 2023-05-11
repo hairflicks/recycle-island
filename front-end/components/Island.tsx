@@ -107,17 +107,11 @@ function Island({navigation, route}: IslandProps){
 					'flex h-full bg-white items-center justify-content-center p-2'
 				}
 			>
-				<Text className={'text-2xl absolute top-10 font-bold text-lime-600'}>
-					{currentUser.username}'s Island
-				</Text>
-				<View className={'flex-row absolute right-5 top-20'}>
-					<Text>{`${currentUser.credits}`}</Text>
-					<Image className={`w-3 h-3`} source={require('../assets/coin.png')} />
-				</View>
 				<View className={'h-full w-full'} {...events}>
 					<Canvas
 						camera={{ fov: 60, near: 0.1, far: 1000, position: [4, 3.5, 4] }}
 					>
+						<color attach='background' args={['#a5f3fc']} />
 						<OrbitControls
 							rotateSpeed={1}
 							maxZoom={7}
@@ -132,6 +126,13 @@ function Island({navigation, route}: IslandProps){
 							<IslandModel position={[0.1, -3, 0]} />
 						</Suspense>
 					</Canvas>
+				<Text className={'text-2xl absolute top-10 font-bold text-green-400 w-full text-center'}>
+					{currentUser.username}'s Island
+				</Text>
+				<View className={'flex-row absolute right-5 top-20'}>
+					<Text>{`${currentUser.credits}`}</Text>
+					<Image className={`w-3 h-3`} source={require('../assets/coin.png')} />
+				</View>
 				</View>
 				<View className={'absolute right-5 top-28'}>
 					<TouchableOpacity onPress={handleInventory}>
