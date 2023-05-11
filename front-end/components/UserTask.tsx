@@ -355,8 +355,18 @@ function UserTask ({navigation, route}: TaskProps){
   } else {
 
     menuOption = (
-			<View className={'mt-auto mb-auto'}>
-				{error ? <Text>{error}</Text> : <Text>You earned {incCredit} credits!</Text>}
+			<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+				<Text
+					style={{
+						fontSize: 30,
+						textAlign: 'center',
+						textAlignVertical: 'center',
+					}}
+				>
+					You earned {incCredit} credits! {'\n'}
+					{'\n'}
+					<Text style={{ fontSize: 50 }}>{String.fromCodePoint(0x1f4b0)}</Text>
+				</Text>
 			</View>
 		);
 
