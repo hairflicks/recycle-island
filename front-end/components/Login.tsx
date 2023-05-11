@@ -61,17 +61,32 @@ function Login({ navigation, route }: LoginProps) {
 
 	return (
 		<View className={'items-center mt-auto mb-auto'}>
-			<Text className={'text-4xl font-bold text-green-700 mt-5 mb-5'}>RECYCLAND</Text>
-			<Image className={'w-20 h-20'} source={require('../assets/recycletree.png')}/>
-			<View className='flex-row mt-5 mb-5'>
+			<Text className={'text-4xl font-bold text-green-400 mt-5 mb-5'}>
+				RecycLand
+			</Text>
+			<Text style={{ fontSize: 100 }}>{String.fromCodePoint(0x1f30d)}</Text>
+			<View className="flex-row mt-5 mb-5">
 				<TouchableOpacity
-					className={'bg-green-800 border-2 border-green-200 rounded-lg p-4 mr-5'}
+					className={
+						'bg-yellow-400 rounded-lg p-4 mr-5'
+					}
 					onPress={handleLoginPage}
 				>
-					<Text className={'text-center text-base font-bold text-green-200 w-20'}>Login</Text>
+					<Text
+						className={'text-center text-base font-bold text-white w-20'}
+					>
+						Login
+					</Text>
 				</TouchableOpacity>
-				<TouchableOpacity className={'bg-green-800 border-2 border-green-200 rounded-lg p-4'} onPress={handleSignUpPage}>
-					<Text className={'text-center text-base font-bold text-green-200 w-20'}>Sign Up</Text>
+				<TouchableOpacity
+					className={'bg-red-400 rounded-lg p-4'}
+					onPress={handleSignUpPage}
+				>
+					<Text
+						className={'text-center text-base font-bold text-white w-20'}
+					>
+						Sign Up
+					</Text>
 				</TouchableOpacity>
 			</View>
 
@@ -79,44 +94,54 @@ function Login({ navigation, route }: LoginProps) {
 				<View style={styles.inputContainer}>
 					<TextInput
 						style={styles.input}
-						placeholder='Username'
+						placeholder="Username"
 						value={username}
 						onChangeText={setUsername}
 					/>
 					<TextInput
 						style={styles.input}
-						placeholder='Password'
+						placeholder="Password"
 						secureTextEntry={true}
 						value={password}
 						onChangeText={setPassword}
 					/>
-					<TouchableOpacity className={'bg-green-800 border-4 border-green-200 rounded-lg p-4'} onPress={handleLogin}>
-						<Text className={'text-center text-base font-bold text-green-200'}>Login</Text>
+					<TouchableOpacity
+						className={'bg-yellow-400 rounded-lg p-4'}
+						onPress={handleLogin}
+					>
+						<Text className={'text-center text-base font-bold text-white'}>
+							Login
+						</Text>
 					</TouchableOpacity>
 				</View>
 			) : (
 				<View style={styles.inputContainer}>
 					<TextInput
 						style={styles.input}
-						placeholder='Name'
+						placeholder="Name"
 						value={name}
 						onChangeText={setName}
 					/>
 					<TextInput
 						style={styles.input}
-						placeholder='Username'
+						placeholder="Username"
 						value={username}
 						onChangeText={setUsername}
 					/>
 					<TextInput
 						style={styles.input}
-						placeholder='Password'
+						placeholder="Password"
 						secureTextEntry={true}
 						value={password}
 						onChangeText={setPassword}
 					/>
-					<TouchableOpacity className={'bg-green-800 border-4 border-green-200 rounded-lg p-4'} onPress={handleSignUp}>
-						<Text className={'text-center text-base font-bold text-green-200'}>Create Account</Text>
+					<TouchableOpacity
+						className={'bg-red-400 rounded-lg p-4'}
+						onPress={handleSignUp}
+					>
+						<Text className={'text-center text-base font-bold text-white'}>
+							Create Account
+						</Text>
 					</TouchableOpacity>
 				</View>
 			)}

@@ -68,47 +68,51 @@ function Profile ({navigation, route}: ProfileProps) {
   },)
 
   return (
-		<View className={`h-full bg-green-50`}>
+		<View className={`h-full bg-cyan-50`}>
 			<View
-				className={`flex flex-col h-5/6 p-4 bg-green-200 rounded-lg shadow-md items-center relative border-green-800 border-2 m-2 mt-10 mb-auto`}
+				className={`flex flex-col h-5/6 p-4 rounded-lg shadow-md items-center relative  mt-10 mb-auto`}
 			>
 				<View className={`items-center`}>
-					<View className={`w-80 bg-green-800 items-center rounded border-2 border-black`}>
-						<Text className={`text-2xl font-bold text-gray-800 mb-auto mt-auto p-1 text-gray-200`}>
+					<View>
+						<Text
+							className={`text-4xl font-bold text-gray-800 mb-auto mt-auto p-1 text-green-400`}
+						>
 							Welcome {currentUser.username}!
 						</Text>
 					</View>
 					<View className={`flex-row mt-5`}>
 						<Text
-							className={`text-lg font-medium text-gray-500`}
+							className={`text-4xl font-medium text-gray-500`}
 						>{`${currentUser.credits}`}</Text>
 						<Image
 							className={`w-3 h-3`}
 							source={require('../assets/coin.png')}
 						/>
 					</View>
-					<Text className={'text-lg font-bold m-2 mt-7'}>
+					<Text className={'text-2xl font-bold m-2 mt-7'}>
 						You've recycled <Text className={`text-green-700`}>{recycled}</Text>{' '}
 						items!
 					</Text>
-					<Text className={'text-lg font-bold m-2 mb-20'}>
-						You've earned{' '}
+
+					<Text className={'text-2xl m-2 mb-20'}>
+						Since you landed on Recycland, you've earned{' '}
 						<Text className={`text-green-700`}>{totalEarned} </Text>
 						credits in total!
 					</Text>
 				</View>
+				<View>
+					<Text style={{ fontSize: 120 }}>{String.fromCodePoint(0x1f30d)}</Text>
+				</View>
+
 				<View className={`items-center absolute bottom-6`}>
 					<TouchableOpacity
-						className={`bg-blue-500 m-2 w-80 items-center rounded`}
+						className={`bg-yellow-400 m-2 w-80 items-center rounded`}
 						onPress={handleSignOut}
 					>
-						<Text className={`text-2xl p-1`}>Sign out</Text>
+						<Text className={`text-xl p-1`}>Sign Out</Text>
 					</TouchableOpacity>
-					<TouchableOpacity
-						className={`bg-red-500 items-center w-80 rounded`}
-						onPress={deleteCheck}
-					>
-						<Text className={`text-2xl p-1`}>DELETE ACCOUNT</Text>
+					<TouchableOpacity onPress={deleteCheck}>
+						<Text className={`text-l p-1 text-red-500`}>Delete Account</Text>
 					</TouchableOpacity>
 				</View>
 				<View className={`absolute ${areYouSure} bottom-48`}>

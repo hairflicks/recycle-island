@@ -42,24 +42,28 @@ function Shop({ navigation, route }: ShopProps) {
 
 	return (
 		<View className={'h-full bg-green-50'}>
-			<ScrollView showsVerticalScrollIndicator={false} className={'mb-20 mt-5'} nestedScrollEnabled={true}>
-			<View
-				className={`flex flex-row flex-wrap p-2 bg-green-200 mb-10 rounded-lg shadow-md items-center border-green-800 border-2 m-2 mt-5 justify-evenly overflow-scroll`}
+			<ScrollView
+				showsVerticalScrollIndicator={false}
+				className={'mb-20 mt-5'}
+				nestedScrollEnabled={true}
 			>
-				{isLoading ? (
-					<Text>Loading</Text>
-				) : (
-					models.map((model) => (
+				<View
+					className={`flex flex-row flex-wrap p-2 bg-cyan-50 mb-10 rounded-lg shadow-md items-center   m-2 mt-5 justify-evenly overflow-scroll`}
+				>
+					{isLoading ? (
+						<Text>Loading</Text>
+					) : (
+						models.map((model) => (
 							<FlippableCard
-							key={model.itemName}
-							currentUser={currentUser}
-							setCurrentUser={setCurrentUser}
-							model={model}
-							navigation={navigation}
-						/>
-					))
-				)}
-			</View>
+								key={model.itemName}
+								currentUser={currentUser}
+								setCurrentUser={setCurrentUser}
+								model={model}
+								navigation={navigation}
+							/>
+						))
+					)}
+				</View>
 			</ScrollView>
 			<BottomNavigation navigation={navigation} />
 		</View>
