@@ -96,27 +96,24 @@ const FlippableCard = ({ currentUser, model, setCurrentUser, navigation }) => {
 		<TouchableOpacity
 			onPress={flipCard}
 			className={
-				'flex items-center justify-center border border-gray-00 rounded w-36 shadow-lg m-1 h-36'
+				'flex items-center justify-center w-36 shadow-lg m-1 h-36'
 			}
 		>
 			{!isFlipped ? (
 				<Animated.View
-					className={`flex flex-col bg-gray-200 absolute rounded w-full h-full items-center`}
+					className={`flex flex-col bg-white absolute rounded w-full h-full items-center`}
 					style={frontAnimatedStyle}
 				>
 					<Text
 						className={
-							'border-b-2 border-green-500 w-full m-0 text-center rounded font-bold text-white bg-green-800'
+							' w-full m-0 text-center rounded font-bold text-yellow-400'
 						}
 					>
 						{model.itemDisplayName}
 					</Text>
-					<Image
-						className={'h-1/2 w-1/2 m-2'}
-						source={path}
-					/>
+					<Image className={'h-1/2 w-1/2 m-2'} source={path} />
 					<View
-						className={`flex-row w-full justify-center bg-green-300 border-t-2 border-b-2 border-green-800 p-0.25`}
+						className={`flex-row w-full justify-center bg-red-400  p-0.25`}
 					>
 						<Text
 							className={`text-lg font-medium ${
@@ -135,28 +132,28 @@ const FlippableCard = ({ currentUser, model, setCurrentUser, navigation }) => {
 				</Animated.View>
 			) : (
 				<Animated.View
-					className={`flex flex-col bg-green-200 absolute rounded w-full h-full`}
+					className={`flex flex-col bg-white absolute rounded w-full h-full`}
 					style={backAnimatedStyle}
 				>
-					<Text
-						className={
-							'border-b-2 border-green-500 w-full m-0 text-center rounded font-bold text-white bg-green-800'
-						}
+					
+					<ScrollView
+						showsVerticalScrollIndicator={false}
+						nestedScrollEnabled={true}
+						
 					>
-						{model.itemDisplayName}
-					</Text>
-					<ScrollView showsVerticalScrollIndicator={false} nestedScrollEnabled={true} className={`border-b-2 w-full`}>
-					<TouchableOpacity onPress={flipCard}>
-						<Text className={`text-xs text-center`}>
-							{model.itemDescription}
-						</Text>
-					</TouchableOpacity>
+						<TouchableOpacity onPress={flipCard}>
+							<Text className={`text-xs text-center`}>
+								{model.itemDescription}
+							</Text>
+						</TouchableOpacity>
 					</ScrollView>
 					<View
-						className={`w-11/12 mt-1 mb-1 rounded bg-blue-800 ml-auto mr-auto`}
+						className={`w-11/12 mt-1 mb-1 rounded bg-yellow-300 ml-auto mr-auto`}
 					>
 						<TouchableOpacity>
-							<Text className={`text-center text-white`} onPress={handleBuy}>Buy</Text>
+							<Text className={`text-center text-white`} onPress={handleBuy}>
+								Buy
+							</Text>
 						</TouchableOpacity>
 					</View>
 				</Animated.View>

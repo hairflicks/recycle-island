@@ -363,7 +363,7 @@ function UserTask ({navigation, route}: TaskProps){
   }
   
   return (
-		<View className={`h-full bg-blue-50`}>
+		<View className={`h-full bg-cyan-50`}>
 			<View
 				className={`flex flex-col h-5/6 p-4 bg-blue-195 rounded-lg shadow-md items-center `}
 			>
