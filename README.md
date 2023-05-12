@@ -17,7 +17,7 @@ An Android device with the Expo app installed
 
 # Installation
 Clone this repository
-Navigate to the project directory in your terminal and run npm install --force to install dependencies
+Navigate to the directory called front-end in your terminal and run npm install --force to install dependencies
 Start the development server by running npm start
 Open the Expo app on your device and scan the QR code displayed in your terminal to open the app
 
