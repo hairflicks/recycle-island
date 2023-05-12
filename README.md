@@ -22,11 +22,11 @@ Start the development server by running npm start
 Open the Expo app on your device and scan the QR code displayed in your terminal to open the app
 
 # Technologies Used
-React Native: A JavaScript framework for building mobile applications
-Three.js: A JavaScript library for creating 3D graphics in the browser
-Tailwind: A utility-first CSS framework for styling web applications
-MongoDB: A NoSQL database used to store data
-TypeScript: A strongly typed superset of JavaScript that adds optional static typing to the language
+- React Native: A JavaScript framework for building mobile applications
+- Three.js: A JavaScript library for creating 3D graphics in the browser
+- Tailwind: A utility-first CSS framework for styling web applications
+- MongoDB: A NoSQL database used to store data
+- TypeScript: A strongly typed superset of JavaScript that adds optional static typing to the language
 
 # Team Members
 Margaritis Argyrou   
