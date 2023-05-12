@@ -13,7 +13,7 @@ View your recycling statistics, including how much you've recycled
 # Getting Started
 Prerequisites
 Node.js and NPM installed on your computer
-An Android or iOS device with the Expo app installed
+An Android device with the Expo app installed
 
 # Installation
 Clone this repository
