@@ -29,11 +29,11 @@ MongoDB: A NoSQL database used to store data
 TypeScript: A strongly typed superset of JavaScript that adds optional static typing to the language
 
 # Team Members
-Margaritis Argyrou, 
-Hannah Carter, 
-Hannah Lawrence, 
-Jake Maciver, 
-Bradley Weidner
+Margaritis Argyrou   
+Hannah Carter  
+Hannah Lawrence   
+Jake Maciver  
+Bradley Weidner  
 
 # Acknowledgements
 We would like to thank Northcoders for providing us with the knowledge and skills necessary to build this application. We would also like to thank our friends and family for their support and encouragement.
